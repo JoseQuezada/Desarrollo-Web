@@ -1,0 +1,131 @@
+body
+{
+    font-family: 'Roboto', sans-serif;
+}
+
+.barra-banner 
+{
+    background-image: url(imagenes/banner.jpg);
+    height: 475px; /*para darle un tamaño a la imagen*/
+    color: white;   
+    background-size: cover; 
+    text-decoration: none;
+}
+
+a :hover
+{
+    color: chocolate;
+}
+
+#barra-banner-palabra 
+{
+    display: flex;
+    justify-content: flex-start; /*PARA PONER LA PALABRA BLOG AL LADO IZQUIEDO*/
+    margin-left: 150px; /*PARA DESPLAZAR A LA DERECHA LA PALABRA BLOG DE CAFE*/
+    font-size: 25px;
+}
+
+#barra-banner-lista ul
+{
+    list-style: none; /*PARA QUITARLE LAS VIÑETA A LA LISTA DE PALABRAS*/
+    display: flex;
+    justify-content: flex-end; /*PARA PONER LAS PALABRAS A LA DERECHA*/
+    margin-top: -30px; /*PARA BAJAR O SUBIR LAS PALABRAS*/
+    margin-right: 100px; /*PARA DESPLAZAR A LA IZQUIRDA LA LISTA DE PALABRAS*/
+}
+
+#barra-banner-lista li
+{
+    
+    margin-right: 35px; /*PARA DEJAR UN ESPACIO ENTRE LAS PALABRAS*/
+}
+
+#barra-banner-centrado
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    font-size: 35px;
+    font-weight: bold; /*PARA PONERLE NEGRITA AL PARRAFO*/
+}
+
+#barra-banner-centrado2
+{
+    display: flex;
+    justify-content: center; /*centrar el parrafp*/
+    margin-top: -45px; /*para bajar o subir el parrafo*/
+    font-size: 22px; /*para darle un tamaño de letra al parrafo */
+}
+
+
+/*comienza la barra intermedia del mensaje nuestros proximos cursos y talleres*/
+#barra-intermedia-palabra
+{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+/*comienza la parte de las imagenes*/
+#panito img
+{
+    height: 430px; /*para darle el tamaño a la imagen*/
+    margin-left: 170px; /*para deplazar a la derecha la imagens*/
+}
+
+
+#informacion-curso1
+{
+    margin-left: 535px;
+    margin-top: -440px;
+}
+
+#cafecito img
+{
+    height: 430px;
+    margin-left: 170px;
+    margin-top: 275px;
+}
+
+
+/*COMIENZA LA BARRA FINAL*/
+.barra-final
+{
+    height: 90px;
+    margin-top: 260px;
+    background-color: black;
+    color: white;
+}
+
+#barra-final-lista ul
+{
+    list-style: none; /*PARA QUITARLE LAS VIÑETA A LA LISTA DE PALABRAS*/
+    display: flex;
+    justify-content: flex-end; /*PARA PONER LAS PALABRAS A LA DERECHA*/
+    margin-top: -30px; /*PARA BAJAR O SUBIR LAS PALABRAS*/
+    margin-right: 100px; /*PARA DESPLAZAR A LA IZQUIRDA LA LISTA DE PALABRAS*/
+    color: purple;
+}
+
+#barra-final-lista li
+{
+    
+    margin-right: 35px; /*PARA DEJAR UN ESPACIO ENTRE LAS PALABRAS*/
+}
+
+#barra-final-palabra 
+{
+    display: flex;
+    justify-content: flex-start; /*PARA PONER LA PALABRA BLOG AL LADO IZQUIEDO*/
+    margin-left: 150px; /*PARA DESPLAZAR A LA DERECHA LA PALABRA BLOG DE CAFE*/
+    font-size: 23px; /*darle un tamaño a la letra*/
+    
+}
+
+#subtitulo 
+{
+    font-weight: bold;
+    font-size: 25px;
+}

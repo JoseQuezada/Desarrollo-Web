@@ -1,0 +1,116 @@
+nav
+{
+    min-height: 50px;
+    background-color: rgb(66, 65, 65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+nav a
+{
+    text-decoration: none;
+    color: white;
+    display: block; /*Despliega en bloque*/
+    padding: 10px;
+}
+
+nav a:hover
+{
+    background-color: gray;
+}
+
+/*Permite que la imagen no se salga de su contenedor*/
+img
+{
+    max-width: 100%; 
+}
+/*ancho minimo*/
+@media(min-width: 768px) /*Cuando la pantalla es grande, a partir de 768 hacia arriba*/
+{
+    nav
+    {
+        min-height: 50px;
+        background-color: rgb(51, 50, 50);
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: row;
+    }
+    
+    nav a
+    {
+        text-decoration: none;
+        color: white;
+        margin-right: 15px; 
+    }
+    .contenido-header
+{
+    background-color: grey;
+    display: flex;
+    /*para dejar el espacio entre la imagen y el texto*/
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo
+{
+
+    flex-basis: calc(23.3%);
+    text-align: center;
+    padding: 20px;
+}
+
+.contenido-header p
+{
+    font-size: 20px;
+    color: aliceblue;
+}
+/*Inicia parte*/
+.contenedor-principal
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.contenedor-imagen
+{
+    width: 40%; /*Ancho del 40%*/
+    padding: 50px;
+}
+
+.contenedor-principal p
+{
+    width: 58%;
+    text-align: justify;
+}
+/*Parte de la imagen */
+}
+
+.contenido-header
+{
+    background-color: black;
+    text-align: center;
+    color: aliceblue;
+    padding: 20px;
+    font-size: 25px;
+}
+
+main
+{
+    text-align: center;
+}
+
+footer
+{
+    background-color: black;
+    min-height: 125px;
+    text-align: center;
+    color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
