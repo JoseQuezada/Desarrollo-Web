@@ -104,7 +104,7 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
     } elseif ($password == '' || $password == null) {
         $error = "*Debe escribir una contraseña en el campo de contraseña* ";
     } elseif ($passwordV == '' || $passwordV == null) {
-        $error = "*Debe escribir la contraseña que ingreso en el campo de contraseña* ";
+        $error = "*Debe escribir la contraseña que ingreso en el campo contraseña* ";
     } elseif ($password != $passwordV) {
         $error = "*Las contraseñas no coiciden* ";
     } elseif ($nombre == '' || $nombre == null) {
