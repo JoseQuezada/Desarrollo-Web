@@ -38,7 +38,7 @@ require_once './php/login.inc.php';
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputPassword">Contrseña</label>
-                                            <input value="<?php if(isset($password)) echo $password; ?>" name="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Ingrese su contraesña" />
+                                            <input value="<?php if(isset($password)) echo $password; ?>" name="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Ingrese su contraseña" />
                                         </div>
 
                                         <?php if (isset($error)){ ?>
