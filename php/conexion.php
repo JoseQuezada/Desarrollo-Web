@@ -1,21 +1,24 @@
 <?php
 
-
 	// Conexion Ale
 	$servidor = "localhost";
 	$usuario = "root";
 	// $contraseña = "Deutschland78a";
 	$base = "swpciac";
+	$puero = 3306;
 
 	// Conexion Damian
 	$contraseña = "";
 	
-	$cn = mysqli_connect($servidor, $usuario, $contraseña, $base, 3306);
+	$cn = mysqli_connect($servidor, $usuario, $contraseña, $base, $puerto);
 
 
     if (!$cn) {
         $error = mysqli_connect_error();
-        echo " <script> alert('Hubo un error en la conexion al servidor, {$error}'); </script>";
+		echo "<script>
+        alert('Error en la conexión al servidor');
+        window.location.href='../index.php';
+        </script>";
         exit();
     }
 
