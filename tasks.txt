@@ -1,0 +1,14 @@
+ACCIONES
+ventas
+compras
+inventario
+reportes
+informe de ordenes
+clientes
+
+ROLES
+Gerente General
+Administrador
+Gerente Administracion
+Usuario
+
