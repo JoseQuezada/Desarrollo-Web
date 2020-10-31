@@ -14,7 +14,7 @@ require_once './php/login.inc.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Page Title - SB Admin</title>
+    <title>Login</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
@@ -34,11 +34,11 @@ require_once './php/login.inc.php';
                                     <form method="POST">
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputEmailAddress">Usuario</label>
-                                            <input name="username" class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Ingrese su usuario" />
+                                            <input value="<?php if(isset($username)) echo $username; ?>" name="username" class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Ingrese su usuario" />
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputPassword">Contrseña</label>
-                                            <input name="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Ingrese su contraesña" />
+                                            <input value="<?php if(isset($password)) echo $password; ?>" name="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Ingrese su contraesña" />
                                         </div>
 
                                         <?php if (isset($error)){ ?>
@@ -46,10 +46,10 @@ require_once './php/login.inc.php';
                                             <div class="alert alert-danger" role="alert"><?php echo $error;  ?></div>
                                         </div>
                                         <?php } ?>
+
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="password.html">¿Olvidaste tu Contraseña?</a>
                                             <input class="btn btn-primary" type="submit" value="Iniciar Sesión" />
-
                                         </div>
                                     </form>
                                 </div>
