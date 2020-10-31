@@ -11,7 +11,7 @@ session_regenerate_id(true);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {//Chequea si se accedió por medio de POST
 
-    $username = $_POST["username"];
+    $username = $_POST["username"]; 
     $password = $_POST["password"];
 
     $error = iniciarSesion($username, $password, $cn);
