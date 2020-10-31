@@ -48,7 +48,7 @@ require_once './php/login.inc.php';
                                         <?php } ?>
 
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="password.html">¿Olvidaste tu Contraseña?</a>
+                                            <a class="small" href="recupera.php">¿Olvidaste tu Contraseña?</a>
                                             <input class="btn btn-primary" type="submit" value="Iniciar Sesión" />
                                         </div>
                                     </form>
