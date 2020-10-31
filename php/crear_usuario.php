@@ -3,7 +3,7 @@
 require_once './php/functions.php';
 require_once './php/conexion.php';
 
-$error; 
+$error = false; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de POST
 
