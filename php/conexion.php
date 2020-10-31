@@ -5,7 +5,7 @@
 	$usuario = "root";
 	// $contraseña = "Deutschland78a";
 	$base = "swpciac";
-	$puero = 3306;
+	$puerto = 3306;
 
 	// Conexion Damian
 	$contraseña = "";
