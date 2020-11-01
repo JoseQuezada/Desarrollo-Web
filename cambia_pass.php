@@ -1,10 +1,5 @@
 <?php
 	
-	require 'funcs/conexion.php';
-	require 'funcs/funcs.php';
-	
-	$user_id = null;
-	$token = null;
 	
 	
 ?>
