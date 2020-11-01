@@ -4,7 +4,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,7 +36,7 @@
                                             </div>
                                             
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">¿Olvidaste tu Contraseña?</a>
+                                                <a class="small" href="password.html"></a>
                                                 <a class="btn btn-primary" href="index.html">Iniciar Sesión</a>
                                             </div>
                                         </form>
