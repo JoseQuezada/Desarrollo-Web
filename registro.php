@@ -65,8 +65,12 @@ require_once './php/crear_usuario.php';
 						<div class="form-group">
 							<label for="usuario" class="col-md-3 control-label">Usuario:</label>
 							<div class="col-md-9">
-								<input type="text" class="form-control" name="usuario" placeholder="Usuario" value="<?php if (isset($usuario)) echo $usuario; ?>" required>
+								<input id="username" type="text" class="form-control" name="usuario" placeholder="Usuario" value="<?php if (isset($usuario)) echo $usuario; ?>" required>
 							</div>
+						</div>
+
+						<div class="form-group">
+							<div id="result-username"></div>
 						</div>
 
 						<div class="form-group">
@@ -114,8 +118,24 @@ require_once './php/crear_usuario.php';
 				strengthClass: 'strength',
 				strengthMeterClass: 'strength_meter',
 				strengthButtonClass: 'button_strength',
-				strengthButtonText: 'Mostrar Password',
+				strengthButtonText: '',
 				strengthButtonTextToggle: 'Ocultar Password'
+			});
+
+			$('#username').on('blur', function() {
+				$('#result-username').html('<img src="./img/loader.gif" />').fadeOut(1000);
+
+				var username = $(this).val();
+				var dataString = 'username=' + username;
+
+				$.ajax({
+					type: "POST",
+					url: "./php/revisarUsuario.php",
+					data: dataString,
+					success: function(data) {
+						$('#result-username').fadeIn(1000).html(data);
+					}
+				});
 			});
 
 		});

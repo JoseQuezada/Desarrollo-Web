@@ -78,8 +78,8 @@ function encriptarContraseña($password)
 
     if (is_string($password)) {
         return $hash = password_hash($password, PASSWORD_BCRYPT);
-    }else{
-        return null; 
+    } else {
+        return null;
     }
 }
 
@@ -113,15 +113,16 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
         $error = "*Debe escribir algo en el campo de apellidos* ";
     } elseif ($email == '' || $email == null) {
         $error = "*Debe escribir algo en el campo de email* ";
-    }
-    // hay que poner verificacion de 
-    
-    else {
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "*Formato de email invalido* ";
+    } elseif (existeUsuario($username, $cn, false)) {
+        $error = "*Usuario ya existente* ";
+    } else {
 
         // codigo despues de validacion
 
 
-        if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)") ) {
+        if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
 
             $passwordEnc = encriptarContraseña($password);
 
@@ -132,11 +133,38 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $error = false;
             }
-
         }
-
     }
 
-    return $error; 
+    return $error;
+}
 
+
+/* ===============================================================================
+  Description:      Revisa si existe un usuario con el mismo nombre
+  Parameter(s):     $username - nNombre de usuario
+                    $cn - Variable de conexion
+  Return Value(s):  
+===============================================================================*/
+
+
+function existeUsuario($username, $cn, $mensaje)
+{
+    $result = $cn->query(
+        'SELECT * FROM usuarios WHERE usuario = "' . strtolower($username) . '"'
+    );
+
+    if ($result->num_rows > 0) {
+
+        if ($mensaje) {
+            echo '<div class="alert alert-danger">Nombre de usuario no disponible.</div>';
+        }
+        return true;
+    } else {
+
+        if ($mensaje) {
+            echo '<div class="alert alert-success">Usuario disponible.</div>';
+        }
+        return false;
+    }
 }

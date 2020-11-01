@@ -5,81 +5,71 @@ require_once './php/login.inc.php';
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script src="js/bootstrap.min.js"></script>
+
 </head>
 
-<body class="bg-primary">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Inicio de Sesión</h3>
-                                </div>
-                                <div class="card-body">
-                                    <form method="POST">
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputEmailAddress">Usuario</label>
-                                            <input value="<?php if(isset($username)) echo $username; ?>" name="username" class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Ingrese su usuario" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputPassword">Contrseña</label>
-                                            <input value="<?php if(isset($password)) echo $password; ?>" name="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Ingrese su contraseña" />
-                                        </div>
+<body>
 
-                                        <?php if (isset($error)){ ?>
-                                        <div class="form-group">
-                                            <div class="alert alert-danger" role="alert"><?php echo $error;  ?></div>
-                                        </div>
-                                        <?php } ?>
+    <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Iniciar Sesi&oacute;n</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="recupera.php">¿Se te olvid&oacute; tu contraseña?</a></div>
+                </div>
 
-                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="password.html">¿Olvidaste tu Contraseña?</a>
-                                            <input class="btn btn-primary" type="submit" value="Iniciar Sesión" />
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <div class="small"><a href="registro.php">Registrar Usuario</a></div>
+                <div style="padding-top:30px" class="panel-body">
+
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+                    <form id="loginform" class="form-horizontal" role="form" method="POST" autocomplete="off">
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="usuario" type="text" class="form-control" value="<?php if (isset($username)) echo $username; ?>" name="username" value="" placeholder="Usuario" required>
+                        </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="password" value="<?php if (isset($password)) echo $password; ?>" type="password" class="form-control" name="password" placeholder="password" required>
+                        </div>
+
+                        <?php if (isset($error)) { ?>
+                            <div class="form-group">
+                                <div class="alert alert-danger" role="alert"><?php echo $error;  ?></div>
+                            </div>
+                        <?php } ?>
+
+                        <div style="margin-top:10px" class="form-group">
+                            <div class="col-sm-12 controls">
+                                <button id="btn-login" type="submit" class="btn btn-success">Iniciar Sesi&oacute;n</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                    No tiene una cuenta! <a href="registro.php">Registrate aquí</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </main>
-        </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
 </body>
 
 </html>
