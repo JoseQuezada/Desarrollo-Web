@@ -11,10 +11,11 @@ Clientes
         - Apellidos
         - Telefono
         - Direccion de Granja
-        - Numero de aves (si tiene)
+        - Numero de aves o animales (si tiene)
             - Edades
         - Marcas de concentrado de competencia(si ha comprado antes o tiene)
         - NIT
+        - DPI
 Ventas
     - Credito
         - Datos del cliente
