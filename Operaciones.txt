@@ -37,6 +37,10 @@ Reportes
         - Compras
         - Ventas
     - Compras
+        - Credito
+        - Contado
     - Ventas
+        - Credito
+        - Contado
     - Clientes
-Ordenes (opcional)
+Ordenes de clientes (opcional)
