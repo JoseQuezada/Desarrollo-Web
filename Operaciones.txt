@@ -10,6 +10,8 @@ Clientes
         - Nombre
         - Apellidos
         - Telefono
+        - Departamento
+        - Municipio
         - Direccion de Granja
         - Numero de aves o animales (si tiene)
             - Edades
@@ -34,4 +36,7 @@ Reportes
         - Medicamentos
         - Compras
         - Ventas
+    - Compras
+    - Ventas
+    - Clientes
 Ordenes (opcional)
