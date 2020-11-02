@@ -76,8 +76,12 @@ require_once './php/crear_usuario.php';
 						<div class="form-group">
 							<label for="email" class="col-md-3 control-label">E-mail:</label>
 							<div class="col-md-9">
-								<input type="email" class="form-control" name="email" placeholder="Email" value="<?php if (isset($email)) echo $email; ?>" required>
+								<input id="email" type="email" class="form-control" name="email" placeholder="Email" value="<?php if (isset($email)) echo $email; ?>" required>
 							</div>
+						</div>
+
+						<div class="form-group">
+							<div id="result-email"></div>
 						</div>
 
 						<div class="form-group">
@@ -114,29 +118,50 @@ require_once './php/crear_usuario.php';
 	<script>
 		$(document).ready(function($) {
 
-			$('#input_contraseña').strength({
-				strengthClass: 'strength',
-				strengthMeterClass: 'strength_meter',
-				strengthButtonClass: 'button_strength',
-				strengthButtonText: '',
-				strengthButtonTextToggle: 'Ocultar Password'
+		$('#input_contraseña').strength({
+			strengthClass: 'strength',
+			strengthMeterClass: 'strength_meter',
+			strengthButtonClass: 'button_strength',
+			strengthButtonText: '',
+			strengthButtonTextToggle: 'Ocultar Password'
+		});
+
+		$('#username').on('blur', function() {
+			$('#result-username').html('<img src="./img/loader.gif" />').fadeOut(1000);
+
+			var username = $(this).val();
+			var dataString = 'username=' + username;
+
+			$.ajax({
+				type: "POST",
+				url: "./php/revisarUsuario.php",
+				data: dataString,
+				success: function(data) {
+					$('#result-username').fadeIn(1000).html(data);
+				}
 			});
 
-			$('#username').on('blur', function() {
-				$('#result-username').html('<img src="./img/loader.gif" />').fadeOut(1000);
 
-				var username = $(this).val();
-				var dataString = 'username=' + username;
 
-				$.ajax({
-					type: "POST",
-					url: "./php/revisarUsuario.php",
-					data: dataString,
-					success: function(data) {
-						$('#result-username').fadeIn(1000).html(data);
-					}
-				});
+		});
+
+		$('#email').on('blur', function() {
+			$('#result-email').html('<img src="./img/loader.gif" />').fadeOut(1000);
+
+			var email = $(this).val();
+			var dataString = 'email=' + email;
+
+			$.ajax({
+				type: "POST",
+				url: "./php/revisarEmail.php",
+				data: dataString,
+				success: function(data) {
+					$('#result-email').fadeIn(1000).html(data);
+				}
 			});
+		});
+
+
 
 		});
 	</script>

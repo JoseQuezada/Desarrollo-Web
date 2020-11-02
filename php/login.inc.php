@@ -14,6 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {//Cheque
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    iniciarSesion($username, $password, $cn);
+    $error = iniciarSesion($username, $password, $cn);
     
 }
