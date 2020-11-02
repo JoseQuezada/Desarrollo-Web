@@ -130,6 +130,8 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
 
             mysqli_stmt_execute($stmt);
 
+            echo " hoasdalsd aslkjdlkasjdlas";
+
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $error = false;
             }
