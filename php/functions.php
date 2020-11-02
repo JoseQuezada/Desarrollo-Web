@@ -21,9 +21,6 @@ function iniciarSesion($username, $password, $cn)
         $error = "*Debe escribir algo en el campo de contraseña*";
     } else {
 
-        $query = mysqli_query($cn, "SELECT * FROM usuarios");
-        echo mysqli_num_rows($query);
-
         if ($stmt = mysqli_prepare($cn, "SELECT * FROM usuarios WHERE Usuario = ? ")) {
 
             mysqli_stmt_bind_param($stmt, 's', $username);
@@ -117,6 +114,8 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
         $error = "*Formato de email invalido* ";
     } elseif (existeUsuario($username, $cn, false)) {
         $error = "*Usuario ya existente* ";
+    } elseif (existeEmail($email, $cn, false)) {
+        $error = "*Email en uso* ";
     } else {
 
         // codigo despues de validacion
@@ -172,6 +171,34 @@ function existeUsuario($username, $cn, $mensaje)
 
         if ($mensaje) {
             echo '<div class="alert alert-success">Usuario disponible.</div>';
+        }
+        return false;
+    }
+}
+
+
+/* ===============================================================================
+  Description:      Revisa si existe un usuario con el mismo nombre
+  Parameter(s):     $username - nNombre de usuario
+                    $cn - Variable de conexion
+  Return Value(s):  
+===============================================================================*/
+
+
+function existeEmail($email, $cn, $mensaje)
+{
+    $result = $cn->query("SELECT * FROM usuarios WHERE email = '{$email}'");
+
+    if ($result->num_rows > 0) {
+
+        if ($mensaje) {
+            echo '<div class="alert alert-danger">Email en uso.</div>';
+        }
+        return true;
+    } else {
+
+        if ($mensaje) {
+            echo '<div class="alert alert-success">Email disponible.</div>';
         }
         return false;
     }
