@@ -1,0 +1,46 @@
+Proveedores
+    - Insumos
+    - Medicamentos
+    - Animales
+Compras
+    - Credito
+    - Contado
+Clientes    
+    - Agregar
+        - Nombre
+        - Apellidos
+        - Telefono
+        - Departamento
+        - Municipio
+        - Direccion de Granja
+        - Numero de aves o animales (si tiene)
+            - Edades
+        - Marcas de concentrado de competencia(si ha comprado antes o tiene)
+        - NIT
+        - DPI
+Ventas
+    - Credito
+        - Datos del cliente
+    - Contado
+Inventario
+    - Insumos
+    - Medicamentos
+    - Compras
+    - Ventas
+Usuarios (administrador y gerente)
+    - Agregar
+Reportes 
+    - Balance
+    - Inventario
+        - Insumos
+        - Medicamentos
+        - Compras
+        - Ventas
+    - Compras
+        - Credito
+        - Contado
+    - Ventas
+        - Credito
+        - Contado
+    - Clientes
+Ordenes de clientes (opcional)

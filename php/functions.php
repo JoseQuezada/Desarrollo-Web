@@ -100,17 +100,17 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
     // validacion
 
     if ($username == '' || $username == null) {
-        $error = "*Debe escribir algo en el campo de usuario* ";
+        $error = "*Debe escribir el tipo de usuario en el campo de usuario* ";
     } elseif ($password == '' || $password == null) {
-        $error = "*Debe escribir algo en el campo de contraseña* ";
+        $error = "*Debe escribir una contraseña en el campo de contraseña* ";
     } elseif ($passwordV == '' || $passwordV == null) {
-        $error = "*Debe escribir algo en el campo de confirmar contraseña* ";
+        $error = "*Debe escribir la contraseña que ingreso en el campo contraseña* ";
     } elseif ($password != $passwordV) {
         $error = "*Las contraseñas no coiciden* ";
     } elseif ($nombre == '' || $nombre == null) {
-        $error = "*Debe escribir algo en el campo de nombres* ";
+        $error = "*Debe llenar el campo de nombres* ";
     } elseif ($apellidos == '' || $apellidos == null) {
-        $error = "*Debe escribir algo en el campo de apellidos* ";
+        $error = "*Debe llenar el campo de apellidos* ";
     } elseif ($email == '' || $email == null) {
         $error = "*Debe escribir algo en el campo de email* ";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -122,21 +122,27 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
         // codigo despues de validacion
 
 
-        if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?, null, 0)")) {
+        if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
 
             $passwordEnc = encriptarContraseña($password);
 
             mysqli_stmt_bind_param($stmt, 'ssssss', $username, $passwordEnc, $nombre, $apellidos, $email, $tipo);
 
             mysqli_stmt_execute($stmt);
+            
 
             echo " hoasdalsd aslkjdlkasjdlas";
 
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $error = false;
             }
-        }
+
+        }else{
+                $error =  mysqli_stmt_error($stmt);
+            }
     }
+
+
 
     return $error;
 }
