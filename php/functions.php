@@ -176,6 +176,7 @@ function existeUsuario($username, $cn, $mensaje)
 }
 
 
+
 // Funciones varias
 
 function isEmail($email)
@@ -262,4 +263,50 @@ function enviarEmail($email, $nombre, $asunto, $cuerpo){
     return true;
     else
     return false;
+}
+
+function crearProveedor($empresa, $nombre, $apellidos, $direccion, $telefono, $email)
+{
+
+    $error = true;
+
+    // echo var_dump($cn);
+
+    // validacion
+
+    if ($nombre == '' || $nombre == null) {
+        $error = "*Debe llenar el campo de nombre* ";
+    } elseif ($apellidos == '' || $apellidos == null) {
+        $error = "*Debe llenar el campo de apellidos* ";
+    }elseif($direccion == '' || $direccion == null) {
+            $error = "*Debe escribir la direccion del proveedor* ";
+    } elseif ($telefono == '' || $telefono == null) {
+        $error = "*Debe llenar el campo telefono* ";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "*Formato de email invalido* ";
+    } else {
+
+        // codigo despues de validacion
+
+
+        if ($stmt = mysqli_prepare($cn, "INSERT INTO proveedor VALUES(NULL, ?, ?, ?, ?, ?, ?);")) {
+
+
+            mysqli_stmt_bind_param($stmt, 'ssssss', $empresa, $nombre, $apellidos, $direccion, $telefono, $email);
+
+            mysqli_stmt_execute($stmt);
+            
+
+            if (mysqli_stmt_affected_rows($stmt) > 0) {
+                $error = false;
+            }
+
+        }else{
+                $error =  mysqli_stmt_error($stmt);
+            }
+    }
+
+
+
+    return $error;
 }
