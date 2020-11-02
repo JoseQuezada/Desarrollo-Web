@@ -122,19 +122,25 @@ function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $e
         // codigo despues de validacion
 
 
-        if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?, null, 0)")) {
+        if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
 
             $passwordEnc = encriptarContraseña($password);
 
             mysqli_stmt_bind_param($stmt, 'ssssss', $username, $passwordEnc, $nombre, $apellidos, $email, $tipo);
 
             mysqli_stmt_execute($stmt);
+            
 
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $error = false;
             }
-        }
+
+        }else{
+                $error =  mysqli_stmt_error($stmt);
+            }
     }
+
+
 
     return $error;
 }
