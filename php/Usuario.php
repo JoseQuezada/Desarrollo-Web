@@ -1,6 +1,9 @@
 <?php
 
-require_once './php/conexion.php';
+error_reporting(0);
+
+include './php/conexion.php';
+include '../php/conexion.php';
 
 class Usuario
 {
@@ -26,13 +29,14 @@ class Usuario
     {
 
         $error = null;
-        global $cn; 
+        $cn = $this -> cn -> conexion; 
         
         if ($username == '' || $username == null) {
             $error = "*Debe escribir algo en el campo de usuario*";
         } elseif ($password == '' || $password == null) {
             $error = "*Debe escribir algo en el campo de contraseña*";
         } else {
+
 
             if ($stmt = mysqli_prepare($cn, "SELECT * FROM usuarios WHERE Usuario = ? ")) {
 
@@ -79,7 +83,7 @@ class Usuario
     
     public function existeUsuario($username, $mensaje)
     {
-        global $cn;
+        $cn = $this -> cn -> conexion ;
         $result = $cn->query('SELECT * FROM usuarios WHERE usuario = "' . strtolower($username) . '"'
         );
 
@@ -98,19 +102,22 @@ class Usuario
         }
     }
 
-    private function existeEmail($email, $mensaje)
+    public function existeEmail($email, $mensaje)
     {
-        global $cn;
+        $cn = $this -> cn -> conexion ;
         $result = $cn->query("SELECT * FROM usuarios WHERE email = '{$email}'");
     
+
         if ($result->num_rows > 0) {
     
+
+
             if ($mensaje) {
                 echo '<div class="alert alert-danger">Email en uso.</div>';
             }
             return true;
         } else {
-    
+
             if ($mensaje) {
                 echo '<div class="alert alert-success">Email disponible.</div>';
             }
@@ -120,7 +127,7 @@ class Usuario
 
     public function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $email, $tipo)
     {
-        global $cn;
+        $cn = $this -> cn -> conexion;
         $error = true;
 
         // echo var_dump($cn);
@@ -145,32 +152,25 @@ class Usuario
             $error = "*Formato de email invalido* ";
         } elseif ($this -> existeUsuario($username, false)) {
             $error = "*Usuario ya existente* ";
-        } elseif ($this -> existeEmail($email, $cn, false)) {
+        } elseif ($this -> existeEmail($email, false)) {
             $error = "*Email en uso* ";
         } else {
 
-            // codigo despues de validacion
-
-
             if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
+
 
                 $passwordEnc = $this ->encriptarContraseña($password);
 
                 mysqli_stmt_bind_param($stmt, 'ssssss', $username, $passwordEnc, $nombre, $apellidos, $email, $tipo);
 
-                mysqli_stmt_execute($stmt);
-
-
-                echo " hoasdalsd aslkjdlkasjdlas";
 
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
                     $error = false;
                 }
             } else {
-                $error =  mysqli_stmt_error($stmt);
+                $error =  "Hubo un error";
             }
         }
-
 
 
         return $error;

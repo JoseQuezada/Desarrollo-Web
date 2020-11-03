@@ -1,7 +1,6 @@
 <?php
 
-require_once './php/conexion.php';
-require_once './php/functions.php';
+require './php/Usuario.php';
 
 $error; 
 
@@ -14,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {//Cheque
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $error = iniciarSesion($username, $password, $cn);
+    $user = new Usuario();
+
+    $error = $user -> iniciarSesion($username, $password);
     
 }

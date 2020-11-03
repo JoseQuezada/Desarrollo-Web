@@ -1,7 +1,7 @@
 <?php 
 
-require_once './php/functions.php';
-require_once './php/conexion.php';
+require './php/functions.php';
+require './php/conexion.php';
 
 $error = false; 
 

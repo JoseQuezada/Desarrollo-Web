@@ -1,5 +1,5 @@
 <?php
-require_once './php/crear_Proveedor.php';
+require './php/crear_Proveedor.php';
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@ require_once './php/crear_Proveedor.php';
                     <a class="dropdown-item" href="#">Ajustes</a>
                     <a class="dropdown-item" href="#">Actividad</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="index.php">Cerrar Sesión</a>
+                    <a class="dropdown-item" href="./cerrarSesion.php">Cerrar Sesión</a>
                 </div>
             </li>
         </ul>
@@ -54,27 +54,29 @@ require_once './php/crear_Proveedor.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Panel de Control
                         </a>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProvedores" aria-expanded="false" aria-controls="collapseProvedores">
+                            <div class="sb-nav-link-icon"><i class="far fa-people-carry"></i></div>
                             Proveedores
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-sidenav-light.html">Insumos</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Animales</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Medicamentos</a>
+                                <a class="nav-link" href="proveedor.php">Agregar</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="layout-sidenav-light.html">Insumos</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInsumos" aria-expanded="false" aria-controls="collapseInsumos">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Inventario
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseInsumos" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="Midreccion.html">Insumos</a>
-                                <a class="nav-link" href="Midireccion.html">Medicamentos</a>
                                 <a class="nav-link" href="Midireccion.html">Compras</a>
                                 <a class="nav-link" href="Midireccion.html">Ventas</a>
                             </nav>
@@ -119,14 +121,14 @@ require_once './php/crear_Proveedor.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Reportes
                         </a>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Usuarios
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="registro.php">Agregar Usuario</a>
+                                <a class="nav-link" href="registr.php">Agregar Usuario</a>
 
                             </nav>
                         </div>
@@ -136,148 +138,147 @@ require_once './php/crear_Proveedor.php';
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <main>
-                <!------------------------A partir de aqui inician los formularios-------------------------------------------------------------------------------------------------------------------------------------------->
+            <!------------------------A partir de aqui inician los formularios-------------------------------------------------------------------------------------------------------------------------------------------->
 
 
-                <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-                <script src="js/bootstrap.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script src="js/bootstrap.min.js"></script>
 
-                <!-- librerias -->
-                <link rel="stylesheet" href="./lib/strength.css">
-                <script src="./lib/strength.min.js"></script>
-                <div class="container-fluid">
-                    <h1 class="mt-4">Registro Proveedores</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Datos del Proveedor</li>
-                    </ol>
+            <!-- librerias -->
+            <link rel="stylesheet" href="./lib/strength.css">
+            <script src="./lib/strength.min.js"></script>
+            <div class="container-fluid">
+                <h1 class="mt-4">Registro Proveedores</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Datos del Proveedor</li>
+                </ol>
 
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
 
 
-                            <div class="panel-body">
+                        <div class="panel-body">
 
-                                <form id="signupform" class="form-horizontal" role="form" method="POST" autocomplete="off">
+                            <form id="signupform" class="form-horizontal" role="form" method="POST" autocomplete="off">
 
-                                    <?php if ($error == true) { ?>
+                                <?php if ($error == true) { ?>
 
-                                        <div id="signupalert" class="alert alert-danger">
-                                            <p>Error:</p>
-                                            <span><?php echo $error; ?></span>
-                                        </div>
-                                    <?php } ?>
-
-                                    <div class="form-group">
-                                        <label for="nombre" class="col-md-3 control-label">Empresa (opcional)</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="empresa" placeholder="Empresa" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
-                                        </div>
+                                    <div id="signupalert" class="alert alert-danger">
+                                        <p>Error:</p>
+                                        <span><?php echo $error; ?></span>
                                     </div>
+                                <?php } ?>
 
-                                    <div class="form-group">
-                                        <label for="nombre" class="col-md-3 control-label">Nombre:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="nombre" class="col-md-3 control-label">Empresa (opcional)</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="empresa" placeholder="Empresa" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="apellidos" class="col-md-3 control-label">Apellidos:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="nombre" class="col-md-3 control-label">Nombre:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="usuario" class="col-md-3 control-label">Dirección:</label>
-                                        <div class="col-md-9">
-                                            <input id="direccion" type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php if (isset($usuario)) echo $usuario; ?>" required>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="apellidos" class="col-md-3 control-label">Apellidos:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
                                     </div>
+                                </div>
 
-
-
-                                    <div class="form-group">
-                                        <label for="email" class="col-md-3 control-label">Teléfono:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($email)) echo $email; ?>" required>
-                                        </div>
+                                <div class="form-group">
+                                    <label for="usuario" class="col-md-3 control-label">Dirección:</label>
+                                    <div class="col-md-9">
+                                        <input id="direccion" type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="password" class="col-md-3 control-label">E-Mail (Opcional)</label>
-                                        <div class="col-md-9">
-                                            <input id="EMail" type="text" class="form-control" name="email" placeholder="E-Mail" required><br>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-offset-5 col-md-9">
-                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Proveedor</button>
-                                        </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Teléfono:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($email)) echo $email; ?>" required>
                                     </div>
-                                </form>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">E-Mail (Opcional)</label>
+                                    <div class="col-md-9">
+                                        <input id="EMail" type="text" class="form-control" name="email" placeholder="E-Mail" required><br>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-5 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Proveedor</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                    <script>
+                        $(document).ready(function($) {
+
+                            $('#input_contraseña').strength({
+                                strengthClass: 'strength',
+                                strengthMeterClass: 'strength_meter',
+                                strengthButtonClass: 'button_strength',
+                                strengthButtonText: '',
+                                strengthButtonTextToggle: 'Ocultar Password'
+                            });
+
+                            $('#username').on('blur', function() {
+                                $('#result-username').html('<img src="./img/loader.gif" />').fadeOut(1000);
+
+                                var username = $(this).val();
+                                var dataString = 'username=' + username;
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "./php/revisarUsuario.php",
+                                    data: dataString,
+                                    success: function(data) {
+                                        $('#result-username').fadeIn(1000).html(data);
+                                    }
+                                });
+                            });
+
+                        });
+                    </script>
+                    <!-----------------A partir de aqui debes terminar de colocar los formularios------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
                             </div>
                         </div>
-
-
-
-                        <script>
-                            $(document).ready(function($) {
-
-                                $('#input_contraseña').strength({
-                                    strengthClass: 'strength',
-                                    strengthMeterClass: 'strength_meter',
-                                    strengthButtonClass: 'button_strength',
-                                    strengthButtonText: '',
-                                    strengthButtonTextToggle: 'Ocultar Password'
-                                });
-
-                                $('#username').on('blur', function() {
-                                    $('#result-username').html('<img src="./img/loader.gif" />').fadeOut(1000);
-
-                                    var username = $(this).val();
-                                    var dataString = 'username=' + username;
-
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "./php/revisarUsuario.php",
-                                        data: dataString,
-                                        success: function(data) {
-                                            $('#result-username').fadeIn(1000).html(data);
-                                        }
-                                    });
-                                });
-
-                            });
-                        </script>
-                        <!-----------------A partir de aqui debes terminar de colocar los formularios------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
                     </div>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+                </footer>
+            </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
 </body>
 
 </html>

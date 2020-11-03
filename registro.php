@@ -1,6 +1,6 @@
 <?php
 
-require_once './php/crear_usuario.php';
+require './php/crear_usuario.php';
 
 ?>
 
