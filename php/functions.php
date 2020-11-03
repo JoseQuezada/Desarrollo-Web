@@ -1,5 +1,7 @@
 <?php
 
+require_once './php/conexion.php';
+
 
 /* ===============================================================================
   Description:      Valida los datos de usuario
@@ -316,6 +318,7 @@ function crearProveedor($empresa, $nombre, $apellidos, $direccion, $telefono, $e
 
         // codigo despues de validacion
 
+        global $cn;
 
         if ($stmt = mysqli_prepare($cn, "INSERT INTO proveedor VALUES(NULL, ?, ?, ?, ?, ?, ?);")) {
 

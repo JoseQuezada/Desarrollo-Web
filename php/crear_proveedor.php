@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $error = crearProveedor($empresa, $nombre, $apellidos, $direccion, $telefono, $email,);
 
     if(!$error){
-        echo '<div class="alert alert-success">Proveedor agregado</div>';;
+        echo "<script>alert('Ingresado correctamente');</script>";
     }
 
 
