@@ -1,7 +1,7 @@
 <?php
 
-
-require_once './php/login.inc.php';
+ 
+require './php/login.php';
 
 ?>
 
