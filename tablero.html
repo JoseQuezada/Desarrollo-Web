@@ -25,13 +25,7 @@
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
-                    aria-describedby="basic-addon2" />
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
+            
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
@@ -61,7 +55,7 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProvedores"
                             aria-expanded="false" aria-controls="collapseProvedores">
                             
-                            <div class="sb-nav-link-icon"><i class="far fa-people-carry"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-people-carry"></i></i></div>
                             Proveedores
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -69,7 +63,7 @@
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="proveedor.php">Agregar</a>
-                                <a class="nav-link" href="proveedor.php">Listar</a>
+                                <a class="nav-link" href="proveedor.php">Listar</a> 
                             </nav>
                         </div>
 
@@ -77,7 +71,7 @@
 
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInsumos"
                             aria-expanded="false" aria-controls="collapseInsumos">
-                            <div class="sb-nav-link-icon"><i class="fas fa-angle-down"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-stroopwafel"></i></div>
                             Insumos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -116,12 +110,12 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Ganancias</div>
+                        <div class="sb-sidenav-menu-heading">Ingresos</div>
                         
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes"
                             aria-expanded="false" aria-controls="collapseClientes">
                             
-                            <div class="sb-nav-link-icon"><i class="far fa-people-carry"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Clientes
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -136,7 +130,7 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas"
                             aria-expanded="false" aria-controls="collapseVentas">
                             
-                            <div class="sb-nav-link-icon"><i class="far fa-people-carry"></i></div>
+                            <div class="sb-nav-link-icon"><i class="far fa-stamp"></i></div>
                             Ventas 
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -152,7 +146,7 @@
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
                             aria-expanded="false" aria-controls="collapseReportes">
                             
-                            <div class="sb-nav-link-icon"><i class="far fa-people-carry"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Reportes
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -168,7 +162,7 @@
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
                             aria-expanded="false" aria-controls="collapseUsuarios">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Usuarios
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
@@ -186,10 +180,11 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
+<!-------------------------------------------A partir de aqui van los forumularios----------------------------------------------->
                 <div class="container-fluid">
                     <h1 class="mt-4">Panel de Control</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Panel</li>
+                        <li class="breadcrumb-item active"><span class=""></span>Panel</li>
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
@@ -229,6 +224,7 @@
                             </div>
                         </div>
                     </div>
+            
                     <div class="row">
                         <div class="col-xl-6">
                             <div class="card mb-4">
@@ -236,6 +232,7 @@
                                     <i class="fas fa-chart-area mr-1"></i>
                                     Figuras
                                 </div>
+                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
@@ -251,6 +248,7 @@
                     </div>
                     
                 </div>
+                <!-------------------------------------------Hasta aqui terminan los forumularios----------------------------------------------->
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
