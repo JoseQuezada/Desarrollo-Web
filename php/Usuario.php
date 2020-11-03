@@ -15,9 +15,60 @@ class Usuario
         $this->cn = new Conexion();
     }
 
+    public function listarUsuario(){
+        $cn = $this->cn->conexion;
+
+
+        $usuarios = $cn->query("SELECT * from usuarios U inner join perfil P on U.ID_TIPO = P.ID_TIPO");
+        $html = "";
+
+        if (mysqli_num_rows($usuarios) > 0) {
+            foreach ($usuarios as $usuario)
+                $html .= "<tr>
+             <td>{$usuario['ID']}</td>
+             <td>{$usuario['Usuario']}</td>
+             <td>{$usuario['Nombre']}</td>
+             <td>{$usuario['Apellidos']}</td>
+             <td>{$usuario['Email']}</td>
+             <td>{$usuario['Tipo']}</td>
+             <td><a href='eliminarUsuario.php?id={$usuario['ID']}' class='btn btn-danger' > Eliminar </a></td>
+             </tr>";
+
+            echo $html;
+        } else {
+            echo "<tr><td colspan='7'>Usuario No encontrado</td></tr>";
+        }
+    }
+
+    public function buscarUsuario($username)
+    {
+        $cn = $this->cn->conexion;
+
+
+        $usuarios = $cn->query("SELECT * from usuarios U inner join perfil P on U.ID_TIPO = P.ID_TIPO where usuario like '%{$username}%'");
+        $html = "";
+
+        if (mysqli_num_rows($usuarios) > 0) {
+            foreach ($usuarios as $usuario)
+                $html .= "<tr>
+             <td>{$usuario['ID']}</td>
+             <td>{$usuario['Usuario']}</td>
+             <td>{$usuario['Nombre']}</td>
+             <td>{$usuario['Apellidos']}</td>
+             <td>{$usuario['Email']}</td>
+             <td>{$usuario['Tipo']}</td>
+             <td><a href='eliminarUsuario.php?id={$usuario['ID']}' class='btn btn-danger' > Eliminar </a></td>
+             </tr>";
+
+            echo $html;
+        } else {
+            echo "<tr><td colspan='7'>Usuario No encontrado</td></tr>";
+        }
+    }
+
     private function encriptarContraseña($password)
     {
-    
+
         if (is_string($password)) {
             return $hash = password_hash($password, PASSWORD_BCRYPT);
         } else {
@@ -29,8 +80,8 @@ class Usuario
     {
 
         $error = null;
-        $cn = $this -> cn -> conexion; 
-        
+        $cn = $this->cn->conexion;
+
         if ($username == '' || $username == null) {
             $error = "*Debe escribir algo en el campo de usuario*";
         } elseif ($password == '' || $password == null) {
@@ -80,12 +131,11 @@ class Usuario
         return $error;
     }
 
-    
+
     public function existeUsuario($username, $mensaje)
     {
-        $cn = $this -> cn -> conexion ;
-        $result = $cn->query('SELECT * FROM usuarios WHERE usuario = "' . strtolower($username) . '"'
-        );
+        $cn = $this->cn->conexion;
+        $result = $cn->query('SELECT * FROM usuarios WHERE usuario = "' . strtolower($username) . '"');
 
         if ($result->num_rows > 0) {
 
@@ -105,7 +155,7 @@ class Usuario
     public function existeEmail($email, $mensaje)
     {
 
-        $cn = $this -> cn -> conexion ;
+        $cn = $this->cn->conexion;
         $result = $cn->query("SELECT * FROM usuarios WHERE email = '{$email}'");
 
 
@@ -126,7 +176,7 @@ class Usuario
 
     public function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $email, $tipo)
     {
-        $cn = $this -> cn -> conexion;
+        $cn = $this->cn->conexion;
         $error = true;
 
         // echo var_dump($cn);
@@ -149,16 +199,16 @@ class Usuario
             $error = "*Debe escribir algo en el campo de email* ";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "*Formato de email invalido* ";
-        } elseif ($this -> existeUsuario($username, false)) {
+        } elseif ($this->existeUsuario($username, false)) {
             $error = "*Usuario ya existente* ";
-        } elseif ($this -> existeEmail($email, false)) {
+        } elseif ($this->existeEmail($email, false)) {
             $error = "*Email en uso* ";
         } else {
 
             if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
 
 
-                $passwordEnc = $this ->encriptarContraseña($password);
+                $passwordEnc = $this->encriptarContraseña($password);
 
                 mysqli_stmt_bind_param($stmt, 'ssssss', $username, $passwordEnc, $nombre, $apellidos, $email, $tipo);
 
@@ -175,7 +225,4 @@ class Usuario
 
         return $error;
     }
-
-
-
 }

@@ -39,7 +39,7 @@ function iniciarSesion($username, $password, $cn)
 
                         $_SESSION['tipoUsuario'] = $row['ID_Tipo'];
 
-                        header("Location: ./tablero.html");
+                        header("Location: ./tablero.php");
                     } else {
                         $counter++;
                         if ($counter == $numUsuarios) {
