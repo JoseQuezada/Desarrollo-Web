@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
+<head> 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -17,28 +17,27 @@
     <meta name="author" content="" />
     <title>Panel de Control</title>
     <link href="css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+        crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <a class="navbar-brand" href="index.html">SWPCIAC</a>
         <!--Hola estoy bien-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
+                class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
+            
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">Ajustes</a>
                     <a class="dropdown-item" href="#">Actividad</a>
@@ -53,86 +52,117 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Usuario</div>
-                        <a class="nav-link" href="tablero.html">
+                    
+                        <a class="nav-link" href="tablero.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Panel de Control
                         </a>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProvedores" aria-expanded="false" aria-controls="collapseProvedores">
-                            <div class="sb-nav-link-icon"><i class="far fa-people-carry"></i></div>
+                        <div class="sb-sidenav-menu-heading">Gastos</div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProvedores"
+                            aria-expanded="false" aria-controls="collapseProvedores">
+                            
+                            <div class="sb-nav-link-icon"><i class="fas fa-people-carry"></i></i></div>
                             Proveedores
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="proveedor.php">Agregar</a>
+                                <a class="nav-link" href="ListarProveedor.php">Listar</a> 
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-sidenav-light.html">Insumos</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInsumos" aria-expanded="false" aria-controls="collapseInsumos">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Inventario
+
+                        
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInsumos"
+                            aria-expanded="false" aria-controls="collapseInsumos">
+                            <div class="sb-nav-link-icon"><i class="fas fa-stroopwafel"></i></div>
+                            Insumos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseInsumos" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseInsumos" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="Midreccion.html">Insumos</a>
-                                <a class="nav-link" href="Midireccion.html">Compras</a>
-                                <a class="nav-link" href="Midireccion.html">Ventas</a>
+                                <a class="nav-link" href="AgregarInsumo.php">Agregar</a>
+                                <a class="nav-link" href="ListarInsumo.php">Listar</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras"
+                            aria-expanded="false" aria-controls="collapseCompras">
+                            
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Comrpas
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseCompras" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="AgregarCompra.php">Agregar</a>
+                                <a class="nav-link" href="ListarCompra.php">Listar</a>
+                            </nav>
+                        </div>
+                        <div class="sb-sidenav-menu-heading">Ingresos</div>
+                        
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes"
+                            aria-expanded="false" aria-controls="collapseClientes">
+                            
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Clientes
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Agregar
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                    Listar
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
+                        <div class="collapse" id="collapseClientes" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="AgregarCliente.php">Agregar</a>
+                                <a class="nav-link" href="ListarCliente.php">Listar</a>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Ordenes
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas"
+                            aria-expanded="false" aria-controls="collapseVentas">
+                            
+                            <div class="sb-nav-link-icon"><i class="far fa-stamp"></i></div>
+                            Ventas 
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Reportes
+                        <div class="collapse" id="collapseVentas" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="AgregarVenta.php">Agregar</a>
+                                <a class="nav-link" href="ListarVenta.php">Listar</a>
+                            </nav>
+                        </div>
+                    
                         </a>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
+                            aria-expanded="false" aria-controls="collapseReportes">
+                            
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Reportes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseReportes" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="ReporteInsumos.php">Insumos</a>
+                                <a class="nav-link" href="ReporteCompras.php">Compras</a>
+                                <a class="nav-link" href="ReporteVentas.php">Ventas</a>
+                                <a class="nav-link" href="ReporteClientes.php">Clientes</a>
+                                <a class="nav-link" href="ReporteProveedores.php">Proveedores</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
+                            aria-expanded="false" aria-controls="collapseUsuarios">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Usuarios
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne"
+                            data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="./registro.php">Agregar Usuario</a>
+                                <a class="nav-link" href="registr.php">Agregar Usuario</a>
+                                <a class="nav-link" href="ListarUsuarios.php">Listar Usuario</a>
                             </nav>
                         </div>
                     </div>
@@ -146,6 +176,7 @@
             <!-- Importante que se actualicen los controles, sobretodo de hrefs -->
 
             <main>
+<!------------------------------A partir de aqui van los formluarios---------------------------------------------------------------------------------------------------------------------->                
                 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
                 <script src="js/bootstrap.min.js"></script>
 
@@ -261,7 +292,7 @@
 
                             });
                         </script>
-                        <!-----------------A partir de aqui debes terminar de colocar los formularios------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-----------------A partir de aqui debes terminar de colocar los formularios------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
                     </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

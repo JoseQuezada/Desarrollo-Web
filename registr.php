@@ -5,7 +5,7 @@ require_once './php/crear_usuario.php';
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
+<head> 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -49,7 +49,7 @@ require_once './php/crear_usuario.php';
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                     
-                        <a class="nav-link" href="tablero.html">
+                        <a class="nav-link" href="tablero.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Panel de Control
                         </a>
@@ -65,7 +65,7 @@ require_once './php/crear_usuario.php';
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="proveedor.php">Agregar</a>
-                                <a class="nav-link" href="proveedor.php">Listar</a> 
+                                <a class="nav-link" href="ListarProveedor.php">Listar</a> 
                             </nav>
                         </div>
 
@@ -80,36 +80,22 @@ require_once './php/crear_usuario.php';
                         <div class="collapse" id="collapseInsumos" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="Midreccion.html">Agregar</a>
-                                <a class="nav-link" href="Midireccion.html">Listar</a>
+                                <a class="nav-link" href="AgregarInsumo.php">Agregar</a>
+                                <a class="nav-link" href="ListarInsumo.php">Listar</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Compras
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras"
+                            aria-expanded="false" aria-controls="collapseCompras">
+                            
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Comrpas
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                        <div class="collapse" id="collapseCompras" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse"
-                                    data-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    Agregar
-                                                                    </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-parent="#sidenavAccordionPages">
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse"
-                                    data-target="#pagesCollapseError" aria-expanded="false"
-                                    aria-controls="pagesCollapseError">
-                                    Listar 
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                    data-parent="#sidenavAccordionPages">
-                                   
-                                </div>
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="AgregarCompra.php">Agregar</a>
+                                <a class="nav-link" href="ListarCompra.php">Listar</a>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Ingresos</div>
@@ -124,8 +110,8 @@ require_once './php/crear_usuario.php';
                         <div class="collapse" id="collapseClientes" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="proveedor.php">Agregar</a>
-                                <a class="nav-link" href="proveedor.php">Listar</a>
+                                <a class="nav-link" href="AgregarCliente.php">Agregar</a>
+                                <a class="nav-link" href="ListarCliente.php">Listar</a>
                             </nav>
                         </div>
 
@@ -139,8 +125,8 @@ require_once './php/crear_usuario.php';
                         <div class="collapse" id="collapseVentas" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Agregar</a>
-                                <a class="nav-link" href="#">Listar</a>
+                                <a class="nav-link" href="AgregarVenta.php">Agregar</a>
+                                <a class="nav-link" href="ListarVenta.php">Listar</a>
                             </nav>
                         </div>
                     
@@ -155,11 +141,11 @@ require_once './php/crear_usuario.php';
                         <div class="collapse" id="collapseReportes" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Insumos</a>
-                                <a class="nav-link" href="#">Compras</a>
-                                <a class="nav-link" href="#">Ventas</a>
-                                <a class="nav-link" href="#">Clientes</a>
-                                <a class="nav-link" href="#">Proveedores</a>
+                                <a class="nav-link" href="ReporteInsumos.php">Insumos</a>
+                                <a class="nav-link" href="ReporteCompras.php">Compras</a>
+                                <a class="nav-link" href="ReporteVentas.php">Ventas</a>
+                                <a class="nav-link" href="ReporteClientes.php">Clientes</a>
+                                <a class="nav-link" href="ReporteProveedores.php">Proveedores</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
