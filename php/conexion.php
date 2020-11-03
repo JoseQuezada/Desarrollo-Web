@@ -1,13 +1,13 @@
 <?php
 
-	// Conexion Ale
+	
 	$servidor = "localhost";
 	$usuario = "root";
 	// $contraseña = "Deutschland78a";
 	$base = "swpciac";
 	$puerto = 3306;
 
-	// Conexion Damian
+	
 	$contraseña = "";
 	
 	$cn = mysqli_connect($servidor, $usuario, $contraseña, $base, $puerto);

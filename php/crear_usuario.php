@@ -18,9 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $error = crearUsuario($usuario, $password, $con_password, $nombre, $apellidos, $email, 1, $cn);
 
     if(!$error){
-        echo "<script>
-        alert('Ingresado correctamente');
-        </script>";
+        echo '<div class="alert alert-success">Usuario Agregado Correctamente.</div>';
     }
 
 

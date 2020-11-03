@@ -149,6 +149,7 @@ require_once './php/crear_Proveedor.php';
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="registr.php">Agregar Usuario</a>
+                                <a class="nav-link" href="ListarUsuario.php">Listar Usuarios</a>
 
                             </nav>
                         </div>
@@ -280,11 +281,7 @@ require_once './php/crear_Proveedor.php';
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; SUPASA 2020</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </footer>
