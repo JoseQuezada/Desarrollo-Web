@@ -317,7 +317,7 @@ function crearProveedor($empresa, $nombre, $apellidos, $direccion, $telefono, $e
         // codigo despues de validacion
 
 
-        if ($stmt = mysqli_prepare($cn, "INSERT INTO proveedor VALUES(NULL, ?, ?, ?, ?, ?, ?);")) {
+        if ($stmt = mysqli_prepare($cn, "INSERT INTO proveedor VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
 
 
             mysqli_stmt_bind_param($stmt, 'ssssss', $empresa, $nombre, $apellidos, $direccion, $telefono, $email);
