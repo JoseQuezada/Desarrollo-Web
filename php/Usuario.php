@@ -63,7 +63,7 @@ class Usuario
 
                             $_SESSION['tipoUsuario'] = $row['ID_Tipo'];
 
-                            header("Location: ./tablero.html");
+                            header("Location: ./tablero.php");
                         } else {
                             $counter++;
                             if ($counter == $numUsuarios) {
@@ -104,13 +104,12 @@ class Usuario
 
     public function existeEmail($email, $mensaje)
     {
+
         $cn = $this -> cn -> conexion ;
         $result = $cn->query("SELECT * FROM usuarios WHERE email = '{$email}'");
-    
+
 
         if ($result->num_rows > 0) {
-    
-
 
             if ($mensaje) {
                 echo '<div class="alert alert-danger">Email en uso.</div>';
@@ -163,6 +162,7 @@ class Usuario
 
                 mysqli_stmt_bind_param($stmt, 'ssssss', $username, $passwordEnc, $nombre, $apellidos, $email, $tipo);
 
+                mysqli_stmt_execute($stmt);
 
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
                     $error = false;
