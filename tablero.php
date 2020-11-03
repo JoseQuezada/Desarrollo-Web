@@ -177,7 +177,7 @@
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body">Insumos</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">Ver Detalles</a>
+                                    <a class="small text-white stretched-link" href="ListarInsumo.php">Ver Detalles</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body">Clientes</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
+                                    <a class="small text-white stretched-link" href="ListarCliente.php">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body">Ventas</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
+                                    <a class="small text-white stretched-link" href="ListarVenta.php">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -204,7 +204,7 @@
                             <div class="card bg-danger text-white mb-4">
                                 <div class="card-body">Compras</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">View Details</a>
+                                    <a class="small text-white stretched-link" href="ListarCompra.php">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
