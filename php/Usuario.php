@@ -15,9 +15,75 @@ class Usuario
         $this->cn = new Conexion();
     }
 
+    public function listarUsuario()
+    {
+        $cn = $this->cn->conexion;
+
+
+        $usuarios = $cn->query("SELECT * from usuarios U inner join perfil P on U.ID_TIPO = P.ID_TIPO");
+        $html = "";
+
+        if (mysqli_num_rows($usuarios) > 0) {
+            foreach ($usuarios as $usuario)
+                $html .= "<tr>
+             <td>{$usuario['ID']}</td>
+             <td>{$usuario['Usuario']}</td>
+             <td>{$usuario['Nombre']}</td>
+             <td>{$usuario['Apellidos']}</td>
+             <td>{$usuario['Email']}</td>
+             <td>{$usuario['Tipo']}</td>
+             <td><a href='eliminarUsuario.php?id={$usuario['ID']}' class='btn btn-danger' > Eliminar </a></td>
+             </tr>";
+
+            echo $html;
+        } else {
+            echo "<tr><td colspan='7'>Usuario No encontrado</td></tr>";
+        }
+    }
+
+    public function buscarUsuarioID($id)
+    {
+        $cn = $this->cn->conexion;
+
+        $datosUsuario = $cn->query("SELECT * from usuarios where id = {$id}");
+
+        if (mysqli_num_rows($datosUsuario) > 0) {
+            return mysqli_fetch_array($datosUsuario);
+        } else {
+            echo "<script>alert('Usuario no encontrado');</script>";
+        }
+    }
+
+
+    public function buscarUsuario($username)
+    {
+        $cn = $this->cn->conexion;
+
+
+        $usuarios = $cn->query("SELECT * from usuarios U inner join perfil P on U.ID_TIPO = P.ID_TIPO where usuario like '%{$username}%'");
+        $html = "";
+
+        if (mysqli_num_rows($usuarios) > 0) {
+            foreach ($usuarios as $usuario)
+                $html .= "<tr>
+             <td>{$usuario['ID']}</td>
+             <td>{$usuario['Usuario']}</td>
+             <td>{$usuario['Nombre']}</td>
+             <td>{$usuario['Apellidos']}</td>
+             <td>{$usuario['Email']}</td>
+             <td>{$usuario['Tipo']}</td>
+             <td><a href='eliminarUsuario.php?id={$usuario['ID']}' class='btn btn-danger' > Eliminar </a></td>
+             </tr>";
+
+            echo $html;
+        } else {
+            echo "<tr><td colspan='7'>Usuario No encontrado</td></tr>";
+        }
+    }
+
     private function encriptarContraseña($password)
     {
-    
+
         if (is_string($password)) {
             return $hash = password_hash($password, PASSWORD_BCRYPT);
         } else {
@@ -29,8 +95,8 @@ class Usuario
     {
 
         $error = null;
-        $cn = $this -> cn -> conexion; 
-        
+        $cn = $this->cn->conexion;
+
         if ($username == '' || $username == null) {
             $error = "*Debe escribir algo en el campo de usuario*";
         } elseif ($password == '' || $password == null) {
@@ -80,12 +146,11 @@ class Usuario
         return $error;
     }
 
-    
+
     public function existeUsuario($username, $mensaje)
     {
-        $cn = $this -> cn -> conexion ;
-        $result = $cn->query('SELECT * FROM usuarios WHERE usuario = "' . strtolower($username) . '"'
-        );
+        $cn = $this->cn->conexion;
+        $result = $cn->query('SELECT * FROM usuarios WHERE usuario = "' . strtolower($username) . '"');
 
         if ($result->num_rows > 0) {
 
@@ -105,7 +170,7 @@ class Usuario
     public function existeEmail($email, $mensaje)
     {
 
-        $cn = $this -> cn -> conexion ;
+        $cn = $this->cn->conexion;
         $result = $cn->query("SELECT * FROM usuarios WHERE email = '{$email}'");
 
 
@@ -126,7 +191,7 @@ class Usuario
 
     public function crearUsuario($username, $password, $passwordV,  $nombre, $apellidos, $email, $tipo)
     {
-        $cn = $this -> cn -> conexion;
+        $cn = $this->cn->conexion;
         $error = true;
 
         // echo var_dump($cn);
@@ -149,16 +214,16 @@ class Usuario
             $error = "*Debe escribir algo en el campo de email* ";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "*Formato de email invalido* ";
-        } elseif ($this -> existeUsuario($username, false)) {
+        } elseif ($this->existeUsuario($username, false)) {
             $error = "*Usuario ya existente* ";
-        } elseif ($this -> existeEmail($email, false)) {
+        } elseif ($this->existeEmail($email, false)) {
             $error = "*Email en uso* ";
         } else {
 
             if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
 
 
-                $passwordEnc = $this ->encriptarContraseña($password);
+                $passwordEnc = $this->encriptarContraseña($password);
 
                 mysqli_stmt_bind_param($stmt, 'ssssss', $username, $passwordEnc, $nombre, $apellidos, $email, $tipo);
 
@@ -176,6 +241,80 @@ class Usuario
         return $error;
     }
 
+    public function actualizarUsuario($id, $username, $password, $passwordV,  $nombre, $apellidos, $email, $tipo)
+    {
+        $cn = $this->cn->conexion;
+        $error = true;
+
+        $cambioContraseña = false;        // validacion
+
+        if ($username == '' || $username == null) {
+            $error = "*Debe escribir el tipo de usuario en el campo de usuario* ";
+        } elseif ($nombre == '' || $nombre == null) {
+            $error = "*Debe llenar el campo de nombres* ";
+        } elseif ($apellidos == '' || $apellidos == null) {
+            $error = "*Debe llenar el campo de apellidos* ";
+        } elseif ($email == '' || $email == null) {
+            $error = "*Debe escribir algo en el campo de email* ";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = "*Formato de email invalido* ";
+        } elseif ($this->existeUsuario($username, false) and $username != $_SESSION['Usuario']) {
+            $error = "*Usuario ya existente* ";
+        } elseif ($this->existeEmail($email, false) and $email != $_SESSION['Email']) {
+            $error = "*Email en uso* ";
+        } else {
+
+            if (!empty($password) or !empty($passwordV)) {
+                if ($password == '' || $password == null) {
+                    $error = "*Debe escribir una contraseña en el campo de contraseña* ";
+                } elseif ($passwordV == '' || $passwordV == null) {
+                    $error = "*Debe escribir la contraseña que ingreso en el campo contraseña* ";
+                } elseif ($password != $passwordV) {
+                    $error = "*Las contraseñas no coiciden* ";
+                } else {
+                    $cambioContraseña = true;        // validacion
+                }
+            }
+
+            if ($cambioContraseña) {
 
 
+                if ($stmt = mysqli_prepare($cn, "UPDATE usuarios SET Usuario = ?, Password = ?, Nombre = ?, Apellidos = ?, Email = ?, ID_TIPO = ? where ID = ?")) {
+
+                    $passwordEnc = $this->encriptarContraseña($password);
+
+                    mysqli_stmt_bind_param($stmt, 'ssssssi', $username, $passwordEnc, $nombre, $apellidos, $email, $tipo, $id);
+
+                    mysqli_stmt_execute($stmt);
+
+                    if (mysqli_stmt_affected_rows($stmt) > 0) {
+                        $error = false;
+                    }
+                } else {
+                    $error =  "Hubo un error";
+                }
+            } else {
+
+
+                if ($stmt = mysqli_prepare($cn, "UPDATE usuarios SET Usuario = ?, Nombre = ?, Apellidos = ?, Email = ?, ID_TIPO = ? where ID = ?")) {
+
+                    $passwordEnc = $this->encriptarContraseña($password);
+
+                    mysqli_stmt_bind_param($stmt, 'sssssi', $username, $nombre, $apellidos, $email, $tipo, $id);
+
+                    mysqli_stmt_execute($stmt);
+
+
+                    if (mysqli_stmt_affected_rows($stmt) > 0) {
+                        $error = false;
+                    }
+                } else {
+                    $error =  "Hubo un error";
+                }
+            }
+        }
+
+
+        return $error;
+    }
 }
