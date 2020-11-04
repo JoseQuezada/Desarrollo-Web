@@ -21,7 +21,7 @@
     ?>
     <div id="layoutSidenav_content">
 
-        <!-- Desde este main hasta que termina se deben pegar los formularios para futuras plantillas -->
+<!------------------ Desde este main hasta que termina se deben pegar los formularios para futuras plantillas -->
 
         <main>
             <div class="container-fluid">
