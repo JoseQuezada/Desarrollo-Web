@@ -128,7 +128,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email" class="col-md-3 control-label">Marca de Conentrado (Opcional):</label>
+                                        <label for="email" class="col-md-3 control-label">Marca de Conentrado Utilizada (Opcional):</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="concentrado" placeholder="Concentrado" value="<?php if (isset($concentrado)) echo $cocentrado; ?>" required>
                                         </div>
