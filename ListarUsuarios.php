@@ -1,6 +1,15 @@
 <?php
 //codigo php
 
+require('./php/Usuario.php');
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
+
+    $usuario = new Usuario();
+
+    $usuario->eliminarUsuario($_POST['idUsuario']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +152,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <!--------------------------- Inicia Formulario--------------------------->
-
+                <br>
                 <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                     <div class="col-md-100 input-group">
                         <label for="buscar" class="col-lg-5">Nombre del usuario:</label>
@@ -153,7 +162,6 @@
                         </div>
                     </div>
                 </form>
-
                 <div class="card-header">
                     <i class="fas fa-table mr-1"></i>
                     Usuarios Registrados
@@ -174,9 +182,9 @@
                             </thead>
                             <tbody id="resultados-usuario">
                                 <?php
+                                $usuario = new Usuario();
 
-                                require('./php/listarUsuario.php');
-
+                                echo $usuario->listarUsuario();
                                 ?>
                             </tbody>
                         </table>

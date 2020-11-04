@@ -32,7 +32,33 @@ class Usuario
              <td>{$usuario['Apellidos']}</td>
              <td>{$usuario['Email']}</td>
              <td>{$usuario['Tipo']}</td>
-             <td><a href='eliminarUsuario.php?id={$usuario['ID']}' class='btn btn-danger' > Eliminar </a></td>
+             <td>
+             <a href='#' data-toggle='modal' data-target='#exampleModal{$usuario['ID']}' class='btn btn-danger' > Eliminar </a>
+             
+             <div class='modal fade' id='exampleModal{$usuario['ID']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='exampleModalLabel'>Eliminar Usuario</h5>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div class='modal-body'>
+                            <p> ¿Estas seguro que deseas eliminar al usuario: '{$usuario['Usuario']}'? esto será de forma permanente? </p>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
+                            <form method='post'>
+                                <input type='hidden' name='idUsuario' value='{$usuario['ID']}' />
+                                <button type='submit' class='btn btn-danger'>Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+             </td>
              </tr>";
 
             echo $html;
@@ -72,7 +98,33 @@ class Usuario
              <td>{$usuario['Apellidos']}</td>
              <td>{$usuario['Email']}</td>
              <td>{$usuario['Tipo']}</td>
-             <td><a href='eliminarUsuario.php?id={$usuario['ID']}' class='btn btn-danger' > Eliminar </a></td>
+             <td>
+             <a href='#' data-toggle='modal' data-target='#exampleModal{$usuario['ID']}' class='btn btn-danger' > Eliminar </a>
+             
+             <div class='modal fade' id='exampleModal{$usuario['ID']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                <div class='modal-dialog' role='document'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='exampleModalLabel'>Eliminar Usuario</h5>
+                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                        <div class='modal-body'>
+                            <p> ¿Estas seguro que deseas eliminar al usuario: '{$usuario['Usuario']}'? esto será de forma permanente? </p>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
+                            <form method='post'>
+                                <input type='hidden' name='idUsuario' value='{$usuario['ID']}' />
+                                <button type='submit' class='btn btn-danger'>Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+             </td>
              </tr>";
 
             echo $html;
@@ -146,6 +198,19 @@ class Usuario
         return $error;
     }
 
+
+    public function eliminarUsuario($id)
+    {
+        $cn = $this->cn->conexion;
+        $cn->query("DELETE FROM usuarios WHERE ID = {$id} ");
+
+        if (mysqli_affected_rows($cn) > 0) {
+            echo "<script>alert('Registro eliminado');</script>";
+
+        } else {
+            echo "<script>alert('Hubo un error');</script>";
+        }
+    }
 
     public function existeUsuario($username, $mensaje)
     {
