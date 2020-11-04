@@ -1,7 +1,6 @@
 <?php
 
-//require('./php/Proveedor.php');
-require ('./php/crear_insumo.php');
+require_once('./php/crear_insumo.php');
 ?>
 
 <!DOCTYPE html>
@@ -98,9 +97,15 @@ require ('./php/crear_insumo.php');
                                     <div class="col-md-9">
                                         <select name="iDProveedor" class="form-control" id="exampleFormControlSelect1">
                                             <?php
+
+                                            require_once('./php/Proveedor.php');
+
+
                                             $proveedorObj = new Proveedor();
                                             $proveedorObj->proveedorCombobox();
-                                            ?>
+
+
+                                            echo var_dump($proveedorObj);                                            ?>
                                         </select>
                                     </div>
                                 </div>

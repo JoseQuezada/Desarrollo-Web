@@ -2,8 +2,8 @@
 
 error_reporting(1);
 
-include_once './php/conexion.php';
-include_once '../php/conexion.php';
+include './php/conexion.php';
+include '../php/conexion.php';
 
 
 class Insumo
@@ -101,7 +101,6 @@ class Insumo
 
         return $error;
     }
-
     public function listarInsumo()
     {
         $cn = $this->cn->conexion;
@@ -126,7 +125,7 @@ class Insumo
         $cn = $this->cn->conexion;
 
 
-        $insumoes = $cn->query("SELECT * from Insumo I inner join Proveedor P on I.IDProveedor = P.IDProveedor where Descripcion like '%{$nombre}%'");
+        $insumoes = $cn->query("SELECT * from Insumo inner join Proveedor P on I.IDProveedor = P.IDProveedor where Descripcion like '%{$nombre}%'");
         $html = "";
 
         if (mysqli_num_rows($insumoes) > 0) {
@@ -163,27 +162,28 @@ class Insumo
         }
     }
 
-    public function actualizarInsumo($id, $codigo, $descripcion, $disponibilidad, $costo, $proveedor)
+    public function actualizarInsumo($id, $empresa, $nombre, $apellidos, $direccion, $telefono, $email)
     {
         $cn = $this->cn->conexion;
         $error = true;
 
-        if ($codigo == '' || $codigo == null) {
-            $error = "*Debe llenar el campo de codigo* ";
-        } elseif ($descripcion == '' || $descripcion == null) {
-            $error = "*Debe llenar el campo de descripcion* ";
-        } elseif ($disponibilidad == '' || $disponibilidad == null) {
-            $error = "*Debe escribir la direccion del proveedor* ";
-        } elseif ($costo == '' || $costo == null) {
-            $error = "*Debe llenar el campo costo* ";
-        } 
-        else {
+        if ($nombre == '' || $nombre == null) {
+            $error = "*Debe llenar el campo de nombre* ";
+        } elseif ($apellidos == '' || $apellidos == null) {
+            $error = "*Debe llenar el campo de apellidos* ";
+        } elseif ($direccion == '' || $direccion == null) {
+            $error = "*Debe escribir la direccion del insumo* ";
+        } elseif ($telefono == '' || $telefono == null) {
+            $error = "*Debe llenar el campo telefono* ";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = "*Formato de email invalido* ";
+        } else {
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE insumo SET Codigo = ?, Descripcion = ?, Disponibilidad = ?, CostoLibra = ?, IDProveedor = ? where IDInsumo = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE insumo SET empresa = ?, nombre = ?, apellidos = ?, Dirección = ?, Teléfono = ?, email = ? where IDInsumo = ? ")) {
 
-                mysqli_stmt_bind_param($stmt, 'ssddii', $codigo, $descripcion, $disponibilidad, $costo, $proveedor, $id);
+                mysqli_stmt_bind_param($stmt, 'ssssssi', $empresa, $nombre, $apellidos, $direccion, $telefono, $email, $id);
 
                 mysqli_stmt_execute($stmt);
 
@@ -191,7 +191,7 @@ class Insumo
                     $error = false;
                 }
             } else {
-                $error =  "Hubo un error".mysqli_error($cn);
+                $error =  "Hubo un error" . mysqli_error($cn);
             }
         }
 

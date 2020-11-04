@@ -2,8 +2,8 @@
 
 error_reporting(1);
 
-include './php/conexion.php';
-include '../php/conexion.php';
+include_once './php/conexion.php';
+include_once '../php/conexion.php';
 
 
 class Proveedor
@@ -14,6 +14,20 @@ class Proveedor
     function __construct()
     {
         $this->cn = new Conexion();
+    }
+
+    function relacionadoInsumo($id)
+    {
+        $cn = $this->cn->conexion;
+
+        $proveedores = $cn->query("SELECT * from insumo where IDProveedor = {$id}");
+        $html = "";
+
+        if (mysqli_num_rows($proveedores) > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function crearProveedor($empresa, $nombre, $apellidos, $direccion, $telefono, $email)
@@ -81,7 +95,29 @@ class Proveedor
     {
         $html = '';
 
-        $html .= "<tr>
+        $borrable = $this->relacionadoInsumo($proveedor['IDProveedor']);
+
+
+        if ($borrable) {
+            $html .= "<tr>
+            <td>{$proveedor['IDProveedor']}</td>
+            <td>{$proveedor['Empresa']}</td>
+            <td>{$proveedor['Nombre']}</td>
+            <td>{$proveedor['Apellidos']}</td>
+            <td>{$proveedor['Dirección']}</td>
+            <td>{$proveedor['Teléfono']}</td>
+            <td>{$proveedor['Email']}</td>
+            <td>
+            <span class='d-inline-block' data-placement='left' tabindex='0' data-toggle='tooltip' title='Este proveedor esta relacionado a un insumo, por lo tanto no es posible eliminarlo a menos que se elimine el insumo relacionado'>
+                <button class='btn btn-danger disabled' style='pointer-events: none;' type='button' disabled>Eliminar</button>
+            </span>
+            
+            <a href='./ActualizarProveedor.php?IDProveedor={$proveedor['IDProveedor']}' class='btn btn-warning' > Actualizar </a>
+            </td>
+            </tr>";
+        } else {
+
+            $html .= "<tr>
         <td>{$proveedor['IDProveedor']}</td>
         <td>{$proveedor['Empresa']}</td>
         <td>{$proveedor['Nombre']}</td>
@@ -118,6 +154,7 @@ class Proveedor
     </div>
         </td>
         </tr>";
+        }
 
         return $html;
     }
@@ -166,9 +203,38 @@ class Proveedor
         }
     }
 
-    function generarCombo($proveedor){
+    public function proveedorSeleccionado($IDProveedor)
+    {
+        $cn = $this->cn->conexion;
+
+        $proveedores = $cn->query("SELECT * from Proveedor");
+
+        if (mysqli_num_rows($proveedores) > 0) {
+            foreach ($proveedores as $proveedor)
+                echo $this->generarComboSeleccionado($proveedor, $IDProveedor);
+        } else {
+            echo "<script>alert('Hubo un error');</script>";
+        }
+    }
+
+    function generarCombo($proveedor)
+    {
         $html = '';
         $html = "<option value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
+
+        return $html;
+    }
+
+
+    function generarComboSeleccionado($proveedor, $IDProveedor)
+    {
+        $html = '';
+        $html = "<option value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
+
+        if ($IDProveedor == $proveedor['IDProveedor']) {
+
+            $html = "<option selected='selected' value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
+        }
 
         return $html;
     }
@@ -214,7 +280,7 @@ class Proveedor
                     $error = false;
                 }
             } else {
-                $error =  "Hubo un error".mysqli_error($cn);
+                $error =  "Hubo un error" . mysqli_error($cn);
             }
         }
 

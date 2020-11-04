@@ -1,12 +1,12 @@
 <?php 
 
-require './php/Insumos.php';
+require './php/Insumo.php';
 
 $error = false; 
  
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de POST
 
-
+    $iDProveedor = $_POST["iDProveedor"];
     $codigo = $_POST["codigo"];
     $descripcion = $_POST["descripcion"];
     $disponibilidad = $_POST["disponibilidad"];
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
 
     $insumo = new Insumo();
 
-    $error = $insumo -> crearInsumo($codigo, $descripcion, $disponibilidad, $costo, 1);
+    $error = $insumo -> crearInsumo($codigo, $descripcion, $disponibilidad, $costo, $iDProveedor);
 
     if(!$error){
         echo "<script>alert('Ingresado correctamente');</script>";

@@ -2,8 +2,8 @@
 
 error_reporting(0);
 
-include './php/conexion.php';
-include '../php/conexion.php';
+include_once './php/conexion.php';
+include_once '../php/conexion.php';
 
 class Usuario
 {
