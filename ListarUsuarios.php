@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
 
         <div id="layoutSidenav_content">
             <main>
-                <!--------------------------- Inicia Formulario--------------------------->
+<!------------------------------------------- Inicia Formulario --------------------------->
                 <br>
                 <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                     <div class="col-md-100 input-group">
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
                     </div>
                 </div>
 
-                <!--------------------------- Finaliza Formulario--------------------------->
+<!-------------------------------------------- Finaliza Formulario------------------------------------------>
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
