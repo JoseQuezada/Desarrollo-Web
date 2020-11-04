@@ -183,7 +183,7 @@ class Proveedor
         $proveedores = $cn->query("SELECT * from Proveedor where IDProveedor = {$id}");
 
         if (mysqli_num_rows($proveedores) > 0) {
-            return $proveedores;
+            return mysqli_fetch_array($proveedores);
         } else {
             echo "<script>alert('Hubo un error');</script>";
         }
