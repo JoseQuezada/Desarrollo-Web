@@ -58,8 +58,8 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseInsumos" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="AgregarInsumo.html">Agregar</a>
-                            <a class="nav-link" href="ListarInsumo.html">Listar</a>
+                            <a class="nav-link" href="AgregarInsumo.php">Agregar</a>
+                            <a class="nav-link" href="ListarInsumo.php">Listar</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
@@ -111,11 +111,11 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="#">Insumos</a>
-                            <a class="nav-link" href="#">Compras</a>
-                            <a class="nav-link" href="#">Ventas</a>
-                            <a class="nav-link" href="#">Clientes</a>
-                            <a class="nav-link" href="#">Proveedores</a>
+                            <a class="nav-link" href="ReporteInsumos.php">Insumos</a>
+                            <a class="nav-link" href="ReporteCompras.php">Compras</a>
+                            <a class="nav-link" href="ReporteVentas.php">Ventas</a>
+                            <a class="nav-link" href="ReporteClientes.php">Clientes</a>
+                            <a class="nav-link" href="ReporteProveedores.php">Proveedores</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
