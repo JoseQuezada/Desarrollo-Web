@@ -1,18 +1,21 @@
 <?php
 //codigo php
 
-//require('./php/Usuario.php');
+require('./php/Proveedor.php');
 
-//if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST[''])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idproveedor'])) {
 
-    
+    $usuario = new Proveedor();
+
+    $usuario->eliminarProveedor($_POST['idproveedor']);
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
-<head> 
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -27,76 +30,81 @@
 </head>
 
 <body class="sb-nav-fixed">
-        <?php
+    <?php
 
-        require('./templates/barraNavegacionTablero.php');
+    require('./templates/barraNavegacionTablero.php');
 
-        ?>
+    ?>
 
-        <div id="layoutSidenav_content">
-            <main>
-<!------------------------------------------- Inicia Formulario---------------------------------------->
-                <br>
-                <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                    <div class="col-md-100 input-group">
-                        <label for="buscar" class="col-lg-6">Nombre del Proveedor:</label>
-                        <input class="form-control" id="usuarioBusqueda" name="usuarioBusqueda" type="text" placeholder="Buscar proveedor" aria-label="Search" aria-describedby="basic-addon2" />
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-                <div class="card-header">
-                    <i class="fas fa-table mr-1"></i>
-                    Proveedores Registrados
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Empresa</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>Dirección</th>
-                                    <th>Teléfono</th>
-                                    <th>E-Mail</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            
-                        </table>
+    <div id="layoutSidenav_content">
+        <main>
+            <!------------------------------------------- Inicia Formulario---------------------------------------->
+            <br>
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="col-md-100 input-group">
+                    <label for="buscar" class="col-lg-6">Nombre del Proveedor:</label>
+                    <input class="form-control" id="proveedorBusqueda" name="proveedorBusqueda" type="text" placeholder="Buscar proveedor" aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
-            
+            </form>
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Proveedores Registrados
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Empresa</th>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>E-Mail</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultados-proveedor">
+                            <?php
+                            $proveedor = new Proveedor();
+                            echo $proveedor->listarProveedor();
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-<!-------------------------------------------- Finaliza Formulario------------------------------------------>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
-                        <div>
 
-                        </div>
+            <!-------------------------------------------- Finaliza Formulario------------------------------------------>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div>
+
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
+    </div>
     </div>
 
     <script>
         $(document).ready(function() {
-            $("#usuarioBusqueda").keyup(function() {
-                var parametros = "usuarioBusqueda=" + $(this).val()
+            $("#proveedorBusqueda").keyup(function() {
+                var parametros = "proveedorBusqueda=" + $(this).val()
                 $.ajax({
                     data: parametros,
-                    url: './php/usuarioBusqueda.php',
+                    url: './php/proveedorBusqueda.php',
                     type: 'post',
                     beforeSend: function() {},
                     success: function(response) {
-                        $("#resultados-usuario").html(response);
+                        $("#resultados-proveedor").html(response);
                     },
                     error: function() {
                         alert("error")
@@ -104,7 +112,7 @@
                 });
             })
         })
-    </script> 
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
