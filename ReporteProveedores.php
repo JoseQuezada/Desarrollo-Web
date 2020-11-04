@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idproveedor'])) {
             </form>
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Reporte de Reportes Proveedores
+                Reportes Proveedores
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idproveedor'])) {
                                 <th>Dirección</th>
                                 <th>Teléfono</th>
                                 <th>E-Mail</th>
-                                <th>Acciones</th>
+                            
                             </tr>
                         </thead>
                         <tbody id="resultados-proveedor">

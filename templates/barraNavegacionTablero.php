@@ -5,7 +5,7 @@ require('./php/validacionUsuario.php');
 ?>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html">SWPCIAC</a>
+    <a class="navbar-brand" href="tablero.php"></a>
     <!--Hola estoy bien-->
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
@@ -44,8 +44,8 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="proveedor.php">Agregar</a>
-                            <a class="nav-link" href="ListarProveedor.php">Listar</a>
+                            <a class="nav-link" href="proveedor.php"><i class="far fa-plus-square"></i>&nbsp;Agregar</a>
+                            <a class="nav-link" href="ListarProveedor.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
                         </nav>
                     </div>
 
@@ -58,8 +58,8 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseInsumos" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="AgregarInsumo.php">Agregar</a>
-                            <a class="nav-link" href="ListarInsumo.php">Listar</a>
+                            <a class="nav-link" href="AgregarInsumo.php"><i class="far fa-plus-square"></i>&nbsp;Agregar</a>
+                            <a class="nav-link" href="ListarInsumo.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
@@ -70,8 +70,8 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseCompras" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="AgregarCompra.php">Agregar</a>
-                            <a class="nav-link" href="ListarCompra.php">Listar</a>
+                            <a class="nav-link" href="AgregarCompra.php"><i class="far fa-plus-square"></i>&nbsp;Agregar</a>
+                            <a class="nav-link" href="ListarCompra.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
                         </nav>
                     </div>
                     <div class="sb-sidenav-menu-heading">Ingresos</div>
@@ -84,21 +84,21 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseClientes" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="AgregarCliente.php">Agregar</a>
-                            <a class="nav-link" href="ListarCliente.php">Listar</a>
+                            <a class="nav-link" href="AgregarCliente.php"><i class="far fa-plus-square"></i>&nbsp;Agregar</a>
+                            <a class="nav-link" href="ListarCliente.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
                         </nav>
                     </div>
 
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
 
-                        <div class="sb-nav-link-icon"><i class="far fa-stamp"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-universal-access"></i></div>
                         Ventas
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseVentas" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="AgregarVenta.php">Agregar</a>
-                            <a class="nav-link" href="ListarVenta.php">Listar</a>
+                            <a class="nav-link" href="AgregarVenta.php"><i class="far fa-plus-square"></i>&nbsp;Agregar</a>
+                            <a class="nav-link" href="ListarVenta.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
                         </nav>
                     </div>
 
@@ -111,11 +111,11 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="ReporteInsumos.php">Insumos</a>
-                            <a class="nav-link" href="ReporteCompras.php">Compras</a>
-                            <a class="nav-link" href="ReporteVentas.php">Ventas</a>
-                            <a class="nav-link" href="ReporteClientes.php">Clientes</a>
-                            <a class="nav-link" href="ReporteProveedores.php">Proveedores</a>
+                            <a class="nav-link" href="ReporteInsumos.php"><i class="fas fa-stroopwafel"></i>&nbsp;Insumos</a>
+                            <a class="nav-link" href="ReporteCompras.php"><i class="fas fa-users"></i>&nbsp;Compras</a>
+                            <a class="nav-link" href="ReporteVentas.php"><i class="fas fa-universal-access"></i>&nbsp;Ventas</a>
+                            <a class="nav-link" href="ReporteClientes.php"><i class="fas fa-users"></i>&nbsp;Clientes</a>
+                            <a class="nav-link" href="ReporteProveedores.php"><i class="fas fa-parachute-box"></i>&nbsp;Proveedores</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
@@ -125,8 +125,8 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="registr.php">Agregar Usuario</a>
-                            <a class="nav-link" href="ListarUsuarios.php">Listar Usuario</a>
+                            <a class="nav-link" href="registr.php"><i class="far fa-plus-square"></i>&nbsp;Agregar Usuario</a>
+                            <a class="nav-link" href="ListarUsuarios.php"><i class="fas fa-th-list"></i>&nbsp;Listado Usuarios</a>
                         </nav>
                     </div>
                 </div>
