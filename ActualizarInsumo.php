@@ -131,7 +131,6 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
 
                                             require_once('./php/Proveedor.php');
 
-
                                             $proveedorObj = new Proveedor();
                                             $proveedorObj->proveedorSeleccionado($IDProveedor);
 

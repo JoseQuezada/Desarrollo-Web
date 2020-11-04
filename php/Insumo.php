@@ -60,6 +60,23 @@ class Insumo
         return $html;
     }
 
+
+    function generarSeleccion($insumo)
+    {
+        $html = '';
+
+        $html .= "<tr>
+        <td>{$insumo['IDInsumo']}</td>
+        <td>{$insumo['Codigo']}</td>
+        <td>{$insumo['Descripcion']}</td>
+        <td>{$insumo['Disponibilidad']}</td>
+        <td>{$insumo['CostoLibra']}</td>
+        <td>{$insumo['IDProveedor']}: {$insumo['Nombre']} {$insumo['Apellidos']}</td>
+        </tr>";
+
+        return $html;
+    }
+
     function crearInsumo($codigo, $descripcion, $disponibilidad, $costo, $idproveedor)
     {
 
@@ -120,6 +137,28 @@ class Insumo
     }
 
 
+    public function buscarInsumoSelecion($nombre)
+    {
+        $cn = $this->cn->conexion;
+
+
+
+        if (!empty($nombre)) {
+            # code...
+            $insumoes = $cn->query("SELECT * from Insumo I inner join Proveedor P on I.IDProveedor = P.IDProveedor where Descripcion like '%{$nombre}%'");
+            $html = "";
+
+            if (mysqli_num_rows($insumoes) > 0) {
+                foreach ($insumoes as $insumo)
+
+                    echo $this->generarSeleccion($insumo);
+            } else {
+                echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
+        }
+    }
 
     public function buscarInsumo($nombre)
     {
@@ -176,8 +215,7 @@ class Insumo
             $error = "*Debe escribir la direccion del proveedor* ";
         } elseif ($costo == '' || $costo == null) {
             $error = "*Debe llenar el campo costo* ";
-        } 
-        else {
+        } else {
 
             $cn = $this->cn->conexion;
 
@@ -191,7 +229,7 @@ class Insumo
                     $error = false;
                 }
             } else {
-                $error =  "Hubo un error".mysqli_error($cn);
+                $error =  "Hubo un error" . mysqli_error($cn);
             }
         }
 
