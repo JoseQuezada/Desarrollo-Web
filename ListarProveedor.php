@@ -40,7 +40,7 @@
                 <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                     <div class="col-md-100 input-group">
                         <label for="buscar" class="col-lg-6">Nombre del Proveedor:</label>
-                        <input class="form-control" id="usuarioBusqueda" name="usuarioBusqueda" type="text" placeholder="Buscar usuario" aria-label="Search" aria-describedby="basic-addon2" />
+                        <input class="form-control" id="usuarioBusqueda" name="usuarioBusqueda" type="text" placeholder="Buscar proveedor" aria-label="Search" aria-describedby="basic-addon2" />
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                         </div>
