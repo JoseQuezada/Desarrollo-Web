@@ -61,6 +61,7 @@
                                     <th>Sub Total</th>
                                     <th>IDVenta</th>
                                     <th>Insumo</th>
+                                    <th>Cliente</th>
                                 </tr>
                             </thead>
                             

@@ -61,6 +61,7 @@
                                     <th>Sub Total</th>
                                     <th>IDCompra</th>
                                     <th>Insumo</th>
+                                    <th>Proveedor</th>
                                 </tr>
                             </thead>
                             
