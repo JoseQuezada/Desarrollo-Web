@@ -1,7 +1,6 @@
 <?php
 
-require('./php/Proveedor.php');
-
+require ('./php/crear_insumo.php');
 ?>
 
 <!DOCTYPE html>
@@ -94,12 +93,12 @@ require('./php/Proveedor.php');
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="exampleFormControlSelect1">Proveedor</label>
+                                    <label class="col-md-3 control-label" for="exampleFormControlSelect1">Proveedor:</label>
                                     <div class="col-md-9">
                                         <select name="iDProveedor" class="form-control" id="exampleFormControlSelect1">
                                             <?php
                                             $proveedorObj = new Proveedor();
-                                            $proveedorObj->proveedorCombobox();
+                                            $proveedorObj->proveedorCombobox(); 
                                             ?>
                                         </select>
                                     </div>
@@ -115,22 +114,18 @@ require('./php/Proveedor.php');
                             </form>
                         </div>
                     </div>
-                    <!-----------------A partir de aqui debes terminar de colocar los formularios------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!-----------------------------------A partir de aqui debes terminar de colocar los formularios------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
                 </div>
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
                     <div class="text-muted">Copyright &copy; SUPASA 2020</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
+                    
                 </div>
             </div>
         </footer>
-    </div>
+    </div> 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

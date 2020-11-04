@@ -23,7 +23,7 @@ require('./php/validacionUsuario.php');
                 <a class="dropdown-item" href="./cerrarSesion.php">Cerrar Sesión</a>
             </div>
         </li>
-    </ul>
+    </ul> 
 </nav>
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
