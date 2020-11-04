@@ -1,7 +1,7 @@
 <?php
 
-//require('./php/Proveedor.php');
-require ('./php/crear_insumo.php');
+require('./php/Insumos.php');
+
 ?>
 
 <!DOCTYPE html>

@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $disponibilidad = $_POST["disponibilidad"];
     $costo = $_POST["costo"];
 
-    $proveedor = new Proveedor();
+    $insumo = new Insumo();
 
-    $error = $proveedor -> crearInsumo($codigo, $descripcion, $disponibilidad, $costo, 1);
+    $error = $insumo -> crearInsumo($codigo, $descripcion, $disponibilidad, $costo, 1);
 
     if(!$error){
         echo "<script>alert('Ingresado correctamente');</script>";
