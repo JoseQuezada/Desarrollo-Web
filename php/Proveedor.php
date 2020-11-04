@@ -71,14 +71,14 @@ class Proveedor
         if (mysqli_num_rows($proveedores) > 0) {
             foreach ($proveedores as $proveedor)
 
-            echo $this->generarTabla($proveedor);
-
+                echo $this->generarTabla($proveedor);
         } else {
             echo "<tr><td colspan='8'>Proveedor No encontrado</td></tr>";
         }
     }
 
-    function generarTabla($proveedor){
+    function generarTabla($proveedor)
+    {
         $html = '';
 
         $html .= "<tr>
@@ -133,10 +133,22 @@ class Proveedor
         if (mysqli_num_rows($proveedores) > 0) {
             foreach ($proveedores as $proveedor)
 
-            echo $this->generarTabla($proveedor);
-
+                echo $this->generarTabla($proveedor);
         } else {
             echo "<tr><td colspan='8'>Proveedor No encontrado</td></tr>";
+        }
+    }
+
+    public function buscarProveedorId($id)
+    {
+        $cn = $this->cn->conexion;
+
+        $proveedores = $cn->query("SELECT * from Proveedor where IDProveedor = {$id}");
+
+        if (mysqli_num_rows($proveedores) > 0) {
+            return mysqli_fetch_array($proveedores);
+        } else {
+            echo "<script>alert('Hubo un error');</script>";
         }
     }
 
@@ -171,19 +183,17 @@ class Proveedor
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE proveedor SET empresa = ?, $nombre = ?, $apellidos = ?, $direccion = ?, $telefono = ?, $email = ? where IDProveedor = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE proveedor SET empresa = ?, nombre = ?, apellidos = ?, Dirección = ?, Teléfono = ?, email = ? where IDProveedor = ? ")) {
 
-
-                mysqli_stmt_bind_param($stmt, 'ssssss', $empresa, $nombre, $apellidos, $direccion, $telefono, $email, $id);
+                mysqli_stmt_bind_param($stmt, 'ssssssi', $empresa, $nombre, $apellidos, $direccion, $telefono, $email, $id);
 
                 mysqli_stmt_execute($stmt);
-
 
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
                     $error = false;
                 }
             } else {
-                $error =  "Hubo un error";
+                $error =  "Hubo un error".mysqli_error($cn);
             }
         }
 
