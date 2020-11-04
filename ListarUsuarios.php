@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
+<head> 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -74,11 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
                         <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="proveedor.php">Agregar</a>
+                                <a class="nav-link" href="ListarProveedor.php">Listar</a> 
                             </nav>
                         </div>
                         <div class="collapse" id="collapseProvedores" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-sidenav-light.html">Insumos</a>
+                                <a class="nav-link" href="AgregarInsumo.php">Agregar</a>
+                                <a class="nav-link" href="ListarInsumo.php">Listar</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInsumos" aria-expanded="false" aria-controls="collapseInsumos">
@@ -88,9 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
                         </a>
                         <div class="collapse" id="collapseInsumos" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="Midreccion.html">Insumos</a>
-                                <a class="nav-link" href="Midireccion.html">Compras</a>
-                                <a class="nav-link" href="Midireccion.html">Ventas</a>
+                                <a class="nav-link" href="AgregarCompra.php">Agregar</a>
+                                <a class="nav-link" href="ListarCompra.php">Listar</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -124,14 +125,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
                                 </div>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Ordenes
+                    
                         </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes"
+                            aria-expanded="false" aria-controls="collapseReportes">
+                            
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Reportes
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -141,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
                         <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="registr.php">Agregar Usuario</a>
-                                <a class="nav-link" href="ListarUsuarios.php">Listar Usuarios</a>
+                                <a class="nav-link" href="ListarUsuarios.php">Listar Usuario</a>
                             </nav>
                         </div>
                     </div>

@@ -11,4 +11,3 @@ if ($userId == null || $userId == '') {
 }
 
 
-?>

@@ -180,4 +180,3 @@ function enviarEmail($email, $nombre, $asunto, $cuerpo){
     return false;
 }
 
-?>
