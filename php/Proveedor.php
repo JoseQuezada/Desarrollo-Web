@@ -146,10 +146,31 @@ class Proveedor
         $proveedores = $cn->query("SELECT * from Proveedor where IDProveedor = {$id}");
 
         if (mysqli_num_rows($proveedores) > 0) {
-            return mysqli_fetch_array($proveedores);
+            return $proveedores;
         } else {
             echo "<script>alert('Hubo un error');</script>";
         }
+    }
+
+    public function proveedorCombobox()
+    {
+        $cn = $this->cn->conexion;
+
+        $proveedores = $cn->query("SELECT * from Proveedor");
+
+        if (mysqli_num_rows($proveedores) > 0) {
+            foreach ($proveedores as $proveedor)
+                echo $this->generarCombo($proveedor);
+        } else {
+            echo "<script>alert('Hubo un error');</script>";
+        }
+    }
+
+    function generarCombo($proveedor){
+        $html = '';
+        $html = "<option value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
+
+        return $html;
     }
 
     public function eliminarproveedor($id)
