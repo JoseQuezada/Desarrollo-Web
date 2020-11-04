@@ -71,71 +71,55 @@ class Proveedor
         if (mysqli_num_rows($proveedores) > 0) {
             foreach ($proveedores as $proveedor)
 
-                $html .= "<tr>
-             <td>{$proveedor['IDProveedor']}</td>
-             <td>{$proveedor['Empresa']}</td>
-             <td>{$proveedor['Nombre']}</td>
-             <td>{$proveedor['Apellidos']}</td>
-             <td>{$proveedor['Dirección']}</td>
-             <td>{$proveedor['Teléfono']}</td>
-             <td>{$proveedor['Email']}</td>
-             <td>
-             <a href='#' data-toggle='modal' data-target='#eliminarModal{$proveedor['IDProveedor']}' class='btn btn-danger' > Eliminar </a>
-             <a href='#' data-toggle='modal' data-target='#actualizarModal{$proveedor['IDProveedor']}' class='btn btn-warning' > Actualizar </a>
-             
-             <div class='modal fade' id='eliminarModal{$proveedor['IDProveedor']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                <div class='modal-dialog' role='document'>
-                    <div class='modal-content'>
-                        <div class='modal-header'>
-                            <h5 class='modal-title' id='exampleModalLabel'>Eliminar proveedor</h5>
-                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>
-                        <div class='modal-body'>
-                            <p> ¿Estas seguro que deseas eliminar al proveedor: '{$proveedor['Nombre']}'? esto será de forma permanente? </p>
-                        </div>
-                        <div class='modal-footer'>
-                            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
-                            <form method='post'>
-                                <input type='hidden' name='idproveedor' value='{$proveedor['IDProveedor']}' />
-                                <button type='submit' class='btn btn-danger'>Eliminar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-         <div class='modal fade' id='actualizarModal{$proveedor['IDProveedor']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                <div class='modal-dialog' role='document'>
-                    <div class='modal-content'>
-                        <div class='modal-header'>
-                            <h5 class='modal-title' id='exampleModalLabel'>Actualizar proveedor</h5>
-                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>
-                        <div class='modal-body'>
-                                                        
-                        </div>
-                        <div class='modal-footer'>
-                            <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
-                            <form method='post'>
-                                <input type='hidden' name='idproveedor' value='{$proveedor['IDProveedor']}' />
-                                <button type='submit' class='btn btn-warning'>Actualizar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-             </td>
-             </tr>";
+            echo $this->generarTabla($proveedor);
 
-            echo $html;
         } else {
             echo "<tr><td colspan='8'>Proveedor No encontrado</td></tr>";
         }
+    }
+
+    function generarTabla($proveedor){
+        $html = '';
+
+        $html .= "<tr>
+        <td>{$proveedor['IDProveedor']}</td>
+        <td>{$proveedor['Empresa']}</td>
+        <td>{$proveedor['Nombre']}</td>
+        <td>{$proveedor['Apellidos']}</td>
+        <td>{$proveedor['Dirección']}</td>
+        <td>{$proveedor['Teléfono']}</td>
+        <td>{$proveedor['Email']}</td>
+        <td>
+        <a href='#' data-toggle='modal' data-target='#eliminarModal{$proveedor['IDProveedor']}' class='btn btn-danger' > Eliminar </a>
+        <a href='./ActualizarProveedor.php?IDProveedor={$proveedor['IDProveedor']}' class='btn btn-warning' > Actualizar </a>
+        
+        <div class='modal fade' id='eliminarModal{$proveedor['IDProveedor']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+           <div class='modal-dialog' role='document'>
+               <div class='modal-content'>
+                   <div class='modal-header'>
+                       <h5 class='modal-title' id='exampleModalLabel'>Eliminar proveedor</h5>
+                       <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                           <span aria-hidden='true'>&times;</span>
+                       </button>
+                   </div>
+                   <div class='modal-body'>
+                       <p> ¿Estas seguro que deseas eliminar al proveedor: '{$proveedor['Nombre']}'? esto será de forma permanente? </p>
+                   </div>
+                   <div class='modal-footer'>
+                       <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
+                       <form method='post'>
+                           <input type='hidden' name='idproveedor' value='{$proveedor['IDProveedor']}' />
+                           <button type='submit' class='btn btn-danger'>Eliminar</button>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+        </td>
+        </tr>";
+
+        return $html;
     }
 
     public function buscarProveedor($nombre)
@@ -148,68 +132,9 @@ class Proveedor
 
         if (mysqli_num_rows($proveedores) > 0) {
             foreach ($proveedores as $proveedor)
-                $html .= "<tr>
-            <td>{$proveedor['IDProveedor']}</td>
-            <td>{$proveedor['Empresa']}</td>
-            <td>{$proveedor['Nombre']}</td>
-            <td>{$proveedor['Apellidos']}</td>
-            <td>{$proveedor['Dirección']}</td>
-            <td>{$proveedor['Teléfono']}</td>
-            <td>{$proveedor['Email']}</td>
-            <td>
-            <a href='#' data-toggle='modal' data-target='#eliminarModal{$proveedor['IDProveedor']}' class='btn btn-danger' > Eliminar </a>
-            <a href='#' data-toggle='modal' data-target='#actualizarModal{$proveedor['IDProveedor']}' class='btn btn-warning' > Actualizar </a>
-            
-            <div class='modal fade' id='eliminarModal{$proveedor['IDProveedor']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-               <div class='modal-dialog' role='document'>
-                   <div class='modal-content'>
-                       <div class='modal-header'>
-                           <h5 class='modal-title' id='exampleModalLabel'>Eliminar proveedor</h5>
-                           <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                               <span aria-hidden='true'>&times;</span>
-                           </button>
-                       </div>
-                       <div class='modal-body'>
-                           <p> ¿Estas seguro que deseas eliminar al proveedor: '{$proveedor['Nombre']}'? esto será de forma permanente? </p>
-                       </div>
-                       <div class='modal-footer'>
-                           <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
-                           <form method='post'>
-                               <input type='hidden' name='idproveedor' value='{$proveedor['IDProveedor']}' />
-                               <button type='submit' class='btn btn-danger'>Eliminar</button>
-                           </form>
-                       </div>
-                   </div>
-               </div>
-           </div>
-        </div>
-        <div class='modal fade' id='actualizarModal{$proveedor['IDProveedor']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-               <div class='modal-dialog' role='document'>
-                   <div class='modal-content'>
-                       <div class='modal-header'>
-                           <h5 class='modal-title' id='exampleModalLabel'>Actualizar proveedor</h5>
-                           <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                               <span aria-hidden='true'>&times;</span>
-                           </button>
-                       </div>
-                       <div class='modal-body'>
-                                                       
-                       </div>
-                       <div class='modal-footer'>
-                           <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
-                           <form method='post'>
-                               <input type='hidden' name='idproveedor' value='{$proveedor['IDProveedor']}' />
-                               <button type='submit' class='btn btn-warning'>Actualizar</button>
-                           </form>
-                       </div>
-                   </div>
-               </div>
-           </div>
-        </div>
-            </td>
-            </tr>";
 
-            echo $html;
+            echo $this->generarTabla($proveedor);
+
         } else {
             echo "<tr><td colspan='8'>Proveedor No encontrado</td></tr>";
         }
