@@ -102,14 +102,14 @@
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Teléfono:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($email)) echo $email; ?>" required>
+                                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>"  required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">E-Mail (Opcional)</label>
                                         <div class="col-md-9">
-                                            <input id="EMail" type="text" class="form-control" name="email" placeholder="E-Mail" required><br>
+                                            <input id="EMail" type="text" class="form-control" name="email" value="<?php if (isset($email)) echo $email; ?>" placeholder="E-Mail" required><br>
                                         </div>
                                     </div>
 
