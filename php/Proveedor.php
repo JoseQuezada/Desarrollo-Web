@@ -155,7 +155,7 @@ class Proveedor
     public function eliminarproveedor($id)
     {
         $cn = $this->cn->conexion;
-        $cn->query("DELETE FROM proveedores WHERE IDProveedor = {$id} ");
+        $cn->query("DELETE FROM proveedor WHERE IDProveedor = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
             echo "<script>alert('Proveedor eliminado');</script>";
