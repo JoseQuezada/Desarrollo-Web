@@ -13,10 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $email = $_POST["email"];
     $password = $_POST["password"];
     $con_password = $_POST["con_password"];
+    $tipo = $_POST ["idTipo"];
 
     $user = new Usuario();
 
-    $error = $user -> crearUsuario($usuario, $password, $con_password, $nombre, $apellidos, $email, 1);
+    $error = $user -> crearUsuario($usuario, $password, $con_password, $nombre, $apellidos, $email, $tipo);
 
 
     if(!$error){

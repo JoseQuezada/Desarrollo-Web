@@ -105,7 +105,8 @@ require_once('./php/crear_insumo.php');
                                             $proveedorObj->proveedorCombobox();
 
 
-                                            echo var_dump($proveedorObj);                                            ?>
+                                            echo var_dump($proveedorObj);
+                                            ?>
                                         </select>
                                     </div>
                                 </div>

@@ -2,6 +2,8 @@
 
 require('./php/validacionUsuario.php');
 
+// echo var_dump($_SESSION);
+
 ?>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -23,7 +25,7 @@ require('./php/validacionUsuario.php');
                 <a class="dropdown-item" href="./cerrarSesion.php">Cerrar Sesión</a>
             </div>
         </li>
-    </ul> 
+    </ul>
 </nav>
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
@@ -118,17 +120,20 @@ require('./php/validacionUsuario.php');
                             <a class="nav-link" href="ReporteProveedores.php"><i class="fas fa-parachute-box"></i>&nbsp;Proveedores</a>
                         </nav>
                     </div>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
-                        <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                        Usuarios
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="registr.php"><i class="far fa-plus-square"></i>&nbsp;Agregar Usuario</a>
-                            <a class="nav-link" href="ListarUsuarios.php"><i class="fas fa-th-list"></i>&nbsp;Listado Usuarios</a>
-                        </nav>
-                    </div>
+                    <?php if ($_SESSION['ID_Tipo'] == 1 or $_SESSION['ID_Tipo'] == 2) : ?>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Usuarios
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseUsuarios" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="registr.php"><i class="far fa-plus-square"></i>&nbsp;Agregar Usuario</a>
+                                <a class="nav-link" href="ListarUsuarios.php"><i class="fas fa-th-list"></i>&nbsp;Listado Usuarios</a>
+                            </nav>
+                        </div>
+                    <?php endif ?>
+
                 </div>
             </div>
 

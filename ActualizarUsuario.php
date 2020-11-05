@@ -8,6 +8,7 @@ $usuario = new Usuario();
 
 $datos = $usuario->buscarUsuarioID($_SESSION['ID']);
 
+
 $id = $datos['ID'];
 $usuario = $datos['Usuario'];
 $nombre = $datos['Nombre'];

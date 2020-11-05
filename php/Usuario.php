@@ -133,6 +133,28 @@ class Usuario
         }
     }
 
+    public function usuarioCombobox()
+    {
+        $cn = $this->cn->conexion;
+
+        $proveedores = $cn->query("SELECT * from Perfil");
+
+        if (mysqli_num_rows($proveedores) > 0) {
+            foreach ($proveedores as $proveedor)
+                echo $this->generarCombo($proveedor);
+        } else {
+            echo "<script>alert('Hubo un error');</script>";
+        }
+    }
+
+    function generarCombo($usuario)
+    {
+        $html = '';
+        $html = "<option value='{$usuario['ID_Tipo']}'>Rol: {$usuario['Tipo']}  </option>";
+
+        return $html;
+    }
+
     private function encriptarContraseña($password)
     {
 
@@ -177,7 +199,7 @@ class Usuario
 
                             $_SESSION = $row;
 
-                            unset($_SESSION['contraseña']);
+                            unset($_SESSION['Password']);
 
                             $_SESSION['tipoUsuario'] = $row['ID_Tipo'];
 
@@ -206,7 +228,6 @@ class Usuario
 
         if (mysqli_affected_rows($cn) > 0) {
             echo "<script>alert('Registro eliminado');</script>";
-
         } else {
             echo "<script>alert('Hubo un error');</script>";
         }
@@ -286,6 +307,7 @@ class Usuario
         } else {
 
             if ($stmt = mysqli_prepare($cn, "INSERT INTO usuarios VALUES(NULL, ?, ?, ?, ?, ?, ?)")) {
+
 
 
                 $passwordEnc = $this->encriptarContraseña($password);
