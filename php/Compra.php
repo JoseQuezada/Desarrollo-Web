@@ -16,20 +16,6 @@ class Compra
         $this->cn = new Conexion();
     }
 
-    function relacionadoInsumo($id)
-    {
-        $cn = $this->cn->conexion;
-
-        $proveedores = $cn->query("SELECT * from insumo where IDProveedor = {$id}");
-        $html = "";
-
-        if (mysqli_num_rows($proveedores) > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function crearCompra($fecha, $descripcion, array $datosInsumos)
     {
 
@@ -59,7 +45,7 @@ class Compra
                             $costoLibra = $datosInsumo['CostoLibra'];
                             $subtotal = $costoLibra * $libras;
                             $total += $subtotal;
-                            
+
                             $error2 = false;
                         } else {
                             $error2 = true;
@@ -71,96 +57,96 @@ class Compra
                 }
             }
 
-            if (!$error2):
-            
-
-            if ($stmt = mysqli_prepare($cn, "INSERT INTO Compra VALUES(NULL, ?, ?);")) {
-
-                mysqli_stmt_bind_param($stmt, 'sd', $fecha, $total);
-
-                mysqli_stmt_execute($stmt);
+            if (!$error2) :
 
 
-                if (mysqli_stmt_affected_rows($stmt) > 0) {
+                if ($stmt = mysqli_prepare($cn, "INSERT INTO Compra VALUES(NULL, ?, ?);")) {
 
-                    $rs = mysqli_query($cn, "SELECT MAX(IDCompra) AS id FROM Compra");
-                    if ($row = mysqli_fetch_row($rs)) {
-                        $idCompra = trim($row[0]);
+                    mysqli_stmt_bind_param($stmt, 'sd', $fecha, $total);
 
-
-                        // antes
-                        foreach ($datosInsumos as $dato) {
-                            foreach ($dato as $idInsumo => $libras) {
-
-                                if ($rs = mysqli_query($cn, "SELECT * FROM Insumo WHERE IDInsumo = {$idInsumo}")) {
-
-                                    if (mysqli_num_rows($rs) > 0) {
-
-                                        $datosInsumo = mysqli_fetch_array($rs);
-                                        $costoLibra = $datosInsumo['CostoLibra'];
-                                        $subtotal = $costoLibra * $libras;
-
-                                        $disponibilidadActual = $datosInsumo['Disponibilidad'];
-
-                                        if ($stmt = mysqli_prepare($cn, "INSERT INTO Detalle_Compra VALUES(NULL, ?, ?, ?, ?, ?);")) {
-
-                                            mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $idCompra, $idInsumo);
-
-                                            mysqli_stmt_execute($stmt);
+                    mysqli_stmt_execute($stmt);
 
 
-                                            if (mysqli_stmt_affected_rows($stmt) > 0) {
+                    if (mysqli_stmt_affected_rows($stmt) > 0) {
 
-                                                $disponibilidad = $disponibilidadActual + $libras;
+                        $rs = mysqli_query($cn, "SELECT MAX(IDCompra) AS id FROM Compra");
+                        if ($row = mysqli_fetch_row($rs)) {
+                            $idCompra = trim($row[0]);
 
-                                                if ($stmt = mysqli_prepare($cn, "UPDATE Insumo set Disponibilidad = ? WHERE IDInsumo = {$idInsumo}")) {
 
-                                                    mysqli_stmt_bind_param($stmt, 'd', $disponibilidad);
+                            // antes
+                            foreach ($datosInsumos as $dato) {
+                                foreach ($dato as $idInsumo => $libras) {
 
-                                                    mysqli_stmt_execute($stmt);
+                                    if ($rs = mysqli_query($cn, "SELECT * FROM Insumo WHERE IDInsumo = {$idInsumo}")) {
 
-                                                    if (mysqli_stmt_affected_rows($stmt) > 0) {
-                                                        $error = false;
+                                        if (mysqli_num_rows($rs) > 0) {
+
+                                            $datosInsumo = mysqli_fetch_array($rs);
+                                            $costoLibra = $datosInsumo['CostoLibra'];
+                                            $subtotal = $costoLibra * $libras;
+
+                                            $disponibilidadActual = $datosInsumo['Disponibilidad'];
+
+                                            if ($stmt = mysqli_prepare($cn, "INSERT INTO Detalle_Compra VALUES(NULL, ?, ?, ?, ?, ?);")) {
+
+                                                mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $idCompra, $idInsumo);
+
+                                                mysqli_stmt_execute($stmt);
+
+
+                                                if (mysqli_stmt_affected_rows($stmt) > 0) {
+
+                                                    $disponibilidad = $disponibilidadActual + $libras;
+
+                                                    if ($stmt = mysqli_prepare($cn, "UPDATE Insumo set Disponibilidad = ? WHERE IDInsumo = {$idInsumo}")) {
+
+                                                        mysqli_stmt_bind_param($stmt, 'd', $disponibilidad);
+
+                                                        mysqli_stmt_execute($stmt);
+
+                                                        if (mysqli_stmt_affected_rows($stmt) > 0) {
+                                                            $error = false;
+                                                        }
                                                     }
+                                                } else {
+                                                    $error =  mysqli_stmt_error($stmt);
                                                 }
                                             } else {
                                                 $error =  mysqli_stmt_error($stmt);
                                             }
                                         } else {
-                                            $error =  mysqli_stmt_error($stmt);
+                                            $error = "Id de producto no encontrada";
                                         }
                                     } else {
-                                        $error = "Id de producto no encontrada";
+                                        $error = mysqli_error($cn);
                                     }
-                                } else {
-                                    $error = mysqli_error($cn);
                                 }
                             }
                         }
+                    } else {
+                        $error = mysqli_error($cn);;
                     }
                 } else {
-                    $error = mysqli_error($cn);;
+                    $error =  mysqli_stmt_error($stmt);
                 }
-            } else {
-                $error =  mysqli_stmt_error($stmt);
-            }
-        endif;
+            endif;
         }
 
         return $error;
     }
 
-    public function listarProveedor()
+
+    public function listarCompra()
     {
         $cn = $this->cn->conexion;
 
 
-        $proveedores = $cn->query("SELECT * from Proveedor");
-        $html = "";
+        $proveedores = $cn->query("SELECT C.IDCompra, C.Fecha, C.Total from Compra C ORDER BY IDCompra ASC");
 
         if (mysqli_num_rows($proveedores) > 0) {
-            foreach ($proveedores as $proveedor)
 
+            foreach ($proveedores as $proveedor)
                 echo $this->generarTabla($proveedor);
         } else {
             echo "<tr><td colspan='8'>Proveedor No encontrado</td></tr>";
@@ -171,56 +157,30 @@ class Compra
     {
         $html = '';
 
-        $borrable = $this->relacionadoInsumo($proveedor['IDProveedor']);
-
-
-        if ($borrable) {
-            $html .= "<tr>
-            <td>{$proveedor['IDProveedor']}</td>
-            <td>{$proveedor['Empresa']}</td>
-            <td>{$proveedor['Nombre']}</td>
-            <td>{$proveedor['Apellidos']}</td>
-            <td>{$proveedor['Dirección']}</td>
-            <td>{$proveedor['Teléfono']}</td>
-            <td>{$proveedor['Email']}</td>
+        $html .= "<tr>
+            <td>{$proveedor['IDCompra']}</td>
+            <td>{$proveedor['Fecha']}</td>
+            <td>{$proveedor['Total']}</td>
             <td>
-            <span class='d-inline-block' data-placement='left' tabindex='0' data-toggle='tooltip' title='Este proveedor esta relacionado a un insumo, por lo tanto no es posible eliminarlo a menos que se elimine el insumo relacionado'>
-                <button class='btn btn-danger disabled' style='pointer-events: none;' type='button' disabled>Eliminar</button>
-            </span>
-            
-            <a href='./ActualizarProveedor.php?IDProveedor={$proveedor['IDProveedor']}' class='btn btn-warning' > Actualizar </a>
-            </td>
-            </tr>";
-        } else {
+            <a href='./detalleCompra.php?IDCompra={$proveedor['IDCompra']}' class='btn btn-info'> Ver detalles </a>
+            <a href='#' data-toggle='modal' data-target='#eliminarModal{$proveedor['IDCompra']}' class='btn btn-danger' > Eliminar </a>
 
-            $html .= "<tr>
-        <td>{$proveedor['IDProveedor']}</td>
-        <td>{$proveedor['Empresa']}</td>
-        <td>{$proveedor['Nombre']}</td>
-        <td>{$proveedor['Apellidos']}</td>
-        <td>{$proveedor['Dirección']}</td>
-        <td>{$proveedor['Teléfono']}</td>
-        <td>{$proveedor['Email']}</td>
-        <td>
-        <a href='#' data-toggle='modal' data-target='#eliminarModal{$proveedor['IDProveedor']}' class='btn btn-danger' > Eliminar </a>
-        <a href='./ActualizarProveedor.php?IDProveedor={$proveedor['IDProveedor']}' class='btn btn-warning' > Actualizar </a>
-        
-        <div class='modal fade' id='eliminarModal{$proveedor['IDProveedor']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+            <div class='modal fade' id='eliminarModal{$proveedor['IDCompra']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
            <div class='modal-dialog' role='document'>
                <div class='modal-content'>
                    <div class='modal-header'>
-                       <h5 class='modal-title' id='exampleModalLabel'>Eliminar proveedor</h5>
+                       <h5 class='modal-title' id='exampleModalLabel'>Eliminar compra</h5>
                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                            <span aria-hidden='true'>&times;</span>
                        </button>
                    </div>
                    <div class='modal-body'>
-                       <p> ¿Estas seguro que deseas eliminar al proveedor: '{$proveedor['Nombre']}'? esto será de forma permanente? </p>
+                       <p> ¿Estas seguro que deseas eliminar la compra con ID: '{$proveedor['IDCompra']}'? esto será de forma permanente? </p>
                    </div>
                    <div class='modal-footer'>
                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
                        <form method='post'>
-                           <input type='hidden' name='idproveedor' value='{$proveedor['IDProveedor']}' />
+                           <input type='hidden' name='idCompra' value='{$proveedor['IDCompra']}' />
                            <button type='submit' class='btn btn-danger'>Eliminar</button>
                        </form>
                    </div>
@@ -228,9 +188,9 @@ class Compra
            </div>
        </div>
     </div>
-        </td>
-        </tr>";
-        }
+            </td>
+            </tr>";
+
 
         return $html;
     }
@@ -252,11 +212,11 @@ class Compra
         }
     }
 
-    public function buscarProveedorId($id)
+    public function buscarCompraId($id)
     {
         $cn = $this->cn->conexion;
 
-        $proveedores = $cn->query("SELECT * from Proveedor where IDProveedor = {$id}");
+        $proveedores = $cn->query("SELECT * from Compra where IDCompra = {$id}");
 
         if (mysqli_num_rows($proveedores) > 0) {
             return mysqli_fetch_array($proveedores);
@@ -265,65 +225,45 @@ class Compra
         }
     }
 
-    public function proveedorCombobox()
+    public function primerosDatos($id)
     {
         $cn = $this->cn->conexion;
 
-        $proveedores = $cn->query("SELECT * from Proveedor");
+        $proveedores = $cn->query("SELECT * from detalle_compra where IDCompra = {$id} order by IDDetalleCompra asc limit 0, 1");
 
         if (mysqli_num_rows($proveedores) > 0) {
-            foreach ($proveedores as $proveedor)
-                echo $this->generarCombo($proveedor);
+            return mysqli_fetch_array($proveedores);
         } else {
             echo "<script>alert('Hubo un error');</script>";
         }
     }
 
-    public function proveedorSeleccionado($IDProveedor)
+    public function restoDatos($id)
     {
         $cn = $this->cn->conexion;
 
-        $proveedores = $cn->query("SELECT * from Proveedor");
+        $sql = "SELECT * from detalle_compra where IDCompra = {$id}";
+        $result = mysqli_query($cn, $sql);
+        $numero = mysqli_num_rows($result);
+        $proveedores = $cn->query("SELECT * from detalle_compra where IDCompra = {$id} order by IDDetalleCompra asc limit 1, {$numero}");
 
-        if (mysqli_num_rows($proveedores) > 0) {
-            foreach ($proveedores as $proveedor)
-                echo $this->generarComboSeleccionado($proveedor, $IDProveedor);
-        } else {
-            echo "<script>alert('Hubo un error');</script>";
-        }
+        return $proveedores;
     }
 
-    function generarCombo($proveedor)
+    public function eliminarCompra($id)
     {
-        $html = '';
-        $html = "<option value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
 
-        return $html;
-    }
-
-
-    function generarComboSeleccionado($proveedor, $IDProveedor)
-    {
-        $html = '';
-        $html = "<option value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
-
-        if ($IDProveedor == $proveedor['IDProveedor']) {
-
-            $html = "<option selected='selected' value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
-        }
-
-        return $html;
-    }
-
-    public function eliminarproveedor($id)
-    {
         $cn = $this->cn->conexion;
-        $cn->query("DELETE FROM proveedor WHERE IDProveedor = {$id} ");
+        $cn->query("DELETE FROM detalle_compra WHERE IDCompra = {$id} ");
+        $cn->query("DELETE FROM Compra WHERE IDCompra = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
             echo "<script>alert('Proveedor eliminado');</script>";
         } else {
-            echo "<script>alert('Hubo un error');</script>";
+
+            echo mysqli_error($cn);
+
+            // echo "<script>alert('Hubo un error');</script>";
         }
     }
 

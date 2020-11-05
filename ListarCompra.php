@@ -1,18 +1,20 @@
 <?php
-//codigo php
 
-//require('./php/Usuario.php');
+require('./php/Compra.php');
 
-//if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST[''])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idCompra'])) {
 
-    
+    $compra = new Compra();
+
+    $compra->eliminarCompra($_POST['idCompra']);
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
-<head> 
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -27,62 +29,62 @@
 </head>
 
 <body class="sb-nav-fixed">
-        <?php
+    <?php
 
-        require('./templates/barraNavegacionTablero.php');
+    require('./templates/barraNavegacionTablero.php');
 
-        ?>
+    ?>
 
-        <div id="layoutSidenav_content">
-            <main>
-<!------------------------------------------- Inicia Formulario---------------------------------------->
-                <br>
-                <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                    <div class="col-md-100 input-group">
-                     <!--   <label for="buscar" class="col-lg-6">Insumo :</label>
+    <div id="layoutSidenav_content">
+        <main>
+            <!------------------------------------------- Inicia Formulario---------------------------------------->
+            <br>
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="col-md-100 input-group">
+                    <!--   <label for="buscar" class="col-lg-6">Insumo :</label>
                         <input class="form-control" id="usuarioBusqueda" name="usuarioBusqueda" type="text" placeholder="Buscar proveedor" aria-label="Search" aria-describedby="basic-addon2" />
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                         </div> --->
-                    </div>
-                </form>
-                <div class="card-header">
-                    <i class="fas fa-table mr-1"></i>
-                    Compras Registradas
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Descripción</th>
-                                    <th>Cantidad (lb)</th>
-                                    <th>Sub Total</th>
-                                    <th>IDCompra</th>
-                                    <th>Insumo</th>
-                                    <th>Proveedor</th>
-                                </tr>
-                            </thead>
-                            
-                        </table>
-                    </div>
+            </form>
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Compras Registradas
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        $compra = new Compra();
+                        echo $compra->listarCompra();
+                        ?>
+                    </table>
                 </div>
-            
+            </div>
 
-<!-------------------------------------------- Finaliza Formulario------------------------------------------>
-            </main>
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
-                        <div>
 
-                        </div>
+            <!-------------------------------------------- Finaliza Formulario------------------------------------------>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div>
+
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
+    </div>
     </div>
 
     <script>
@@ -103,7 +105,7 @@
                 });
             })
         })
-    </script> 
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
