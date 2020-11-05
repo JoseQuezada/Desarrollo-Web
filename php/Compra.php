@@ -136,6 +136,19 @@ class Compra
         return $error;
     }
 
+    public function buscarCompraId($id)
+    {
+        $cn = $this->cn->conexion;
+
+        $proveedores = $cn->query("SELECT * from Compra where IDCompra = {$id}");
+
+        if (mysqli_num_rows($proveedores) > 0) {
+            return mysqli_fetch_array($proveedores);
+        } else {
+            echo "<script>alert('Hubo un error');</script>";
+        }
+    }
+
 
     public function listarCompra()
     {
@@ -187,42 +200,12 @@ class Compra
                </div>
            </div>
        </div>
-    </div>
+        </div>
             </td>
             </tr>";
 
 
         return $html;
-    }
-
-    public function buscarProveedor($nombre)
-    {
-        $cn = $this->cn->conexion;
-
-
-        $proveedores = $cn->query("SELECT * from Proveedor where Nombre like '%{$nombre}%'");
-        $html = "";
-
-        if (mysqli_num_rows($proveedores) > 0) {
-            foreach ($proveedores as $proveedor)
-
-                echo $this->generarTabla($proveedor);
-        } else {
-            echo "<tr><td colspan='8'>Proveedor No encontrado</td></tr>";
-        }
-    }
-
-    public function buscarCompraId($id)
-    {
-        $cn = $this->cn->conexion;
-
-        $proveedores = $cn->query("SELECT * from Compra where IDCompra = {$id}");
-
-        if (mysqli_num_rows($proveedores) > 0) {
-            return mysqli_fetch_array($proveedores);
-        } else {
-            echo "<script>alert('Hubo un error');</script>";
-        }
     }
 
     public function primerosDatos($id)
@@ -267,28 +250,31 @@ class Compra
         }
     }
 
-    public function actualizarProveedor($id, $empresa, $nombre, $apellidos, $direccion, $telefono, $email)
+    public function actualizarCompra($id, $fecha, $descripcion)
     {
         $cn = $this->cn->conexion;
         $error = true;
 
-        if ($nombre == '' || $nombre == null) {
-            $error = "*Debe llenar el campo de nombre* ";
-        } elseif ($apellidos == '' || $apellidos == null) {
-            $error = "*Debe llenar el campo de apellidos* ";
-        } elseif ($direccion == '' || $direccion == null) {
-            $error = "*Debe escribir la direccion del proveedor* ";
-        } elseif ($telefono == '' || $telefono == null) {
-            $error = "*Debe llenar el campo telefono* ";
-        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error = "*Formato de email invalido* ";
+        if ($fecha == '' || $fecha == null) {
+            $error = "*Debe llenar el campo de fecha* ";
+        } elseif ($descripcion == '' || $descripcion == null) {
+            $error = "*Debe llenar el campo de descripcion* ";
         } else {
+
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE proveedor SET empresa = ?, nombre = ?, apellidos = ?, Dirección = ?, Teléfono = ?, email = ? where IDProveedor = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE Compra SET fecha = ? where IDCompra = ? ")) {
 
-                mysqli_stmt_bind_param($stmt, 'ssssssi', $empresa, $nombre, $apellidos, $direccion, $telefono, $email, $id);
+                mysqli_stmt_bind_param($stmt, 'si', $fecha, $id);
+
+                mysqli_stmt_execute($stmt);
+            }
+
+
+            if ($stmt = mysqli_prepare($cn, "UPDATE detalle_compra SET Descripción = ? where IDCompra = ? ")) {
+
+                mysqli_stmt_bind_param($stmt, 'si', $descripcion, $id);
 
                 mysqli_stmt_execute($stmt);
 
@@ -296,10 +282,9 @@ class Compra
                     $error = false;
                 }
             } else {
-                $error =  "Hubo un error" . mysqli_error($cn);
+                $error =  "Hubo un error" . mysqli_stmt_error($stmt);
             }
         }
-
 
         return $error;
     }

@@ -23,54 +23,24 @@ if ($IDCompra != null) {
     $primerLibra = $primerosDatos['Libras'];
     $primerDetalle = $primerosDatos['IDDetalleCompra'];
     $descripcion = $primerosDatos['Descripción'];
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') { //Chequea si se accedió por medio de POST
+
+
+        $fecha = $_POST["fecha"];
+        $descripcion = $_POST["desripcion"];
+
+        $compra = new Compra();
+        $error = $compra->actualizarCompra($IDCompra, $fecha, $descripcion);
+
+
+        if (!$error) {
+            echo "<script>alert('Actualizado correctamente');</script>";
+        }
+    }
 } else {
     exit();
 }
-
-
-// require './php/Compra.php';
-
-// $error = false;
-
-// if ($_SERVER['REQUEST_METHOD'] == 'POST') { //Chequea si se accedió por medio de POST
-
-//     $fecha = $_POST["fecha"];
-//     $descripcion = $_POST["desripcion"];
-
-//     $idInsumos = $_POST["idInsumos"];
-//     $librasCompradas = $_POST["librasCompradas"];
-//     $idDetalle = $_POST["idDetalle"];
-
-//     $largoDatos = 0; 
-
-//     if (count($idInsumos) == count($librasCompradas)) {
-//         $largoDatos = count($idInsumos);
-//     }else{
-//         echo "<script>alert('Hubo un error');</script>";
-//         exit();
-//     }
-
-//     $infoInsumos = [];
-
-//     for ($i = 0; $i < $largoDatos; $i++) {
-//         $infoInsumos[] = [
-//             $idInsumos[$i] => $librasCompradas[$i]
-//         ];
-//     }
-
-//     echo var_dump($infoInsumos);
-
-//     $compra = new Compra();
-//     // $error = $compra->crearCompra($fecha, $descripcion, $infoInsumos, $idDetalle);
-
-//     // $error = $proveedor -> crearProveedor($empresa, $nombre, $apellidos, $direccion, $telefono, $email);
-
-//     if(!$error){
-//         echo "<script>alert('Ingresado correctamente');</script>";
-//     }
-
-// }
-
 
 ?>
 
@@ -164,10 +134,10 @@ if ($IDCompra != null) {
 
                                             <div>
 
-                                                <input type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php if (isset($primerInsumo)) echo $primerInsumo; ?>" />
-                                                <input type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php if (isset($primerLibra)) echo $primerLibra; ?>" />
-                                                <input type="hidden" name="idDetalle[]" value="<?php echo $primerDetalle; ?>" />
-                                                
+                                                <input readonly type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php if (isset($primerInsumo)) echo $primerInsumo; ?>" />
+                                                <input readonly type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php if (isset($primerLibra)) echo $primerLibra; ?>" />
+                                                <input readonly type="hidden" name="idDetalle[]" value="<?php echo $primerDetalle; ?>" />
+
                                                 <?php
 
                                                 $compra = new Compra();
@@ -184,11 +154,11 @@ if ($IDCompra != null) {
 
                                                         <div>
 
-                                                            <input type="hidden" name="idDetalle[]" value="<?php echo $dato['IDDetalleCompra']; ?>" />
+                                                            <input readonly type="hidden" name="idDetalle[]" value="<?php echo $dato['IDDetalleCompra']; ?>" />
 
-                                                            <input type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php echo $dato['IDCompra']; ?>" />
+                                                            <input readonly type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php echo $dato['IDCompra']; ?>" />
 
-                                                            <input type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php echo $dato['Libras']; ?>" />
+                                                            <input readonly type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php echo $dato['Libras']; ?>" />
                                                         </div>
 
                                                 <?php }
