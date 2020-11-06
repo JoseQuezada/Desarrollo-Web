@@ -1,11 +1,16 @@
 <?php
+
 //codigo php
 
-//require('./php/Usuario.php');
+require('./php/Cliente.php');
 
-//if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST[''])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idinsumo'])) {
 
-    
+    $cliente = new Cliente();
+
+    $cliente->eliminarinsumo($_POST['idinsumo']);
+}
+
 
 ?>
 
@@ -69,7 +74,12 @@
                                     <th>Marca de Concentrado</th>
                                 </tr>
                             </thead>
-                            
+                            <tbody id="resultados-cliente">
+                            <?php
+                            $cliente = new Cliente();
+                            echo $insumo->listarCliente();
+                            ?>
+                        </tbody>
                         </table>
                     </div>
                 </div>

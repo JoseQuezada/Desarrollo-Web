@@ -270,11 +270,27 @@ class Cliente
         $cn = $this->cn->conexion;
         $error = true;
 
-        
+        if ($nombre == '' || $nombre == null) {
+            $error = "*Debe llenar el campo de nombre* ";
+        } elseif ($apellidos == '' || $apellidos == null) {
+            $error = "*Debe llenar el campo de apellidos* ";
+        }elseif($dpi == '' || $dpi == null){
+            $error = "*Debe escribir el dpi del cliente* ";
+        } elseif ($direccion == '' || $direccion == null) {
+            $error = "*Debe escribir la direccion del direccion* ";
+        }elseif($municipio == ''|| $municipio == null){
+                $error = "Debe llenar el campo municipio";
+        }elseif($departamento == '' || $departamento == null){
+                $error = "Debe llenar el campo departamento";
+        } elseif ($telefono == '' || $telefono == null) {
+            $error = "*Debe llenar el campo telefono* ";
+        } elseif ($nit == '' || $nit == null) {
+            $error = "*Debe llenar el campo  nit* ";
+        } else {
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE cliente SET Nombre = ?, Apellidos = ?, DPI = ?, Direccion = ?, Municipio = ?, Departamento = ?, Telefono = ?, Telefono2 = ?, NIT = ?, Marca_Concentrado = ? where IDCliente = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE cliente SET Nombre = ?, Apellidos = ?,  = ?, direccion = ?, municipio = ?, departamento = ?, telefono = ?, telefono2 = ?, nit = ?, marca_concentrado = ? where IDCliente = ? ")) {
 
                 mysqli_stmt_bind_param($stmt, 'ssssssssss' $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac);
 
