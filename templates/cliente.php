@@ -1,5 +1,5 @@
 <?php
-    require_once('./php/crear_cliente.php');
+    require('./php/Cliente.php');
 ?>
 
 <!DOCTYPE html>
