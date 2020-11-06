@@ -5,13 +5,12 @@ require('./php/Cliente.php');
 $IDCliente = $_GET['IDCliente'] ?? null;
 
 
-echo $IDCLiente;
-
 if ($IDCliente != null) {
+
 
     $cliente = new Cliente();
 
-    $datosCliente = $Cliente->buscarClienteId($IDCliente);
+    $datosCliente = $cliente->buscarClienteId($IDCliente);
 
     $nombre = $_POST["nombre"];
     $apellidos = $_POST["apellidos"];

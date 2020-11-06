@@ -114,7 +114,7 @@ class Cliente
             <td>{$cliente['Marca_Concentrado']}</td>
         <td>
         <a href='#' data-toggle='modal' data-target='#eliminarModal{$cliente['IDCliente']}' class='btn btn-danger' > Eliminar </a>
-        <a href='./ActualizarCliente.php?IDClienter={$cliente['IDCliente']}' class='btn btn-warning' > Actualizar </a>
+        <a href='./ActualizarCliente.php?IDCliente={$cliente['IDCliente']}' class='btn btn-warning' > Actualizar </a>
         
         <div class='modal fade' id='eliminarModal{$cliente['IDCliente']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
            <div class='modal-dialog' role='document'>
