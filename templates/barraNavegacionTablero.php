@@ -7,7 +7,7 @@ require('./php/validacionUsuario.php');
 ?>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="tablero.php"></a>
+    <a class="navbar-brand" href="tablero.php">SWPCIGC</a>
     <!--Hola estoy bien-->
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
