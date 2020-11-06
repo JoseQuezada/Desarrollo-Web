@@ -4,11 +4,11 @@
 
 require('./php/Cliente.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idinsumo'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idcliente'])) {
 
     $cliente = new Cliente();
 
-    $cliente->eliminarinsumo($_POST['idinsumo']);
+    $cliente->eliminarcliente($_POST['idcliente']);
 }
 
 
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idinsumo'])) {
                             <tbody id="resultados-cliente">
                             <?php
                             $cliente = new Cliente();
-                            echo $insumo->listarCliente();
+                            echo $cliente->listarCliente();
                             ?>
                         </tbody>
                         </table>

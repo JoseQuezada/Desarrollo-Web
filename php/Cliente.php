@@ -101,7 +101,7 @@ class Cliente
     {
         $html = '';
 
-        $borrable = $this->relacionadoInsumo($cliente['IDCliente']);
+        $borrable = $this->relacionadoCliente($cliente['IDCliente']);
 
 
         if ($borrable) {
@@ -114,15 +114,15 @@ class Cliente
             <td>{$cliente['Municipio']}</td>
             <td>{$cliente['Departamento']}</td>
             <td>{$cliente['Telefono']}</td>
-            <td>{$cliente['Telefono2']}</td>
+            <td>{$cliente['Telefono 2']}</td>
             <td>{$cliente['NIT']}</td>
             <td>{$cliente['Marca_Concentrado']}</td>
             <td>
             <span class='d-inline-block' data-placement='left' tabindex='0' data-toggle='tooltip' title='Este cliente esta relacionado a un venta, por lo tanto no es posible eliminarlo a menos que se elimine el insumo relacionado'>
-                <button class='btn btn-danger disabled' style='pointer-events: none;' type='button' disabled>Eliminar</button>
+                <button class='btn btn-danger ' style='pointer-events: none;' type='button' >Eliminar</button>
             </span>
             
-            <a href='./ActualizarCliente.php?IDProveedor={$cliente['IDCliente']}' class='btn btn-warning' > Actualizar </a>
+            <a href='./ActualizarCliente.php?IDCliente={$cliente['IDCliente']}' class='btn btn-warning' > Actualizar </a>
             </td>
             </tr>";
         } else {
@@ -292,7 +292,7 @@ class Cliente
 
             if ($stmt = mysqli_prepare($cn, "UPDATE cliente SET Nombre = ?, Apellidos = ?,  = ?, direccion = ?, municipio = ?, departamento = ?, telefono = ?, telefono2 = ?, nit = ?, marca_concentrado = ? where IDCliente = ? ")) {
 
-                mysqli_stmt_bind_param($stmt, 'ssssssssss' $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac);
+                mysqli_stmt_bind_param($stmt, 'ssssssssss', $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac);
 
                 mysqli_stmt_execute($stmt);
 
