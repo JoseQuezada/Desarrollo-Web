@@ -43,14 +43,14 @@ class Cliente
             $error = "*Debe llenar el campo de nombre* ";
         } elseif ($apellidos == '' || $apellidos == null) {
             $error = "*Debe llenar el campo de apellidos* ";
-        }elseif($dpi == '' || $dpi == null){
+        } elseif ($dpi == '' || $dpi == null) {
             $error = "*Debe escribir el dpi del cliente* ";
         } elseif ($direccion == '' || $direccion == null) {
             $error = "*Debe escribir la direccion del direccion* ";
-        }elseif($municipio == ''|| $municipio == null){
-                $error = "Debe llenar el campo municipio";
-        }elseif($departamento == '' || $departamento == null){
-                $error = "Debe llenar el campo departamento";
+        } elseif ($municipio == '' || $municipio == null) {
+            $error = "Debe llenar el campo municipio";
+        } elseif ($departamento == '' || $departamento == null) {
+            $error = "Debe llenar el campo departamento";
         } elseif ($telefono == '' || $telefono == null) {
             $error = "*Debe llenar el campo telefono* ";
         } elseif ($nit == '' || $nit == null) {
@@ -100,34 +100,7 @@ class Cliente
     function generarTabla($cliente)
     {
         $html = '';
-
-        $borrable = $this->relacionadoCliente($cliente['IDCliente']);
-
-
-        if ($borrable) {
-            $html .= "<tr>
-            <td>{$cliente['IDCliente']}</td>
-            <td>{$cliente['Nombre']}</td>
-            <td>{$cliente['Apellidos']}</td>
-            <td>{$cliente['DPI']}</td>
-            <td>{$cliente['Dirección']}</td>
-            <td>{$cliente['Municipio']}</td>
-            <td>{$cliente['Departamento']}</td>
-            <td>{$cliente['Telefono']}</td>
-            <td>{$cliente['Telefono 2']}</td>
-            <td>{$cliente['NIT']}</td>
-            <td>{$cliente['Marca_Concentrado']}</td>
-            <td>
-            <span class='d-inline-block' data-placement='left' tabindex='0' data-toggle='tooltip' title='Este cliente esta relacionado a un venta, por lo tanto no es posible eliminarlo a menos que se elimine el insumo relacionado'>
-                <button class='btn btn-danger ' style='pointer-events: none;' type='button' >Eliminar</button>
-            </span>
-            
-            <a href='./ActualizarCliente.php?IDCliente={$cliente['IDCliente']}' class='btn btn-warning' > Actualizar </a>
-            </td>
-            </tr>";
-        } else {
-
-            $html .= "<tr>
+        $html .= "<tr>
             <td>{$cliente['IDCliente']}</td>
             <td>{$cliente['Nombre']}</td>
             <td>{$cliente['Apellidos']}</td>
@@ -168,7 +141,6 @@ class Cliente
     </div>
         </td>
         </tr>";
-        }
 
         return $html;
     }
@@ -274,14 +246,14 @@ class Cliente
             $error = "*Debe llenar el campo de nombre* ";
         } elseif ($apellidos == '' || $apellidos == null) {
             $error = "*Debe llenar el campo de apellidos* ";
-        }elseif($dpi == '' || $dpi == null){
+        } elseif ($dpi == '' || $dpi == null) {
             $error = "*Debe escribir el dpi del cliente* ";
         } elseif ($direccion == '' || $direccion == null) {
             $error = "*Debe escribir la direccion del direccion* ";
-        }elseif($municipio == ''|| $municipio == null){
-                $error = "Debe llenar el campo municipio";
-        }elseif($departamento == '' || $departamento == null){
-                $error = "Debe llenar el campo departamento";
+        } elseif ($municipio == '' || $municipio == null) {
+            $error = "Debe llenar el campo municipio";
+        } elseif ($departamento == '' || $departamento == null) {
+            $error = "Debe llenar el campo departamento";
         } elseif ($telefono == '' || $telefono == null) {
             $error = "*Debe llenar el campo telefono* ";
         } elseif ($nit == '' || $nit == null) {
