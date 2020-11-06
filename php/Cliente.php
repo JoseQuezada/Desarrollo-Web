@@ -105,10 +105,10 @@ class Cliente
             <td>{$cliente['Nombre']}</td>
             <td>{$cliente['Apellidos']}</td>
             <td>{$cliente['DPI']}</td>
-            <td>{$cliente['Dirección']}</td>
+            <td>{$cliente['Direccion']}</td>
             <td>{$cliente['Municipio']}</td>
             <td>{$cliente['Departamento']}</td>
-            <td>{$cliente['Telefono']}</td>
+            <td>{$cliente['Teléfono']}</td>
             <td>{$cliente['Telefono2']}</td>
             <td>{$cliente['NIT']}</td>
             <td>{$cliente['Marca_Concentrado']}</td>
