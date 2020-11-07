@@ -105,16 +105,16 @@ class Cliente
             <td>{$cliente['Nombre']}</td>
             <td>{$cliente['Apellidos']}</td>
             <td>{$cliente['DPI']}</td>
-            <td>{$cliente['Dirección']}</td>
+            <td>{$cliente['Direccion']}</td>
             <td>{$cliente['Municipio']}</td>
             <td>{$cliente['Departamento']}</td>
-            <td>{$cliente['Telefono']}</td>
+            <td>{$cliente['Teléfono']}</td>
             <td>{$cliente['Telefono2']}</td>
             <td>{$cliente['NIT']}</td>
             <td>{$cliente['Marca_Concentrado']}</td>
         <td>
         <a href='#' data-toggle='modal' data-target='#eliminarModal{$cliente['IDCliente']}' class='btn btn-danger' > Eliminar </a>
-        <a href='./ActualizarCliente.php?IDClienter={$cliente['IDCliente']}' class='btn btn-warning' > Actualizar </a>
+        <a href='./ActualizarCliente.php?IDCliente={$cliente['IDCliente']}' class='btn btn-warning' > Actualizar </a>
         
         <div class='modal fade' id='eliminarModal{$cliente['IDCliente']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
            <div class='modal-dialog' role='document'>

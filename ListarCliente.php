@@ -69,9 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idcliente'])) {
                                     <th>Departamento</th>
                                     <th>Telefono</th>
                                     <th>Telefono 2</th>
-                                    <th>Municipio</th> 
                                     <th>NIT</th>
                                     <th>Marca de Concentrado</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody id="resultados-cliente">
