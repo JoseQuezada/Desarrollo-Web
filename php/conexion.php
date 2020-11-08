@@ -12,14 +12,14 @@ class Conexion
 
 	function __construct()
 	{
-		// Conexion Ale
+		
 		$this -> servidor  = "localhost";
 		$this -> usuario = "root";
-		// $this -> password = "Deutschland78a";
+		
 		$this -> base = "swpciac";
 		$this -> puerto = 3306;
 
-		// Conexion Damian
+		
 		$this -> password = "";
 
         $this->conexion = new mysqli($this->servidor, $this->usuario, $this->password,$this->base, $this -> puerto) or die(mysqli_error($this->conexion));
