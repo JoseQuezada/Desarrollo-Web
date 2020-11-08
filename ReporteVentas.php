@@ -41,7 +41,7 @@
                     <label for="PDF" class="col-lg-10"></label>
                         <div class="input-group-append">
                         <br>
-                            <button class="btn btn-primary" type="button"><i class="fas fa-download"></i> Descargar PDF</button>
+                            <button class="btn btn-primary" type="button"><i class="fas fa-download"></i> Generar Reporte</button>
                         </div>
                     </div>
                     <br>

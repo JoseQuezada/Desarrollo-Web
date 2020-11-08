@@ -113,14 +113,12 @@ require('./php/validacionUsuario.php');
                     </a>
                     <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="ReporteInsumos.php"><i class="fas fa-stroopwafel"></i>&nbsp;Insumos</a>
+                            <a class="nav-link" href="ReporteInsumos.php"><i class="fas fa-stroopwafel"></i>&nbsp;Inventario</a>
                             <a class="nav-link" href="ReporteCompras.php"><i class="fas fa-users"></i>&nbsp;Compras</a>
                             <a class="nav-link" href="ReporteVentas.php"><i class="fas fa-universal-access"></i>&nbsp;Ventas</a>
-                            <a class="nav-link" href="ReporteClientes.php"><i class="fas fa-users"></i>&nbsp;Clientes</a>
-                            <a class="nav-link" href="ReporteProveedores.php"><i class="fas fa-parachute-box"></i>&nbsp;Proveedores</a>
                         </nav>
                     </div>
-                    <?php if ($_SESSION['ID_Tipo'] == 1 or $_SESSION['ID_Tipo'] == 2) : ?>
+                    <?php if ($_SESSION['ID_Tipo'] == 1 ) : ?>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
                             <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Usuarios
