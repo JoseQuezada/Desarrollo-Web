@@ -12,18 +12,16 @@ if ($IDCliente != null) {
 
     $datosCliente = $cliente->buscarClienteId($IDCliente);
 
-    $nombre = $_POST["nombre"];
-    $apellidos = $_POST["apellidos"];
-    $dpi = $_POST["dpi"];
-    $direccion = $_POST["direccion"];
-    $municipio = $_POST["municipio"];
-    $departamento = $_POST["departamento"];
-    $telefono = $_POST["telefono"];
-    $telefono2 = $_POST["telefono"];
-    $nit = $_POST["nit"];
-    $marcac = $_POST["marcac"];
-
-
+    $nombre = $datosCliente["Nombre"];
+    $apellidos = $datosCliente["Apellidos"];
+    $dpi = $datosCliente["DPI"];
+    $direccion = $datosCliente["Direccion"];
+    $municipio = $datosCliente["Municipio"];
+    $departamento = $datosCliente["Departamento"];
+    $telefono = $datosCliente["Teléfono"];
+    $telefono2 = $datosCliente["Telefono2"];
+    $nit = $datosCliente["NIT"];
+    $marcac = $datosCliente["Marca_concentrado"];
 } else {
     exit();
 }
@@ -44,7 +42,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
 
     $cliente = new Cliente();
 
-    $error = $cliente->actualizarCliente($IDCliente, $nombre, $apellidos, $dpi, $direccion, $municipio, $telefono, $telefono2, $nit, $marcac);
+    $error = $cliente->actualizarCliente($IDCliente, $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac);
 
     if (!$error) {
         echo "<script>alert('Actualizado correctamente');</script>";
@@ -105,13 +103,6 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                 <?php } ?>
 
                                 <div class="form-group">
-                                    <label for="nombre" class="col-md-3 control-label">Empresa (opcional)</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="empresa" placeholder="Empresa" value="<?php if (isset($empresa)) echo $empresa; ?>" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Nombre:</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
@@ -126,13 +117,36 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="usuario" class="col-md-3 control-label">Dirección:</label>
+                                    <label for="usuario" class="col-md-3 control-label">DPI:</label>
                                     <div class="col-md-9">
-                                        <input id="direccion" type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
+                                        <input type="text" class="form-control" name="dpi" placeholder="DPI" value="<?php if (isset($dpi)) echo $dpi; ?>" required>
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <div id="result-username"></div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Dirección:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Municipio:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="municipio" placeholder="Municipio" value="<?php if (isset($municipio)) echo $municipio; ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Departamento:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="departamento" placeholder="Departamento" value="<?php if (isset($departamento)) echo $departamento; ?>" required>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">Teléfono:</label>
@@ -142,23 +156,34 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password" class="col-md-3 control-label">E-Mail (Opcional)</label>
+                                    <label for="email" class="col-md-3 control-label">Teléfono 2 (Opcional):</label>
                                     <div class="col-md-9">
-                                        <input id="EMail" type="text" class="form-control" name="email" placeholder="E-Mail" value="<?php if (isset($email)) echo $email; ?>" required><br>
+                                        <input type="text" class="form-control" name="telefono2" placeholder="Teléfono" value="<?php if (isset($telefono2)) echo $telefono2; ?>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">NIT:</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="nit" placeholder="NIT" value="<?php if (isset($nit)) echo $nit; ?>" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Marca de Conentrado Utilizada (Opcional):</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="marcac" placeholder="Concentrado" value="<?php if (isset($concentrado)) echo $cocentrado; ?>">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-md-offset-5 col-md-9">
-                                        <button id="btn-signup" name="btnActualizar" type="submit" class="btn btn-sm btn-warning"><i class="icon-hand-right"></i>Actualizar</button>
-                                        <a href="./ListarProveedor.php" class="btn btn-sm btn-secondary"><i class="icon-hand-right"></i>Cancelar</a>
+                                        <button name="btnActualizar" id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Cliente</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-
-
 
                     <script>
                         $(document).ready(function($) {

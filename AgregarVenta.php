@@ -1,5 +1,6 @@
 <?php
 
+require_once('./php/crear_venta.php');
 
 
 ?>
@@ -73,9 +74,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="nombre" class="col-md-3 control-label">Cliente:(ID)</label>
+                                    <label class="col-md-3 control-label" for="exampleFormControlSelect1">Cliente</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="cliente" placeholder="Cliente" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                        <select name="IDCliente" class="form-control" id="exampleFormControlSelect1">
+                                            <?php
+
+                                            require_once('./php/Cliente.php');
+
+                                            $clienteObj = new Cliente();
+                                            $clienteObj->clienteCombobox();
+
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -93,47 +103,53 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="nombre" class="col-md-3 control-label">Libras:</label>
-                                    <div class="col-md-9">
-                                        <input type="number" step="0.01" min="0" class="form-control" name="libras" placeholder="Libras" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="usuario" class="col-md-3 control-label">Subtotal:</label>
-                                    <div class="col-md-9">
-                                        <input type="number" step="0.01" min="0" class="form-control" name="total" placeholder="Costo por Libra" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="apellidos" class="col-md-3 control-label">Como colocar el insumo?:</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="idinsumo" placeholder="IDCompra" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="exampleFormControlSelect1">Proveedor</label>
-                                    <div class="col-md-9">
-                                        <select name="IDInsumo[]" multiple="multiple"  class="form-control" id="exampleFormControlSelect1">
-                                            <option value="">1</option>
-                                            <option value="">1</option>
-                                            <option value="">1</option>
-                                            <option value="">1</option>
-                                        </select>
+                                <div class="col-md-100 input-group">
+                                    <label for="buscar" class="col-lg-6">Descripcion del Insumo:</label>
+                                    <input class="form-control" id="insumoBusqueda" name="insumoBusqueda" type="text" placeholder="Buscar insumo" aria-label="Search" aria-describedby="basic-addon2" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
 
 
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
+                                                    <th>Disponibilidad</th>
+                                                    <th>Costo Libra</th>
+                                                    <th>Proveedor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="resultados-insumo">
 
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-5 col-md-9">
-                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Venta</button>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
+
+                                    <div class="form-group">
+                                        <p class="col-md-3 control-p">Insumos:</p>
+                                        <div class="col-md-9">
+                                            <div class="field_wrapper">
+                                                <div>
+                                                    <input type="text" placeholder="ID del insumo" name="idInsumos[]" value="" />
+                                                    <input type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="" />
+
+                                                    <a href="javascript:void(0);" class="add_button" title="Add field"><i class="far fa-plus-square"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-5 col-md-9">
+                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Venta</button>
+                                        </div>
+                                    </div>
                             </form>
                         </div>
                     </div>
@@ -143,28 +159,31 @@
                     <script>
                         $(document).ready(function($) {
 
-                            $('#input_contraseña').strength({
-                                strengthClass: 'strength',
-                                strengthMeterClass: 'strength_meter',
-                                strengthButtonClass: 'button_strength',
-                                strengthButtonText: '',
-                                strengthButtonTextToggle: 'Ocultar Password'
-                            });
-
-                            $('#username').on('blur', function() {
-                                $('#result-username').html('<img src="./img/loader.gif" />').fadeOut(1000);
-
-                                var username = $(this).val();
-                                var dataString = 'username=' + username;
-
+                            $("#insumoBusqueda").keyup(function() {
+                                var parametros = "insumoBusqueda=" + $(this).val()
                                 $.ajax({
-                                    type: "POST",
-                                    url: "./php/revisarUsuario.php",
-                                    data: dataString,
-                                    success: function(data) {
-                                        $('#result-username').fadeIn(1000).html(data);
+                                    data: parametros,
+                                    url: './php/seleccionInsumos.php',
+                                    type: 'post',
+                                    beforeSend: function() {},
+                                    success: function(response) {
+                                        $("#resultados-insumo").html(response);
+                                    },
+                                    error: function() {
+                                        alert("error")
                                     }
                                 });
+                            })
+
+                            var addButton = $('.add_button'); //Add button selector
+                            var wrapper = $('.field_wrapper'); //Input field wrapper
+                            var fieldHTML = '<div><input type="text" placeholder="ID del insumo" name="idInsumos[]" value="" /> <input type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="" /><a href="javascript:void(0);" class="remove_button" title="Remove field"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-x-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146a.5.5 0 1 0-.708.708L7.293 8 6.146 9.146a.5.5 0 1 0 .708.708L8 8.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 8l1.147-1.146a.5.5 0 0 0-.708-.708L8 7.293 6.854 6.146z"/></svg></a></div>'; //New input field html 
+                            $(addButton).click(function() { //Once add button is clicked
+                                $(wrapper).append(fieldHTML); // Add field html
+                            });
+                            $(wrapper).on('click', '.remove_button', function(e) { //Once remove button is clicked
+                                e.preventDefault();
+                                $(this).parent('div').remove(); //Remove field html
                             });
 
                         });

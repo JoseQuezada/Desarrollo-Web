@@ -106,11 +106,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idcliente'])) {
                 var parametros = "usuarioBusqueda=" + $(this).val()
                 $.ajax({
                     data: parametros,
-                    url: './php/usuarioBusqueda.php',
+                    url: './php/clienteBusqueda.php',
                     type: 'post',
                     beforeSend: function() {},
                     success: function(response) {
-                        $("#resultados-usuario").html(response);
+                        $("#resultados-cliente").html(response);
                     },
                     error: function() {
                         alert("error")

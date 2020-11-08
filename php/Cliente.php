@@ -145,6 +145,8 @@ class Cliente
         return $html;
     }
 
+    
+
     public function buscarCliente($nombre)
     {
         $cn = $this->cn->conexion;
@@ -185,7 +187,7 @@ class Cliente
             foreach ($clientes as $cliente)
                 echo $this->generarCombo($cliente);
         } else {
-            echo "<script>alert('Hubo un error');</script>";
+            echo "<script>alert('No hay clientes almacenados');</script>";
         }
     }
 
@@ -206,7 +208,7 @@ class Cliente
     function generarCombo($cliente)
     {
         $html = '';
-        $html = "<option value='{$cliente['IDClienteVenta']}'>ID: {$cliente['IDCliente']} Nombre: {$cliente['Nombre']} {$proveedor['Apellidos']} </option>";
+        $html = "<option value='{$cliente['IDCliente']}'>ID: {$cliente['IDCliente']} Nombre: {$cliente['Nombre']} </option>";
 
         return $html;
     }
@@ -237,7 +239,7 @@ class Cliente
         }
     }
 
-    public function actualizarCliente($id, $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $marcac)
+    public function actualizarCliente($id, $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac)
     {
         $cn = $this->cn->conexion;
         $error = true;
@@ -262,9 +264,9 @@ class Cliente
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE cliente SET Nombre = ?, Apellidos = ?,  = ?, direccion = ?, municipio = ?, departamento = ?, telefono = ?, telefono2 = ?, nit = ?, marca_concentrado = ? where IDCliente = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE cliente SET Nombre = ?, Apellidos = ?,  DPI = ?, direccion = ?, municipio = ?, departamento = ?, Teléfono = ?, Telefono2 = ?, NIT = ?, marca_concentrado = ? where IDCliente = ? ")) {
 
-                mysqli_stmt_bind_param($stmt, 'ssssssssss', $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac);
+                mysqli_stmt_bind_param($stmt, 'ssssssssssi', $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac, $id);
 
                 mysqli_stmt_execute($stmt);
 
