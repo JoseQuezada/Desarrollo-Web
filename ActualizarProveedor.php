@@ -40,7 +40,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
     $error = $proveedor->actualizarProveedor($IDProveedor, $empresa, $nombre, $apellidos, $direccion, $telefono, $email);
 
     if (!$error) {
-        echo "<script>alert('Actualizado correctamente');</script>";
+        echo "<script>alert('Datos Actualizados');</script>";
     }
 }
 

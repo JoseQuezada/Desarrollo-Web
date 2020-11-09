@@ -178,7 +178,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
 
                                 <div class="form-group">
                                     <div class="col-md-offset-5 col-md-9">
-                                        <button name="btnActualizar" id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Cliente</button>
+                                        <button name="btnActualizar" id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar</button>
                                     </div>
                                 </div>
                             </form>
