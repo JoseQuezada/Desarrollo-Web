@@ -136,6 +136,13 @@ class Insumo
         }
     }
 
+    public function reporteInsumo()
+    {
+        $cn =$this -> cn ->conexion;
+        
+        return mysqli_query($cn, "SELECT * FROM Insumo I inner join Proveedor P on I.IDProveedor=P.IDProveedor ");
+    }
+
 
     public function buscarInsumoSelecion($nombre)
     {

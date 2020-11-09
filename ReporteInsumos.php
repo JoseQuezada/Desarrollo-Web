@@ -51,7 +51,7 @@
                     <label for="PDF" class="col-lg-6"></label>
                         <div class="input-group-append">
                         <br>
-                            <button class="btn btn-primary" type="button"><i class="fas fa-download"></i> Generar Reporte</button>
+                            <a class="btn btn-primary" href="./reporteI.php"><i class="fas fa-download"></i> Generar Reporte</a>
                         </div>
                     </div>
                 </form>
@@ -73,7 +73,6 @@
                                     <th>Proveedor</th>
                                 </tr>
                             </thead>
-                            
                         </table>
                     </div>
                 </div>
