@@ -54,7 +54,7 @@ require './php/login.php';
 
                         <div style="margin-top:10px" class="form-group">
                             <div class="col-sm-12 controls">
-                                <button id="btn-login" type="submit" class="btn btn-success">Iniciar Sesi&oacute;n</a>
+                                <button id="btn-login" type="submit" class="btn btn-success">Ingrear</a>
                             </div>
                         </div>
 
