@@ -149,14 +149,14 @@ class Venta
         $cn = $this->cn->conexion;
 
 
-        $proveedores = $cn->query("SELECT C.IDVenta, C.Fecha, C.Total from Venta C ORDER BY IDVenta ASC");
+        $proveedores = $cn->query("SELECT V.IDVenta, V.Fecha, V.IDCliente, C.Nombre, C.Apellidos, V.Tipo, V.Total from Venta V inner join Cliente C on V.IDCliente = C.IDCliente ORDER BY IDVenta ASC");
 
         if (mysqli_num_rows($proveedores) > 0) {
 
             foreach ($proveedores as $proveedor)
                 echo $this->generarTabla($proveedor);
         } else {
-            echo "<tr><td colspan='8'>Proveedor No encontrado</td></tr>";
+            echo "<tr><td colspan='8'>Venta No encontrado</td></tr>";
         }
     }
 
@@ -167,6 +167,8 @@ class Venta
         $html .= "<tr>
             <td>{$proveedor['IDVenta']}</td>
             <td>{$proveedor['Fecha']}</td>
+            <td>ID: {$proveedor['IDCliente']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']}</td>
+            <td>{$proveedor['Tipo']}</td>
             <td>{$proveedor['Total']}</td>
             <td>
             <a href='./detalleVenta.php?IDVenta={$proveedor['IDVenta']}' class='btn btn-info'> Ver detalles </a>
@@ -206,7 +208,7 @@ class Venta
     {
         $cn = $this->cn->conexion;
 
-        $proveedores = $cn->query("SELECT * from detalle_Venta where IDVenta = {$id} order by IDDetalleVenta asc limit 0, 1");
+        $proveedores = $cn->query("SELECT * from detalleVenta where IDVenta = {$id} order by IDDetallVenta asc limit 0, 1");
 
         if (mysqli_num_rows($proveedores) > 0) {
             return mysqli_fetch_array($proveedores);
@@ -219,10 +221,12 @@ class Venta
     {
         $cn = $this->cn->conexion;
 
-        $sql = "SELECT * from detalle_Venta where IDVenta = {$id}";
+        $sql = "SELECT * from detalleVenta where IDVenta = {$id}";
         $result = mysqli_query($cn, $sql);
         $numero = mysqli_num_rows($result);
-        $proveedores = $cn->query("SELECT * from detalle_Venta where IDVenta = {$id} order by IDDetalleVenta asc limit 1, {$numero}");
+        $proveedores = $cn->query("SELECT * from detalleVenta where IDVenta = {$id} order by IDDetallVenta asc limit 1, {$numero}");
+
+
 
         return $proveedores;
     }
@@ -231,11 +235,11 @@ class Venta
     {
 
         $cn = $this->cn->conexion;
-        $cn->query("DELETE FROM detalle_Venta WHERE IDVenta = {$id} ");
+        $cn->query("DELETE FROM detalleVenta WHERE IDVenta = {$id} ");
         $cn->query("DELETE FROM Venta WHERE IDVenta = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Proveedor eliminado');</script>";
+            echo "<script>alert('Venta eliminado');</script>";
         } else {
 
             echo mysqli_error($cn);
@@ -244,7 +248,7 @@ class Venta
         }
     }
 
-    public function actualizarVenta($id, $fecha, $descripcion)
+    public function actualizarVenta($id, $fecha, $IDCliente, $tipo, $descripcion)
     {
         $cn = $this->cn->conexion;
         $error = true;
@@ -258,19 +262,27 @@ class Venta
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE Venta SET fecha = ? where IDVenta = ? ")) {
 
-                mysqli_stmt_bind_param($stmt, 'si', $fecha, $id);
+            if ($stmt = mysqli_prepare($cn, "UPDATE Venta SET fecha = ?, IDCliente = ?, Tipo = ? where IDVenta = ? ")) {
+
+                $error = $fecha;
+
+                mysqli_stmt_bind_param($stmt, 'sisi', $fecha, $IDCliente, $tipo, $id);
 
                 mysqli_stmt_execute($stmt);
+            } else {
+                $error =  "Hubo un error" . mysqli_stmt_error($stmt);
             }
 
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE detalle_Venta SET Descripción = ? where IDVenta = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE detalleVenta SET Descripcion = ? where IDVenta = ? ")) {
+
 
                 mysqli_stmt_bind_param($stmt, 'si', $descripcion, $id);
 
                 mysqli_stmt_execute($stmt);
+
+                echo var_dump($stmt);
 
                 if (mysqli_stmt_affected_rows($stmt) > 0) {
                     $error = false;
