@@ -1,6 +1,7 @@
 <?php
 
- require_once('./php/crear_compra.php');
+require_once('./php/crear_compra.php');
+$id = $_GET["IDInsumo"] ?? null;
 
 ?>
 
@@ -142,7 +143,7 @@
                                                 <div>
                                                     <input type="text" placeholder="ID del insumo" name="idInsumos[]" value="" />
                                                     <input type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="" />
-                                            
+
                                                     <a href="javascript:void(0);" class="add_button" title="Add field"><i class="far fa-plus-square"></i></a>
                                                 </div>
                                             </div>

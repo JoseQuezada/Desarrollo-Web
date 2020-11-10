@@ -136,11 +136,17 @@ class Insumo
         }
     }
 
-    public function reporteInsumo()
+    public function reporteInsumo($id)
     {
         $cn =$this -> cn ->conexion;
         
-        return mysqli_query($cn, "SELECT * FROM Insumo I inner join Proveedor P on I.IDProveedor=P.IDProveedor ");
+        $result = mysqli_query($cn, "SELECT * FROM Insumo I inner join Proveedor P on I.IDProveedor=P.IDProveedor where IDInsumo like '%{$id}%' ");
+
+        if ( mysqli_num_rows($result) > 0) {
+            return $result;
+        }else{
+            return  null;
+        }
     }
 
 
@@ -164,6 +170,29 @@ class Insumo
             }
         } else {
             echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
+        }
+    }
+
+    public function insumoReporteID($id)
+    {
+        $cn = $this->cn->conexion;
+
+
+
+        if (!empty($id)) {
+            $insumoes = $cn->query("SELECT * from Insumo I inner join Proveedor P on I.IDProveedor = P.IDProveedor where IDInsumo like '%{$id}%'");
+            $html = "";
+
+            if (mysqli_num_rows($insumoes) > 0) {
+                foreach ($insumoes as $insumo)
+
+                    echo $this->generarSeleccion($insumo);
+            } else {
+                echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
+
         }
     }
 
