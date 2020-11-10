@@ -5,6 +5,10 @@ require('./php/Insumo.php');
 
 $id = $_GET["IDInsumo"] ?? null;
 
+$insumo = new Insumo();
+$resultados = $insumo->reporteInsumo($id);
+
+
 class PDF extends FPDF
 {
     // Cabecera de página
@@ -14,9 +18,20 @@ class PDF extends FPDF
         // Arial bold 15
         $this->SetFont('Arial', 'B', 11);
         // Movernos a la derecha
-        $this->Cell(60);
         // Título
-        $this->Cell(70, 10, 'Reporte de insumos', 1, 0, 'C');
+
+        global $id;
+
+        if ($id == null) {
+            $this->Cell(60);
+
+            $this->Cell(70, 10, 'Reporte de insumos', 1, 0, 'C');
+        } else {
+            $this->Cell(50);
+
+            $this->Cell(90, 10, "Reporte de Insumo con ID: {$id}", 1, 0, 'C');
+        }
+
         // Salto de línea
         $this->Ln(20);
 
@@ -47,8 +62,6 @@ $pdf->SetFont('Times', '', 12);
 
 // Tabla
 
-$insumo = new Insumo();
-$resultados = $insumo->reporteInsumo($id);
 
 if ($resultados != null) {
 
