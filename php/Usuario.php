@@ -34,6 +34,7 @@ class Usuario
              <td>{$usuario['Tipo']}</td>
              <td>
              <a href='#' data-toggle='modal' data-target='#exampleModal{$usuario['ID']}' class='btn btn-danger' > Eliminar </a>
+             <a href='./ActualizarUsuario2.php?IDUsuario={$usuario['ID']}' class='btn btn-warning' > Actualizar </a>
              
              <div class='modal fade' id='exampleModal{$usuario['ID']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                 <div class='modal-dialog' role='document'>
@@ -100,6 +101,7 @@ class Usuario
              <td>{$usuario['Tipo']}</td>
              <td>
              <a href='#' data-toggle='modal' data-target='#exampleModal{$usuario['ID']}' class='btn btn-danger' > Eliminar </a>
+             <a href='./ActualizarUsuario2.php?IDUsuario={$usuario['ID']}' class='btn btn-warning' > Actualizar </a>
              
              <div class='modal fade' id='exampleModal{$usuario['ID']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                 <div class='modal-dialog' role='document'>
