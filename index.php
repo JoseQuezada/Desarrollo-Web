@@ -1,7 +1,9 @@
 <?php
 
- 
+use function PHPSTORM_META\type;
+
 require './php/login.php';
+
 
 ?>
 
@@ -16,18 +18,19 @@ require './php/login.php';
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/fondo.css">
     <script src="js/bootstrap.min.js"></script>
 
 </head>
 
-<body>
-
+<body style="background-image: url(img/Gran.jpg); height:100vh; width: 100;">
     <div class="container">
+        
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <div class="panel-title">Iniciar Sesi&oacute;n</div>
-                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="recupera.php">¿Se te olvid&oacute; tu contraseña?</a></div>
+                    <div class="panel-title">Iniciar Sesión</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="recupera.php"></a></div>
                 </div>
 
                 <div style="padding-top:30px" class="panel-body">
@@ -43,7 +46,7 @@ require './php/login.php';
 
                         <div style="margin-bottom: 25px" class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="password" value="<?php if (isset($password)) echo $password; ?>" type="password" class="form-control" name="password" placeholder="password" required>
+                            <input id="password" value="<?php if (isset($password)) echo $password; ?>" type="password" class="form-control" name="password" placeholder="Contraseña" required>
                         </div>
 
                         <?php if (isset($error)) { ?>
@@ -54,7 +57,7 @@ require './php/login.php';
 
                         <div style="margin-top:10px" class="form-group">
                             <div class="col-sm-12 controls">
-                                <button id="btn-login" type="submit" class="btn btn-success">Ingrear</a>
+                                <button id="btn-login" type="submit" class="btn btn-success">Ingresar</a>
                             </div>
                         </div>
 
