@@ -325,7 +325,7 @@ function compraReporteID($id)
 
 
         if (!empty($id)) {
-            $compras = $cn->query("SELECT * from Insumo I inner join Proveedor P on I.IDProveedor = P.IDProveedor where IDInsumo like '%{$id}%'");
+            $compras = $cn->query("SELECT * from Compra C inner join Insumo I on C.IDINsumo = C.IDInsumo where IDInsumo like '%{$id}%'");
             $html = "";
 
             if (mysqli_num_rows($compras) > 0) {
