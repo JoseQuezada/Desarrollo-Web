@@ -21,9 +21,9 @@ class Compra
 
         $error = true;
         if ($fecha == '' || $fecha == null) {
-            $error = "*Debe llenar el campo de nombre* ";
+            $error = "*Debe llenar el campo de fecha* ";
         } elseif ($descripcion == '' || $descripcion == null) {
-            $error = "*Debe llenar el campo de apellidos* ";
+            $error = "*Debe llenar el campo de descripcion* ";
         } else {
 
             $cn = $this->cn->conexion;
@@ -287,5 +287,57 @@ class Compra
         }
 
         return $error;
+    }
+ 
+
+function generarSeleccionCompra($compra)
+{
+    $html = '';
+
+    $html .= "<tr>
+    <td>{$compra['IDCompra']}</td>
+    <td>{$compra['Total']}</td>
+    <td>{$compra['Insumo']}</td>
+    <td>{$compra['Costo Libra']}</td>
+    <td>{$compra['Total']}</td>
+    <td>{$compra['Proveedor']}: {$compra['Nombre']} {$compra['Apellidos']}</td>
+    </tr>";
+
+    return $html;
+}
+
+    public function compraReporte($idCompra)
+    {
+    $cn = $this->cn->conexion;
+    $result = mysqli_query($cn, "SELECT * FROM Compras C inner join Detalle_Compra on C");
+
+    if(mysqli_num_rows($result) > 0){
+        return $result;
+    }else{
+        return null;
+         }
+    }
+
+function compraReporteID($id)
+    {
+        $cn = $this->cn->conexion;
+
+
+
+        if (!empty($id)) {
+            $compras = $cn->query("SELECT * from Insumo I inner join Proveedor P on I.IDProveedor = P.IDProveedor where IDInsumo like '%{$id}%'");
+            $html = "";
+
+            if (mysqli_num_rows($compras) > 0) {
+                foreach ($compras as $compra)
+
+                    echo $this->generarSeleccionCompra($compra);
+            } else {
+                echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
+
+        }
     }
 }
