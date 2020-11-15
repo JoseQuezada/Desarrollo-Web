@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["IDInsumo"])) {
     $id = $_POST["IDInsumo"];
     echo "<script> window.location.href='./ReporteInsumos.php?IDInsumo={$id}'; </script>";
 
-    echo "holasdlaksñdl";
 }
 
 $id = $_GET["IDInsumo"] ?? null;

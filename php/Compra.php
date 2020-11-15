@@ -250,6 +250,62 @@ class Compra
         }
     }
 
+    public function compraReporteID($id)
+    {
+        $cn = $this->cn->conexion;
+
+
+
+        if (!empty($id)) {
+            $insumoes = $cn->query("SELECT * from Compra C where IDCompra like '%{$id}%'");
+            $html = "";
+
+            if (mysqli_num_rows($insumoes) > 0) {
+                foreach ($insumoes as $insumo)
+
+                    echo $this->generarSeleccion($insumo);
+            } else {
+                echo "<tr><td colspan='7'>Compra No encontrada</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7'>Compra No encontrada</td></tr>";
+        }
+    }
+
+    public function reporteCompra($id)
+    {
+        $cn = $this->cn->conexion;
+
+
+        if ($id != null) {
+            $result = mysqli_query($cn, "SELECT * FROM Compra C inner join detalle_compra D on C.IDCompra=D.IDCompra inner join Insumo I on D.IDInsumo = I.IDInsumo inner join Proveedor P on I.IDProveedor = P.IDProveedor where C.IDCompra like '%{$id}%' ");
+        } else {
+            $result = mysqli_query($cn, "SELECT * FROM Compra where IDCompra like '%{$id}%' ");
+        }
+
+        if (mysqli_num_rows($result) > 0) {
+            return $result;
+        } else {
+            return  null;
+        }
+    }
+
+
+
+
+    function generarSeleccion($insumo)
+    {
+        $html = '';
+
+        $html .= "<tr>
+        <td>{$insumo['IDCompra']}</td>
+        <td>{$insumo['Fecha']}</td>
+        <td>{$insumo['Total']}</td>
+        </tr>";
+
+        return $html;
+    }
+
     public function actualizarCompra($id, $fecha, $descripcion)
     {
         $cn = $this->cn->conexion;

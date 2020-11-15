@@ -1,5 +1,4 @@
 <?php
-
 require('./php/validacionUsuario.php');
 require('./php/Usuario.php');
 
