@@ -344,13 +344,13 @@ class Compra
 
         return $error;
     }
- 
 
-function generarSeleccionCompra($compra)
-{
-    $html = '';
 
-    $html .= "<tr>
+    function generarSeleccionCompra($compra)
+    {
+        $html = '';
+
+        $html .= "<tr>
     <td>{$compra['IDCompra']}</td>
     <td>{$compra['Total']}</td>
     <td>{$compra['Insumo']}</td>
@@ -359,41 +359,18 @@ function generarSeleccionCompra($compra)
     <td>{$compra['Proveedor']}: {$compra['Nombre']} {$compra['Apellidos']}</td>
     </tr>";
 
-    return $html;
-}
+        return $html;
+    }
 
     public function compraReporte($idCompra)
     {
-    $cn = $this->cn->conexion;
-    $result = mysqli_query($cn, "SELECT * FROM Compras C inner join Detalle_Compra on C");
-
-    if(mysqli_num_rows($result) > 0){
-        return $result;
-    }else{
-        return null;
-         }
-    }
-
-function compraReporteID($id)
-    {
         $cn = $this->cn->conexion;
+        $result = mysqli_query($cn, "SELECT * FROM Compras C inner join Detalle_Compra on C");
 
-
-
-        if (!empty($id)) {
-            $compras = $cn->query("SELECT * from Compra C inner join Insumo I on C.IDINsumo = C.IDInsumo where IDInsumo like '%{$id}%'");
-            $html = "";
-
-            if (mysqli_num_rows($compras) > 0) {
-                foreach ($compras as $compra)
-
-                    echo $this->generarSeleccionCompra($compra);
-            } else {
-                echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
-            }
+        if (mysqli_num_rows($result) > 0) {
+            return $result;
         } else {
-            echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
-
+            return null;
         }
     }
 }
