@@ -154,8 +154,6 @@ require_once('./php/crear_venta.php');
                         </div>
                     </div>
 
-
-
                     <script>
                         $(document).ready(function($) {
 
