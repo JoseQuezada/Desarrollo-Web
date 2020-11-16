@@ -6,7 +6,7 @@ require('./php/validacionUsuario.php');
 
 ?>
 
-<nav class="sb-topnav navbar navbar-expand navbar-light" style="background-color: #e3f2fd;">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="tablero.php">
     <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
     <!--<img src="logotamano.svg" width="30p" height="30" class="d-inline-block align-top">    
