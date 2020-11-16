@@ -294,4 +294,59 @@ class Venta
 
         return $error;
     }
+
+    public function  ventaReporteID($id)
+    {
+        $cn = $this->cn->conexion;
+
+
+
+        if (!empty($id)) {
+            $insumoes = $cn->query("SELECT * from Venta V where IDVenta like '%{$id}%'");
+            $html = "";
+
+            if (mysqli_num_rows($insumoes) > 0) {
+                foreach ($insumoes as $insumo)
+
+                    echo $this->generarSeleccion($insumo);
+            } else {
+                echo "<tr><td colspan='7'>Venta No encontrada</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='7'>Venta No encontrada</td></tr>";
+        }
+    }
+
+    public function reporteVenta($id)
+    {
+        $cn = $this->cn->conexion;
+
+
+        if ($id != null) {
+            $result = mysqli_query($cn, "SELECT * FROM Venta V inner join detalleventa D on V.IDVenta=D.IDVenta inner join Insumo I on D.IDInsumo = I.IDInsumo inner join Cliente C on  D.IDCliente = C.IDCliente where V.IDVenta like '%{$id}%' ;");
+        } else {
+            $result = mysqli_query($cn, "SELECT * FROM Venta where IDVenta like '%{$id}%' ");
+        }
+
+        if (mysqli_num_rows($result) > 0) {
+            return $result;
+        } else {
+            return  null;
+        }
+    }
+
+    function generarSeleccion($insumo)
+    {
+        $html = '';
+
+        $html .= "<tr>
+        <td>{$insumo['IDCompra']}</td>
+        <td>{$insumo['Fecha']}</td>
+        <td>{$insumo['Total']}</td>
+        </tr>";
+
+        return $html;
+    }
 }
+
+

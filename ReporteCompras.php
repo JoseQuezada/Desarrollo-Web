@@ -45,7 +45,7 @@ echo var_dump($id);
             <!------------------------------------------- Inicia Formulario---------------------------------------->
             <br>
             <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
+                <i class="fas fa-table mr-1" ></i>
                 Reporte de Compras
             </div>
             <div class="card-body">
@@ -65,29 +65,16 @@ echo var_dump($id);
                 <br>
                 <div class="col-md-100 input-group">
                     <label for="buscar" class="col-lg-6">ID de la compra:</label>
-                    <input class="form-control" id="IDCompra" name="IDCompra" type="text" placeholder="Buscar insumo" aria-label="Search" aria-describedby="basic-addon2" />
+                    <input class="form-control" id="IDCompra" name="IDCompra" type="text" placeholder="Buscar compra" aria-label="Search" aria-describedby="basic-addon2" />
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                         <div>&nbsp;</div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-download"></i> Generar Reporte</button>
+                        <button type="submit" class="btn btn-primary">Generar Reporte</button>
 
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Fecha</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="resultados-insumo">
-
-                            </tbody>
-                        </table>
-                    </div>
+                   
                     <br>
             </form>
 

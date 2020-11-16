@@ -362,15 +362,4 @@ class Compra
         return $html;
     }
 
-    public function compraReporte($idCompra)
-    {
-        $cn = $this->cn->conexion;
-        $result = mysqli_query($cn, "SELECT * FROM Compras C inner join Detalle_Compra on C");
-
-        if (mysqli_num_rows($result) > 0) {
-            return $result;
-        } else {
-            return null;
-        }
-    }
 }
