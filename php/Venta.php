@@ -82,32 +82,37 @@ class Venta
 
                                             $disponibilidadActual = $datosInsumo['Disponibilidad'];
 
-                                            if ($stmt = mysqli_prepare($cn, "INSERT INTO detalleventa VALUES(NULL, ?, ?, ?, ?, ?);")) {
+                                            if ($disponibilidadActual >= $libras) {
 
-                                                mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $idInsumo, $idVenta);
+                                                if ($stmt = mysqli_prepare($cn, "INSERT INTO detalleventa VALUES(NULL, ?, ?, ?, ?, ?);")) {
 
-                                                mysqli_stmt_execute($stmt);
+                                                    mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $idInsumo, $idVenta);
+
+                                                    mysqli_stmt_execute($stmt);
 
 
-                                                if (mysqli_stmt_affected_rows($stmt) > 0) {
+                                                    if (mysqli_stmt_affected_rows($stmt) > 0) {
 
-                                                    $disponibilidad = $disponibilidadActual - $libras;
+                                                        $disponibilidad = $disponibilidadActual - $libras;
 
-                                                    if ($stmt = mysqli_prepare($cn, "UPDATE Insumo set Disponibilidad = ? WHERE IDInsumo = {$idInsumo}")) {
+                                                        if ($stmt = mysqli_prepare($cn, "UPDATE Insumo set Disponibilidad = ? WHERE IDInsumo = {$idInsumo}")) {
 
-                                                        mysqli_stmt_bind_param($stmt, 'd', $disponibilidad);
+                                                            mysqli_stmt_bind_param($stmt, 'd', $disponibilidad);
 
-                                                        mysqli_stmt_execute($stmt);
+                                                            mysqli_stmt_execute($stmt);
 
-                                                        if (mysqli_stmt_affected_rows($stmt) > 0) {
-                                                            $error = false;
+                                                            if (mysqli_stmt_affected_rows($stmt) > 0) {
+                                                                $error = false;
+                                                            }
                                                         }
+                                                    } else {
+                                                        $error =  mysqli_stmt_error($stmt);
                                                     }
                                                 } else {
                                                     $error =  mysqli_stmt_error($stmt);
                                                 }
                                             } else {
-                                                $error =  mysqli_stmt_error($stmt);
+                                                $error = "No hay disponibilidad para la venta";
                                             }
                                         } else {
                                             $error = "Id de producto no encontrada";
