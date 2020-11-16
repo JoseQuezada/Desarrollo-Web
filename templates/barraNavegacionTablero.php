@@ -31,7 +31,7 @@ require('./php/validacionUsuario.php');
     </ul>
 </nav>
 <div id="layoutSidenav" >
-    <div id="layoutSidenav_nav" style="background-color: aquamarine;">
+    <div id="layoutSidenav_nav" style="background-color:  #e3f2fd;;">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: blue">
             <div class="sb-sidenav-menu">
                 <div class="nav">

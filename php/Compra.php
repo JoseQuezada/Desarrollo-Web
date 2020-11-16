@@ -35,7 +35,7 @@ class Compra
 
             $error2 = true;
 
-            foreach ($datosInsumos as $dato) {
+            foreach ($datosInsumos as $dato) { //recorre arreeglo por arreglo 
                 foreach ($dato as $idInsumo => $libras) {
                     if ($rs = mysqli_query($cn, "SELECT * FROM Insumo WHERE IDInsumo = {$idInsumo}")) {
 

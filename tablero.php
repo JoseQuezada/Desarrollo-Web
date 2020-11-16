@@ -24,7 +24,7 @@
 <!------------------ Desde este main hasta que termina se deben pegar los formularios para futuras plantillas -->
 
         <main>
-            <div class="container-fluid">
+            <div class="container-fluid"  style="background-color:  #e3f2fd;;">
                 <h1 class="mt-4">Panel de Control</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">Panel</li>
@@ -45,7 +45,7 @@
                         <div class="card bg-warning text-white mb-4">
                             <div class="card-body" style="background-image: url(img/granjero.jpg); height: 66px; width: 100x;">Clientes</div>
                             <div class="card-footer d-flex align-items-center justify-content-between" style="background-color: dodgerblue;">
-                                <a class="small text-white stretched-link" href="ListarCliente">Ver Detalles</a>
+                                <a class="small text-white stretched-link" href="ListarCliente.php">Ver Detalles</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>

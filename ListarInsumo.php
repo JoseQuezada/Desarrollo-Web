@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idinsumo'])) {
                     </div>
                 </div>
             </form>
-            <div class="card-header">
+            <div class="card-header" style="background-color: yellowgreen;">
                 <i class="fas fa-table mr-1"></i>
                 Insumos Registrados
             </div>
