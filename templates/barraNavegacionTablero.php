@@ -8,10 +8,10 @@ require('./php/validacionUsuario.php');
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="tablero.php">
-    <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    <!--<img src="logotamano.svg" width="30p" height="30" class="d-inline-block align-top">    
+        <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        <!--<img src="logotamano.svg" width="30p" height="30" class="d-inline-block align-top">    
 -->SWPCIGC</a>
-    
+
     <!--Hola estoy bien-->
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
@@ -22,20 +22,20 @@ require('./php/validacionUsuario.php');
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" style="background-color:#e3f2fd "> 
-                
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" style="background-color:#e3f2fd ">
+
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="./cerrarSesion.php">Cerrar Sesión</a>
             </div>
         </li>
     </ul>
 </nav>
-<div id="layoutSidenav" >
+<div id="layoutSidenav">
     <div id="layoutSidenav_nav" style="background-color: aquamarine;">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: blue">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: #007bff !important;">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                <img src="logotamano.png" alt="">
+                    <img src="logotamano.png" alt="">
                     <a class="nav-link" href="tablero.php">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Panel de Control
@@ -121,7 +121,7 @@ require('./php/validacionUsuario.php');
                             <a class="nav-link" href="ReporteVentas.php"><i class="fas fa-universal-access"></i>&nbsp;Ventas</a>
                         </nav>
                     </div>
-                    <?php if ($_SESSION['ID_Tipo'] == 1 ) : ?>
+                    <?php if ($_SESSION['ID_Tipo'] == 1) : ?>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
                             <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Usuarios
