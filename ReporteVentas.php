@@ -1,10 +1,15 @@
 <?php
 //codigo php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["IDVenta"])) {
 
-//require('./php/Usuario.php');
+    $id = $_POST["IDVenta"];
+    echo "<script> window.location.href='./ReporteVentas.php?IDVenta={$id}'; </script>";
 
-//if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST[''])) {
+}
 
+$id = $_GET["IDVenta"] ?? null;
+
+echo var_dump($id);
     
 
 ?>
@@ -35,20 +40,40 @@
 
         <div id="layoutSidenav_content">
             <main>
-            <br>
+            
 <!------------------------------------------- Inicia Formulario---------------------------------------->
                     <div class="col-md-200 input-group">
                     <label for="PDF" class="col-lg-10"></label>
-                        <div class="input-group-append">
-                        <br>
-                            <button class="btn btn-primary" type="button"><i class="fas fa-download"></i> Generar Reporte</button>
-                        </div>
                     </div>
-                    <br>
-                <div class="card-header">
+                    <div class="card-header">
                     <i class="fas fa-table mr-1"></i>
-                   Reporte de Ventas
+                    Reporte personalizado
+                    </div>
+            <form>
+                <br>
+                <div class="col-md-100 input-group">
+                    <label for="buscar" class="col-lg-6">ID de la venta:</label>
+                    <input class="form-control" id="IDVenta" name="IDVenta" type="text" placeholder="Buscar venta" aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                        <div>&nbsp;</div>
+                        <button type="submit" class="btn btn-primary">Generar Reporte</button>
+
+                    </div>
                 </div>
+                <div class="card-body">
+                   
+                    <br>
+            </form>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="<?php echo "reporteV.php?IDVenta={$id}" ?>" allowfullscreen></iframe>
+                        </div>
+                        </table>
+                    </div>
+            </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -56,8 +81,7 @@
                                 <tr>
                                     <th>Nombre Cliente</th>
                                     <th>Insumos</th>
-                                    <th>Envío</th>
-                                    <th>Quintales</th>
+                                    <th>Libras</th>
                                     <th>Costo</th>
                                     <th>Total</th>
                                 </tr>

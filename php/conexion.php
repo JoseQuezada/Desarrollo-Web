@@ -16,7 +16,7 @@ class Conexion
 		$this -> servidor  = "localhost";
 		$this -> usuario = "root";
 		
-		$this -> base = "swpciac";
+		$this -> base = "swpcigc";
 		$this -> puerto = 3306;
 
 		
