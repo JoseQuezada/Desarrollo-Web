@@ -242,7 +242,7 @@ class Cliente
     public function actualizarCliente($id, $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac)
     {
         $cn = $this->cn->conexion;
-        $error = true;
+        $error = null;
 
         if ($nombre == '' || $nombre == null) {
             $error = "*Debe llenar el campo de nombre* ";

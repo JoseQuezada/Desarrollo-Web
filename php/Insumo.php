@@ -241,7 +241,7 @@ class Insumo
     public function actualizarInsumo($id, $codigo, $descripcion, $disponibilidad, $costo, $proveedor)
     {
         $cn = $this->cn->conexion;
-        $error = true;
+        $error = null;
 
         if ($codigo == '' || $codigo == null) {
             $error = "*Debe llenar el campo de codigo* ";

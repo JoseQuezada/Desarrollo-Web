@@ -2,7 +2,7 @@
 
 require './php/Usuario.php';
 
-$error = false; 
+$error = null; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de POST
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
 
 
     if(!$error){
-        echo "<script>alert('Ingresado correctamente');</script>";
+        
     }
 
 

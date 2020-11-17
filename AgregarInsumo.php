@@ -113,6 +113,18 @@ require_once('./php/crear_insumo.php');
 
                                 <div class="form-group">
                                     <div class="col-md-offset-5 col-md-9">
+                                    <?php if (isset($error)) {
+                                        # code...
+                                        if ($error == false) { ?>
+
+                                        <div class="alert alert-success" role="alert">
+                                            Insumo agregado <a href="#" class="alert-link"></a>
+                                        </div>
+                                    
+                                                
+                                            </div>
+                                    <?php }
+                                    } ?>
                                         <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Insumo</button>
                                     </div>
                                 </div>

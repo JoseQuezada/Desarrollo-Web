@@ -2,7 +2,7 @@
 
 require './php/Insumo.php';
 
-$error = false; 
+$error = null; 
  
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de POST
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $error = $insumo -> crearInsumo($codigo, $descripcion, $disponibilidad, $costo, $iDProveedor);
 
     if(!$error){
-        echo "<script>alert('Ingresado correctamente');</script>";
+        
     }else{
         echo "<script>alert('Ingresado asdasd');</script>";
         

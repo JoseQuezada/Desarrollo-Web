@@ -309,7 +309,7 @@ class Compra
     public function actualizarCompra($id, $fecha, $descripcion)
     {
         $cn = $this->cn->conexion;
-        $error = true;
+        $error = null;
 
         if ($fecha == '' || $fecha == null) {
             $error = "*Debe llenar el campo de fecha* ";

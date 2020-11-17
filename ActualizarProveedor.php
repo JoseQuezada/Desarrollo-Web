@@ -40,7 +40,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
     $error = $proveedor->actualizarProveedor($IDProveedor, $empresa, $nombre, $apellidos, $direccion, $telefono, $email);
 
     if (!$error) {
-        echo "<script>alert('Datos Actualizados');</script>";
+        
     }
 }
 
@@ -143,6 +143,18 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
 
                                 <div class="form-group">
                                     <div class="col-md-offset-5 col-md-9">
+                                    <?php if (isset($error)) {
+                                        # code...
+                                        if ($error == false) { ?>
+
+                                        <div class="alert alert-success" role="alert">
+                                            Datos Actualizados <a href="#" class="alert-link"></a>
+                                        </div>
+                                    
+                                                
+                                            </div>
+                                    <?php }
+                                    } ?>
                                         <button id="btn-signup" name="btnActualizar" type="submit" class="btn btn-sm btn-warning"><i class="icon-hand-right"></i>Actualizar</button>
                                         <a href="./ListarProveedor.php" class="btn btn-sm btn-secondary"><i class="icon-hand-right"></i>Cancelar</a>
                                     </div>

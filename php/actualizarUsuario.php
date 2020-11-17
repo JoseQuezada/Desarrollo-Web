@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
 
 
     if(!$error){
-        echo "<script>alert('Actualizado correctamente');</script>";
+        //echo "<script>alert('Actualizado correctamente');</script>";
     }
 
 

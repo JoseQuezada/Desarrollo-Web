@@ -333,7 +333,7 @@ class Usuario
     public function actualizarUsuario($id, $username, $password, $passwordV,  $nombre, $apellidos, $email, $tipo)
     {
         $cn = $this->cn->conexion;
-        $error = true;
+        $error = null;
 
         $cambioContraseña = false;        // validacion
 

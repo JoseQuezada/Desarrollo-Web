@@ -2,7 +2,7 @@
 
 require './php/Proveedor.php';
 
-$error = false; 
+$error = null; 
  
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de POST
 
@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $proveedor = new Proveedor();
 
     $error = $proveedor -> crearProveedor($empresa, $nombre, $apellidos, $direccion, $telefono, $email);
+
 
     if(!$error){
         echo "";

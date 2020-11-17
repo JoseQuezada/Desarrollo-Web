@@ -3,7 +3,7 @@
 
 require './php/Venta.php';
 
-$error = false;
+$error = null;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { //Chequea si se accedió por medio de POST
 
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //Chequea si se accedió por medio d
     echo var_dump($error);
 
     if(!$error){
-        echo "<script>alert('Ingresado correctamente');</script>";
+        
     }
 
 

@@ -2,7 +2,7 @@
 
 require './php/Cliente.php';
 
-$error = false; 
+$error = null; 
  
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de POST
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $error = $cliente -> crearCliente($nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $mercac);
 
     if(!$error){
-        echo "<script>alert('Ingresado correctamente');</script>";
+        
     }else{
         echo "<script>alert('Ingresado asdasd');</script>";
         

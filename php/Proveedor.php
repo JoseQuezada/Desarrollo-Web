@@ -254,7 +254,7 @@ class Proveedor
     public function actualizarProveedor($id, $empresa, $nombre, $apellidos, $direccion, $telefono, $email)
     {
         $cn = $this->cn->conexion;
-        $error = true;
+        $error = null;
 
         if ($nombre == '' || $nombre == null) {
             $error = "*Debe llenar el campo de nombre* ";

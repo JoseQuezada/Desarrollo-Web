@@ -37,7 +37,7 @@ if ($IDVenta != null) {
 
 
         if (!$error) {
-            echo "<script>alert('Actualizado correctamente');</script>";
+            
         }
     }
 } else {
@@ -200,6 +200,18 @@ if ($IDVenta != null) {
 
                                 <div class="form-group">
                                     <div class="col-md-offset-5 col-md-9">
+                                    <?php if (isset($error)) {
+                                        # code...
+                                        if ($error == false) { ?>
+
+                                        <div class="alert alert-success" role="alert">
+                                            Datos Actualizados <a href="#" class="alert-link"></a>
+                                        </div>
+                                    
+                                                
+                                            </div>
+                                    <?php }
+                                    } ?>
                                         <button id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Compra</button>
                                     </div>
                                 </div>

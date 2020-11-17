@@ -256,7 +256,7 @@ class Venta
     public function actualizarVenta($id, $fecha, $IDCliente, $tipo, $descripcion)
     {
         $cn = $this->cn->conexion;
-        $error = true;
+        $error = null;
 
         if ($fecha == '' || $fecha == null) {
             $error = "*Debe llenar el campo de fecha* ";
