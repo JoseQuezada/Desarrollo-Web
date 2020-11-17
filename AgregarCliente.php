@@ -63,21 +63,21 @@
                                     <div class="form-group">
                                         <label for="nombre" class="col-md-3 control-label">Nombre:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                            <input type="text" class="form-control" maxlength="200" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="apellidos" class="col-md-3 control-label">Apellidos:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
+                                            <input type="text" class="form-control" maxlength="200" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="usuario" class="col-md-3 control-label">DPI:</label>
                                         <div class="col-md-9">
-                                            <input  type="text" class="form-control" name="dpi" placeholder="DPI" value="<?php if (isset($dpi)) echo $dpi; ?>" required>
+                                            <input  type="text" class="form-control" maxlength="13" name="dpi" placeholder="DPI" value="<?php if (isset($dpi)) echo $dpi; ?>" required>
                                         </div>
                                     </div>
 
@@ -88,49 +88,49 @@
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Dirección:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
+                                            <input type="text" class="form-control" maxlength="200" name="direccion" placeholder="Dirección" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Municipio:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="municipio" placeholder="Municipio" value="<?php if (isset($municipio)) echo $municipio; ?>" required>
+                                            <input type="text" class="form-control" maxlength="100" name="municipio" placeholder="Municipio" value="<?php if (isset($municipio)) echo $municipio; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Departamento:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="departamento" placeholder="Departamento" value="<?php if (isset($departamento)) echo $departamento; ?>" required>
+                                            <input type="text" class="form-control" maxlength="100" name="departamento" placeholder="Departamento" value="<?php if (isset($departamento)) echo $departamento; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Teléfono:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
+                                            <input type="text" class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Teléfono 2 (Opcional):</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="telefono2" placeholder="Teléfono" value="<?php if (isset($telefono2)) echo $telefono2; ?>" >
+                                            <input type="text" class="form-control" maxlength="8" name="telefono2" placeholder="Teléfono" value="<?php if (isset($telefono2)) echo $telefono2; ?>" >
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">NIT:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="nit" placeholder="NIT" value="<?php if (isset($nit)) echo $nit; ?>" required>
+                                            <input type="text" class="form-control" maxlength="10" name="nit" placeholder="NIT" value="<?php if (isset($nit)) echo $nit; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Marca de Conentrado Utilizada (Opcional):</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="marcac" placeholder="Concentrado" value="<?php if (isset($concentrado)) echo $cocentrado; ?>" >
+                                            <input type="text" class="form-control" maxlength="50" name="marcac" placeholder="Concentrado" value="<?php if (isset($concentrado)) echo $cocentrado; ?>" >
                                         </div>
                                     </div>
 

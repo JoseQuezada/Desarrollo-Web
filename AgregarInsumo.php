@@ -67,14 +67,14 @@ require_once('./php/crear_insumo.php');
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Código:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="codigo" placeholder="Código" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                        <input type="text" class="form-control" maxlength="10" name="codigo" placeholder="Código" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Descripción:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="descripcion" placeholder="Descripción" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                        <input type="text" class="form-control" maxlength="255" name="descripcion" placeholder="Descripción" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                     </div>
                                 </div>
 

@@ -76,7 +76,7 @@ $id = $_GET["IDInsumo"] ?? null;
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Descripción:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="desripcion" placeholder="Descripción" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                        <input type="text" class="form-control" maxlength="255" name="desripcion" placeholder="Descripción" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                     </div>
                                 </div>
 

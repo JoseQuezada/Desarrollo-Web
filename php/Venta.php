@@ -328,7 +328,7 @@ class Venta
 
 
         if ($id != null) {
-            $result = mysqli_query($cn, "SELECT * FROM Venta V inner join detalleventa D on V.IDVenta=D.IDVenta inner join Insumo I on D.IDInsumo = I.IDInsumo inner join Cliente C on  D.IDCliente = C.IDCliente where V.IDVenta like '%{$id}%' ;");
+            $result = mysqli_query($cn, "SELECT * FROM Venta V inner join detalleventa D on V.IDVenta=D.IDVenta inner join Insumo I on D.IDInsumo = I.IDInsumo inner join Cliente C on  V.IDCliente = C.IDCliente where V.IDVenta like '%{$id}%' ");
         } else {
             $result = mysqli_query($cn, "SELECT * FROM Venta where IDVenta like '%{$id}%' ");
         }

@@ -72,14 +72,14 @@
                     <div class="form-group">
                          <label for="nombre" class="col-md-3 control-label">Tipo de Venta:</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="tipo" placeholder="Tipo de Venta" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                            <input type="text" class="form-control" maxlength="7" name="tipo" placeholder="Tipo de Venta" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                          <label for="nombre" class="col-md-3 control-label">Descripción:</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="desripcion" placeholder="Descripción" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                <input type="text" class="form-control" maxlength="255" name="desripcion" placeholder="Descripción" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                          </div>
                     </div>
 
@@ -98,14 +98,14 @@
                     </div>
 
                     <div class="form-group">
-                         <label for="apellidos" class="col-md-3 control-label">Como colocar el insumo?:</label>
+                         <label for="apellidos" class="col-md-3 control-label"></label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="idinsumo" placeholder="IDCompra" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="apellidos" class="col-md-3 control-label">Como colocar la venta id?:</label>
+                        <label for="apellidos" class="col-md-3 control-label"></label>
                         <div class="col-md-9">
                              <input type="text" class="form-control" name="idinsumo" placeholder="IDInsumo" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
                         </div>

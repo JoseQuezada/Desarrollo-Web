@@ -75,7 +75,9 @@ if ($resultados != null) {
         $pdf->Cell(30, 10, utf8_decode('Cantidad'), 1, 0, 'C', 0);
         $pdf->Cell(30, 10, utf8_decode('Costo por libra'), 1, 0, 'C', 0);
         $pdf->Cell(30, 10, utf8_decode('Subtotal'), 1, 1, 'C', 0);
-
+        //0 = no hace salto de linea
+        //1 = salto de linea
+        //utf tildes
         // echo var_dump($resultados);
 
         while ($row = mysqli_fetch_array($resultados)) {
@@ -83,7 +85,7 @@ if ($resultados != null) {
             $pdf->Cell(20, 10, utf8_decode($row['IDInsumo']), 1, 0, 'C', 0);
             $pdf->Cell(40, 10, utf8_decode($row['Descripcion']), 1, 0, 'C', 0);
             $pdf->Cell(40, 10, utf8_decode($row['Nombre'] . ' ' . $row['Apellidos']), 1, 0, 'C', 0);
-            $pdf->Cell(30, 10, utf8_decode($row['Libras']), 1, 0, 'C', 0);
+            $pdf->Cell(30, 10, utf8_decode($row['Cantidad']), 1, 0, 'C', 0);
             $pdf->Cell(30, 10, utf8_decode($row['CostoLibra']), 1, 0, 'C', 0);
             $pdf->Cell(30, 10, utf8_decode($row['Sub_Total']) . '.00', 1, 1, 'C', 0);
         }

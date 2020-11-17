@@ -69,31 +69,33 @@
                                     <?php }
                                     } ?>
 
+                                    
+
                                     <div class="form-group">
                                         <label for="nombre" class="col-md-3 control-label">Empresa (opcional)</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="empresa" placeholder="Empresa" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                            <input type="text" class="form-control" maxlength="100" name="empresa" placeholder="Empresa" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="nombre" class="col-md-3 control-label">Nombre:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                            <input type="text" class="form-control" maxlength="200" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="apellidos" class="col-md-3 control-label">Apellidos:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
+                                            <input type="text" class="form-control" maxlength="255" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="usuario" class="col-md-3 control-label">Dirección:</label>
                                         <div class="col-md-9">
-                                            <input id="direccion" type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
+                                            <input id="direccion" type="text" class="form-control" maxlength="200" name="direccion" placeholder="Dirección" value="<?php if (isset($direccion)) echo $direccion; ?>" required>
                                         </div>
                                     </div>
 
@@ -102,19 +104,31 @@
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Teléfono:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>"  required>
+                                            <input type="text" class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>"  required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password" class="col-md-3 control-label">E-Mail (Opcional)</label>
+                                        <label for="password" class="col-md-3 control-label">E-Mail </label>
                                         <div class="col-md-9">
-                                            <input id="EMail" type="text" class="form-control" name="email" value="<?php if (isset($email)) echo $email; ?>" placeholder="E-Mail" required><br>
+                                            <input id="EMail" type="text" class="form-control" maxlength="100" name="email" value="<?php if (isset($email)) echo $email; ?>" placeholder="E-Mail" required><br>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-md-offset-5 col-md-9">
+                                        <?php if (isset($error)) {
+                                        # code...
+                                        if ($error == false) { ?>
+
+                                        <div class="alert alert-success" role="alert">
+                                            Proveedor agregado <a href="#" class="alert-link"></a>
+                                        </div>
+                                    
+                                                
+                                            </div>
+                                    <?php }
+                                    } ?>
                                             <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Proveedor</button>
                                         </div>
                                     </div>

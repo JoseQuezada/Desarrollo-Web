@@ -77,7 +77,7 @@ require('./php/actualizarUsuario.php');
                                         <label for="nombre" class="col-md-3 control-label">Usuario:</label>
                                         <!--Este campo debe quedar ineditable-->
                                         <div class="col-md-9">
-                                            <input  id="username"  type="text" class="form-control" name="usuario" placeholder="Usuario" value="<?php if (isset($usuario)) echo $usuario; ?>" required>
+                                            <input  id="username" maxlength="50" type="text" class="form-control" name="usuario" placeholder="Usuario" value="<?php if (isset($usuario)) echo $usuario; ?>" required>
                                         </div>
                                     </div>
 
@@ -88,14 +88,14 @@ require('./php/actualizarUsuario.php');
                                     <div class="form-group">
                                         <label for="apellidos" class="col-md-3 control-label">Nombre:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                            <input type="text" maxlength="200" class="form-control" name="nombre" placeholder="Nombre" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="usuario" class="col-md-3 control-label">Apellidos:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
+                                            <input type="text" maxlength="200" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php if (isset($apellidos)) echo $apellidos; ?>" required>
                                         </div>
                                     </div>
 
@@ -104,7 +104,7 @@ require('./php/actualizarUsuario.php');
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">E-mail:</label>
                                         <div class="col-md-9">
-                                            <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="<?php if (isset($email)) echo $email; ?>" required>
+                                            <input id="email" maxlength="200" type="email" class="form-control" name="email" placeholder="Email" value="<?php if (isset($email)) echo $email; ?>" required>
                                         </div>
                                     </div>
 
@@ -115,14 +115,14 @@ require('./php/actualizarUsuario.php');
                                     <div class="form-group">
                                         <label for="password" class="col-md-3 control-label">Contraseña:</label>
                                         <div class="col-md-9">
-                                            <input id="input_contraseña" type="password" class="form-control" name="password" placeholder="Contraseña"><br>
+                                            <input id="input_contraseña" maxlength="61" type="password" class="form-control" name="password" placeholder="Contraseña"><br>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="con_password" class="col-md-3 control-label">Confirmar Contraseña:</label>
                                         <div class="col-md-9">
-                                            <input type="password" class="form-control" name="con_password" placeholder="Confirmar Contraseña">
+                                            <input type="password" maxlength="61" class="form-control" name="con_password" placeholder="Confirmar Contraseña">
                                         </div>
                                     </div>
 
