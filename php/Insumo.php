@@ -72,7 +72,7 @@ class Insumo
         <td>{$insumo['Disponibilidad']}</td>
         <td>{$insumo['CostoLibra']}</td>
         <td>{$insumo['IDProveedor']}: {$insumo['Nombre']} {$insumo['Apellidos']}</td>
-        </tr>";
+        </tr>"; //devuelve valores de una fila encontrada
 
         return $html;
     }
@@ -128,7 +128,7 @@ class Insumo
         $html = "";
 
         if (mysqli_num_rows($insumoes) > 0) {
-            foreach ($insumoes as $insumo)
+            foreach ($insumoes as $insumo)  //genera fila por nuevo elemento
 
                 echo $this->generarTabla($insumo);
         } else {
@@ -139,7 +139,7 @@ class Insumo
     public function reporteInsumo($id)
     {
         $cn =$this -> cn ->conexion;
-        
+        //por procedimientos query
         $result = mysqli_query($cn, "SELECT * FROM Insumo I inner join Proveedor P on I.IDProveedor=P.IDProveedor where IDInsumo like '%{$id}%' ");
 
         if ( mysqli_num_rows($result) > 0) {
@@ -229,7 +229,7 @@ class Insumo
     public function eliminarinsumo($id)
     {
         $cn = $this->cn->conexion;
-        $cn->query("DELETE FROM insumo WHERE IDInsumo = {$id} ");
+        $cn->query("DELETE FROM insumo WHERE IDInsumo = {$id} "); // query con variable y prepare validacion de tipo de datp
 
         if (mysqli_affected_rows($cn) > 0) {
             echo "<script>alert('Insumo eliminado');</script>";
@@ -265,7 +265,7 @@ class Insumo
                     $error = false;
                 }
             } else {
-                $error =  "Hubo un error" . mysqli_error($cn);
+                $error =  "Hubo un error" . mysqli_error($cn); //mysql prepare (myqli_error) y query (no se puedene pasar parametros)
             }
         }
 

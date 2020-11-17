@@ -201,7 +201,7 @@ class Usuario
 
                             $_SESSION = $row;
 
-                            unset($_SESSION['Password']);
+                            unset($_SESSION['Password']); 
 
                             $_SESSION['tipoUsuario'] = $row['ID_Tipo'];
 

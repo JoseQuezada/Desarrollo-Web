@@ -71,7 +71,7 @@ class Compra
 
                         $rs = mysqli_query($cn, "SELECT MAX(IDCompra) AS id FROM Compra");
                         if ($row = mysqli_fetch_row($rs)) {
-                            $idCompra = trim($row[0]);
+                            $idCompra = trim($row[0]); //quitar esoacios en blanco
 
 
                             // antes

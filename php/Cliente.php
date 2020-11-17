@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(1);
+error_reporting(1); //no sale si hay un error
 
 include_once './php/conexion.php';
 include_once '../php/conexion.php';
@@ -9,7 +9,7 @@ include_once '../php/conexion.php';
 class Cliente
 {
 
-    public $cn;
+    private $cn;
 
     function __construct()
     {
@@ -152,7 +152,7 @@ class Cliente
         $cn = $this->cn->conexion;
 
 
-        $clientes = $cn->query("SELECT * from Cliente where Nombre like '%{$nombre}%'");
+        $clientes = $cn->query("SELECT * from Cliente where Nombre like '%{$nombre}%'"); //query variables y prepare con interrogacion
         $html = "";
 
         if (mysqli_num_rows($clientes) > 0) {

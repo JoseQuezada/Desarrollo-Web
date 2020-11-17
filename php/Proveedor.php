@@ -20,11 +20,11 @@ class Proveedor
     {
         $cn = $this->cn->conexion;
 
-        $proveedores = $cn->query("SELECT * from insumo where IDProveedor = {$id}");
+        $proveedores = $cn->query("SELECT * from insumo where IDProveedor = {$id}"); //por clases
         $html = "";
 
-        if (mysqli_num_rows($proveedores) > 0) {
-            return true;
+        if (mysqli_num_rows($proveedores) > 0) {  //cuenta cuantas filas regreso por procedimiento
+            return true; //mira si hay proveedores con insumos relacionados
         } else {
             return false;
         }
@@ -53,15 +53,15 @@ class Proveedor
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "INSERT INTO proveedor VALUES(NULL, ?, ?, ?, ?, ?, ?);")) {
+            if ($stmt = mysqli_prepare($cn, "INSERT INTO proveedor VALUES(NULL, ?, ?, ?, ?, ?, ?);")) { //ppr proce
 
 
-                mysqli_stmt_bind_param($stmt, 'ssssss', $empresa, $nombre, $apellidos, $direccion, $telefono, $email);
+                mysqli_stmt_bind_param($stmt, 'ssssss', $empresa, $nombre, $apellidos, $direccion, $telefono, $email); //indica que se hayan ingresados tipos de paramentos
 
-                mysqli_stmt_execute($stmt);
+                mysqli_stmt_execute($stmt); //ejecuta
 
 
-                if (mysqli_stmt_affected_rows($stmt) > 0) {
+                if (mysqli_stmt_affected_rows($stmt) > 0) { //se encarga de validar inserciones
                     $error = false;
                 }
             } else {
@@ -71,7 +71,7 @@ class Proveedor
 
 
 
-        return $error;
+        return $error; //regresa el valor de error
     }
 
     public function listarProveedor()
@@ -97,7 +97,7 @@ class Proveedor
 
         $borrable = $this->relacionadoInsumo($proveedor['IDProveedor']);
 
-
+        //no borrable
         if ($borrable) {
             $html .= "<tr>
             <td>{$proveedor['IDProveedor']}</td>
@@ -116,7 +116,7 @@ class Proveedor
             </td>
             </tr>";
         } else {
-
+        //borrar
             $html .= "<tr>
         <td>{$proveedor['IDProveedor']}</td>
         <td>{$proveedor['Empresa']}</td>
@@ -183,7 +183,7 @@ class Proveedor
         $proveedores = $cn->query("SELECT * from Proveedor where IDProveedor = {$id}");
 
         if (mysqli_num_rows($proveedores) > 0) {
-            return mysqli_fetch_array($proveedores);
+            return mysqli_fetch_array($proveedores); //devuelve una fila de la consulta en forma de arreglo, devuelve fila
         } else {
             echo "<script>alert('Hubo un error');</script>";
         }
@@ -196,7 +196,7 @@ class Proveedor
         $proveedores = $cn->query("SELECT * from Proveedor");
 
         if (mysqli_num_rows($proveedores) > 0) {
-            foreach ($proveedores as $proveedor)
+            foreach ($proveedores as $proveedor)  //para cada dato de proveedores crea una fila, itera fila por fila
                 echo $this->generarCombo($proveedor);
         } else {
             echo "<script>alert('Hubo un error');</script>";
@@ -221,12 +221,12 @@ class Proveedor
     {
         $html = '';
         $html = "<option value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
-
+                                            //Uno sirve para verlo y otro para seleccionarlo
         return $html;
     }
 
 
-    function generarComboSeleccionado($proveedor, $IDProveedor)
+    function generarComboSeleccionado($proveedor, $IDProveedor) //
     {
         $html = '';
         $html = "<option value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
@@ -234,7 +234,7 @@ class Proveedor
         if ($IDProveedor == $proveedor['IDProveedor']) {
 
             $html = "<option selected='selected' value='{$proveedor['IDProveedor']}'>ID: {$proveedor['IDProveedor']} Nombre: {$proveedor['Nombre']} {$proveedor['Apellidos']} </option>";
-        }
+        }            //selecciona entre todos cual esta relacionado actualmente
 
         return $html;
     }
