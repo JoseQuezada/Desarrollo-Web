@@ -383,7 +383,7 @@ class Usuario
                     $error =  "Hubo un error";
                 }
             } else {
-
+ 
 
                 if ($stmt = mysqli_prepare($cn, "UPDATE usuarios SET Usuario = ?, Nombre = ?, Apellidos = ?, Email = ?, ID_TIPO = ? where ID = ?")) {
 
