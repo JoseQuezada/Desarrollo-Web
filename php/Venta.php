@@ -244,7 +244,7 @@ class Venta
         $cn->query("DELETE FROM Venta WHERE IDVenta = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Venta eliminado');</script>";
+            echo "<script>alert('Venta eliminada');</script>";
         } else {
 
             echo mysqli_error($cn);

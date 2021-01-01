@@ -241,7 +241,7 @@ class Compra
         $cn->query("DELETE FROM Compra WHERE IDCompra = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Proveedor eliminado');</script>";
+            echo "<script>alert('Compra Eliminada');</script>";
         } else {
 
             echo mysqli_error($cn);

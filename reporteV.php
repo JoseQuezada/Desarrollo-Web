@@ -67,7 +67,7 @@ $pdf->SetFont('Times', '', 12);
 
 if ($resultados != null) {
 
-    if ($id != null and !empty($id)) {
+    if ($id != null and !empty($id)) {  
 
         $pdf->Cell(20, 10, utf8_decode('ID Insumo'), 1, 0, 'C', 0);
         $pdf->Cell(40, 10, utf8_decode('Insumo'), 1, 0, 'C', 0);

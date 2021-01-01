@@ -183,7 +183,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                         if ($error == false) { ?>
 
                                         <div class="alert alert-success" role="alert">
-                                            Datos Actualizados <a href="#" class="alert-link"></a>
+                                            Cliente actualizado <a href="#" class="alert-link"></a>
                                         </div>
                                     
                                                 

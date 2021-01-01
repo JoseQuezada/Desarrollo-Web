@@ -159,7 +159,7 @@ $id = $_GET["IDInsumo"] ?? null;
                                         if ($error == false) { ?>
 
                                         <div class="alert alert-success" role="alert">
-                                            Compra Agregada <a href="#" class="alert-link"></a>
+                                            Compra Registrada <a href="#" class="alert-link"></a>
                                         </div>
                                     
                                                 

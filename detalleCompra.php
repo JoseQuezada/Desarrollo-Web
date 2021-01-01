@@ -180,7 +180,7 @@ if ($IDCompra != null) {
                                         if ($error == false) { ?>
 
                                         <div class="alert alert-success" role="alert">
-                                            Datos Actualizados <a href="#" class="alert-link"></a>
+                                            Actualizado correctamente <a href="#" class="alert-link"></a>
                                         </div>
                                     
                                                 

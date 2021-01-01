@@ -155,7 +155,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                             </div>
                                     <?php }
                                     } ?>
-                                        <button id="btn-signup" name="btnActualizar" type="submit" class="btn btn-sm btn-warning"><i class="icon-hand-right"></i>Actualizar</button>
+                                        <button id="btn-signup" name="btnActualizar" type="submit" class="btn btn-sm btn-warning"><i class="icon-hand-right"></i>Actualizar Proveedor</button>
                                         <a href="./ListarProveedor.php" class="btn btn-sm btn-secondary"><i class="icon-hand-right"></i>Cancelar</a>
                                     </div>
                                 </div>

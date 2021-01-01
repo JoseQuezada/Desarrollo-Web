@@ -52,7 +52,7 @@ class Usuario
                             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
                             <form method='post'>
                                 <input type='hidden' name='idUsuario' value='{$usuario['ID']}' />
-                                <button type='submit' class='btn btn-danger'>Eliminar</button>
+                                <button type='submit' class='btn btn-danger'>Sí</button>
                             </form>
                         </div>
                     </div>
@@ -119,7 +119,7 @@ class Usuario
                             <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
                             <form method='post'>
                                 <input type='hidden' name='idUsuario' value='{$usuario['ID']}' />
-                                <button type='submit' class='btn btn-danger'>Eliminar</button>
+                                <button type='submit' class='btn btn-danger'>Sí</button>
                             </form>
                         </div>
                     </div>
@@ -229,7 +229,7 @@ class Usuario
         $cn->query("DELETE FROM usuarios WHERE ID = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Registro eliminado');</script>";
+            echo "<script>alert('Usuario Eliminado');</script>";
         } else {
             echo "<script>alert('Hubo un error');</script>";
         }

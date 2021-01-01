@@ -145,7 +145,7 @@ class Proveedor
                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
                        <form method='post'>
                            <input type='hidden' name='idproveedor' value='{$proveedor['IDProveedor']}' />
-                           <button type='submit' class='btn btn-danger'>Eliminar</button>
+                           <button type='submit' class='btn btn-danger'>Sí</button>
                        </form>
                    </div>
                </div>

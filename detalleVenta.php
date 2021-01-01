@@ -212,7 +212,7 @@ if ($IDVenta != null) {
                                             </div>
                                     <?php }
                                     } ?>
-                                        <button id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Compra</button>
+                                        <button id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Venta</button>
                                     </div>
                                 </div>
                             </form>

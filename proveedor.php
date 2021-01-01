@@ -72,7 +72,7 @@
                                     
 
                                     <div class="form-group">
-                                        <label for="nombre" class="col-md-3 control-label">Empresa (opcional)</label>
+                                        <label for="nombre" class="col-md-3 control-label">Empresa</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" maxlength="100" name="empresa" placeholder="Empresa" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                         </div>
@@ -129,7 +129,7 @@
                                             </div>
                                     <?php }
                                     } ?>
-                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Proveedor</button>
+                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar</button>
                                         </div>
                                     </div>
                                 </form>

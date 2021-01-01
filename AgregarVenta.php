@@ -152,7 +152,7 @@ require_once('./php/crear_venta.php');
                                         if ($error == false) { ?>
 
                                         <div class="alert alert-success" role="alert">
-                                            Venta Agregada Correctamente <a href="#" class="alert-link"></a>
+                                            Venta Registrada <a href="#" class="alert-link"></a>
                                         </div>
                                     
                                                 

@@ -15,6 +15,7 @@ $usuario = $datos['Usuario'];
 $nombre = $datos['Nombre'];
 $apellidos = $datos['Apellidos'];
 $email = $datos['Email'];
+$tipo = $datos['Tipo'];
 
 require('./php/actualizarUsuario.php');
 
@@ -109,6 +110,19 @@ require('./php/actualizarUsuario.php');
                                             <input id="email" maxlength="200" type="email" class="form-control" name="email" placeholder="Email" value="<?php if (isset($email)) echo $email; ?>" required>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                    <label for="idTipo" class="col-md-3 control-label">Tipo:</label>
+                                    <div class="col-md-9">
+                                        <select name="idTipo">
+                                            <?php
+
+                                            $tipo = new Usuario();
+                                            $tipo->usuarioCombobox();
+
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
 
                                     <div class="form-group">
                                         <div id="result-email"></div>
@@ -135,7 +149,7 @@ require('./php/actualizarUsuario.php');
                                         if ($error == false) { ?>
 
                                         <div class="alert alert-success" role="alert">
-                                            Datos Actualizados <a href="#" class="alert-link"></a>
+                                            Actualizado correctamente <a href="#" class="alert-link"></a>
                                         </div>
                                     
                                                 
