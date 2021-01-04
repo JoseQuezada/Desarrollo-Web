@@ -20,7 +20,7 @@ class Conexion
 		$this->puerto = 3306;
 
 
-		$this->password = "";
+		$this->password = "";  
 
 		$this->conexion = new mysqli($this->servidor, $this->usuario, $this->password, $this->base, $this->puerto) or die(mysqli_error($this->conexion));
 
