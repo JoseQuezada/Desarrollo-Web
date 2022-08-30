@@ -1,19 +1,5 @@
 <?php
-//codigo php
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["IDInsumo"])) {
-
-    $id = $_POST["IDInsumo"];
-    echo "<script> window.location.href='./ReporteInsumos.php?IDInsumo={$id}'; </script>";
-
-}
-
-$id = $_GET["IDInsumo"] ?? null;
-
-echo var_dump($id);
-
-
+require('./php/Formula.php');
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +17,7 @@ echo var_dump($id);
 
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -38,63 +25,63 @@ echo var_dump($id);
 
     require('./templates/barraNavegacionTablero.php');
 
+
     ?>
 
+    <?php
+    //codigo php
+
+    
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['IDDetalleFormula'])) {
+
+        $formula = new Formula();
+
+        $formula->eliminarformula($_POST['IDDetalleFormula']);
+    }
+
+    ?>
     <div id="layoutSidenav_content">
         <main>
             <!------------------------------------------- Inicia Formulario---------------------------------------->
             <br>
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                Reporte personalizado
-            </div>
-            <form>
-                <br>
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="col-md-100 input-group">
-                    <label for="buscar" class="col-lg-6">ID del Insumo:</label>
-                    <input class="form-control" id="IDInsumo" name="IDInsumo" type="text" placeholder="Buscar insumo" aria-label="Search" aria-describedby="basic-addon2" />
+                    <label for="buscar" class="col-lg-6">Nombre de la Fórmula:</label>
+                    <input class="form-control" id="formulaBusqueda" name="formulaBusqueda" type="text" placeholder="Buscar Fórmula" aria-label="Search" aria-describedby="basic-addon2" />
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                        <div>&nbsp;</div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-download"></i> Generar Reporte</button>
-
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Código</th>
-                                    <th>Descripción</th>
-                                    <th>Disponibilidad</th>
-                                    <th>Costo Libra</th>
-                                    <th>Proveedor</th>
-                                </tr>
-                            </thead>
-                            <tbody id="resultados-insumo">
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
             </form>
-
-            <div class="card-header">
+            <div class="card-header" style="background-color: yellowgreen;">
                 <i class="fas fa-table mr-1"></i>
-                Reporte de Insumos
+                Fórmulas Registradas
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="<?php echo "reporteI.php?IDInsumo={$id}" ?>" allowfullscreen></iframe>
-                        </div>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th>Costo Quintal</th>
+                                <th>Insumo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultados-formula">
+                            <?php
+                            $formula = new Formula();
+                            echo $formula->listarFormula();
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
-            
+
+
             <!-------------------------------------------- Finaliza Formulario------------------------------------------>
         </main>
         <footer class="py-4 bg-light mt-auto">
@@ -111,27 +98,27 @@ echo var_dump($id);
     </div>
 
     <script>
-        $(document).ready(function($) {
-
-            $("#IDInsumo").keyup(function() {
-                var parametros = "IDInsumo=" + $(this).val()
-
+        $(document).ready(function() {
+            $("#formulaBusqueda").keyup(function() {
+                var parametros = "formulaBusqueda=" + $(this).val()
                 $.ajax({
                     data: parametros,
-                    url: './php/insumosReporte.php',
+                    url: './php/formulaBusqueda.php',
                     type: 'post',
                     beforeSend: function() {},
                     success: function(response) {
-                        $("#resultados-insumo").html(response);
+                        $("#resultados-formula").html(response);
                     },
                     error: function() {
                         alert("error")
                     }
                 });
             })
+        })
+    </script>;
 
-        });
-    </script>
+   
+    
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>

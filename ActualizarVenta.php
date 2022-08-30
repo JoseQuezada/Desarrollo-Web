@@ -113,8 +113,8 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-5 col-md-9">
-                        <button id="btn-signup" type="submit" class="btn btn-sm btn-primary"><i class="icon-hand-right"></i>Actualizar</button>
-                        <button id="btn-signup" type="submit" class="btn btn-sm btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
+                        <button id="btn-signup" type="submit" class="btn btn-md btn-primary"><i class="icon-hand-right"></i>Actualizar</button>
+                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                         </div>
                     </div>
                 </form>

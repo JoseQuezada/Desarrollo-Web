@@ -48,15 +48,6 @@ echo var_dump($id);
                 <i class="fas fa-table mr-1" ></i>
                 Reporte de Compras
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="<?php echo "reporteC.php?IDCompra={$id}" ?>" allowfullscreen></iframe>
-                        </div>
-                    </table>
-                </div>
-            </div>
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
                 Reporte personalizado
@@ -77,13 +68,23 @@ echo var_dump($id);
                    
                     <br>
             </form>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="<?php echo "reporteC.php?IDCompra={$id}" ?>" allowfullscreen></iframe>
+                        </div>
+                    </table>
+                </div>
+            </div>
+            
 
             <!-------------------------------------------- Finaliza Formulario------------------------------------------>
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     <div>
 
                     </div>

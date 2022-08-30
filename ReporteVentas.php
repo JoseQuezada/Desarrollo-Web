@@ -62,19 +62,6 @@ echo var_dump($id);
                     </div>
                 </div>
                 <div class="card-body">
-                   
-                    <br>
-            </form>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="<?php echo "reporteV.php?IDVenta={$id}" ?>" allowfullscreen></iframe>
-                        </div>
-                        </table>
-                    </div>
-            </div>
-                <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -90,6 +77,20 @@ echo var_dump($id);
                         </table>
                     </div>
                 </div>
+                <div class="card-body">
+                   
+                    <br>
+            </form>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="<?php echo "reporteV.php?IDVenta={$id}" ?>" allowfullscreen></iframe>
+                        </div>
+                        </table>
+                    </div>
+            </div>
+               
             
 
 <!-------------------------------------------- Finaliza Formulario------------------------------------------>
@@ -97,7 +98,7 @@ echo var_dump($id);
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                        <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                         <div>
 
                         </div>

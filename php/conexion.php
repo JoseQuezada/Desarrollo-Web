@@ -16,7 +16,7 @@ class Conexion
 		$this->servidor  = "localhost";
 		$this->usuario = "root";
 
-		$this->base = "swpcigc";
+		$this->base = "swpcigc2";
 		$this->puerto = 3306;
 
 

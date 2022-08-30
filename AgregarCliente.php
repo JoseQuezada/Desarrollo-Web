@@ -40,11 +40,11 @@
                 <script src="./lib/strength.min.js"></script>
                 <div class="container-fluid">
                     <h1 class="mt-4">Registro de Clientes</h1>
-                    <ol class="breadcrumb mb-4">
+                    <ol class="breadcrumb mb-4" style="background-color: #E8FC3E">
                         <li class="breadcrumb-item active">Datos del Cliente</li>
                     </ol>
 
-                    <div class="panel panel-info">
+                    <div class="panel panel-info" style="background-color: #CEFC3E">
                         <div class="panel-heading">
 
 
@@ -77,7 +77,30 @@
                                     <div class="form-group">
                                         <label for="usuario" class="col-md-3 control-label">DPI:</label>
                                         <div class="col-md-9">
-                                            <input  type="text" class="form-control" maxlength="13" name="dpi" placeholder="DPI" value="<?php if (isset($dpi)) echo $dpi; ?>" required>
+                                        <script>
+                                        function validaNumericos(event) {
+                                        if(event.charCode >= 48 && event.charCode <= 57){
+                                        return true;
+                                                                                        }
+                                        return false;        
+                                        }
+                                        </script>
+                                       
+                                            <input type="cel" class="form-control" onkeypress='return validaNumericos(event)' maxlength="13" name="dpi" placeholder="DPI" id="dpi" value="<?php if (isset($dpi)) echo $dpi; ?>" required>
+                                            <script>
+                                                var dpi = document.getElementById('dpi');
+                                                function onkeyPress(event){
+                                                dpi.value = dpi.value.replace(/[a-zA-Z]/g, '');
+                                                if(dpi.value.replace(/ /g, ' ').match(/\b(\d{4})(\d{5})(\d{4})\b/))
+                                                dpi.value = dpi.value
+                                                //.replace(/\W/gi, '')//quitamos todos los espacios demas
+                                                .replace(/\b(\d{4})(\d{5})(\d{4})\b/, '$1 $2 $3') //si cumple el formato añadimos 3,6 y 5 digitos
+                                                .trim();
+                                                                          }
+                                                dpi.addEventListener('keypress',onkeyPress);
+                                                dpi.addEventListener('keydown',onkeyPress);
+                                                dpi.addEventListener('keyup',onkeyPress);
+                                            </script>
                                         </div>
                                     </div>
 
@@ -109,28 +132,45 @@
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Teléfono:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
+                                        <script>
+                                        function validaNumericos(event) {
+                                        if(event.charCode >= 48 && event.charCode <= 57){
+                                        return true;
+                                                                                        }
+                                        return false;        
+                                        }
+                                        </script>
+                                            <input type="cel" onkeypress='return validaNumericos(event)' class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
+                                        
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Teléfono 2 (Opcional):</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" maxlength="8" name="telefono2" placeholder="Teléfono" value="<?php if (isset($telefono2)) echo $telefono2; ?>" >
+                                        <script>
+                                        function validaNumericos(event) {
+                                        if(event.charCode >= 48 && event.charCode <= 57){
+                                        return true;
+                                                                                        }
+                                        return false;        
+                                        }
+                                        </script>
+                                            <input type="cel" onkeypress='return validaNumericos(event)' class="form-control" maxlength="8" name="telefono2" placeholder="Teléfono" value="<?php if (isset($telefono2)) echo $telefono2; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">NIT:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" maxlength="10" name="nit" placeholder="NIT" value="<?php if (isset($nit)) echo $nit; ?>" required>
+                                            <input type="text" class="form-control" maxlength="15" name="nit" placeholder="NIT" value="<?php if (isset($nit)) echo $nit; ?>" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Marca de Conentrado Utilizada (Opcional):</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" maxlength="50" name="marcac" placeholder="Concentrado" value="<?php if (isset($concentrado)) echo $cocentrado; ?>" >
+                                            <input type="text" class="form-control" maxlength="50" name="marcac" placeholder="Concentrado" value="<?php if (isset($concentrado)) echo $cocentrado; ?>" required>
                                         </div>
                                     </div>
 
@@ -148,7 +188,8 @@
                                             </div>
                                     <?php }
                                     } ?>
-                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Cliente</button>
+                                            <button id="btn-signup" type="submit" class="btn btn-md btn-primary"><i class="icon-hand-right"></i>Registrar Cliente</button>
+                                            <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -209,7 +250,7 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                        <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                         <div>
                             
                         </div>

@@ -1,5 +1,6 @@
 <?php
-
+declare(strict_types=1);
+error_reporting(1);
 require_once('./php/crear_insumo.php');
 ?>
 
@@ -10,7 +11,7 @@ require_once('./php/crear_insumo.php');
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
+    <meta name="description" content="" />  
     <meta name="author" content="" />
     <title>Panel de Control</title>
     <link href="css/styles.css" rel="stylesheet" />
@@ -41,12 +42,12 @@ require_once('./php/crear_insumo.php');
             <script src="./lib/strength.min.js"></script>
             <div class="container-fluid">
                 <h1 class="mt-4">Registro de Insumos</h1>
-                <ol class="breadcrumb mb-4">
+                <ol class="breadcrumb mb-4" style="background-color: #FFD100;>
                     <li class="breadcrumb-item active">Datos del Insumo</li>
                 </ol>
 
-                <div class="panel panel-info">
-                    <div class="panel-heading">
+                <div style="background-color: #FCF3C8">
+                    <div>
 
 
                         <div class="panel-body">
@@ -97,7 +98,7 @@ require_once('./php/crear_insumo.php');
                                     <div class="col-md-9">
                                         <select name="iDProveedor" class="form-control" id="exampleFormControlSelect1">
                                             <?php
-
+ 
                                             require_once('./php/Proveedor.php');
 
 
@@ -125,7 +126,8 @@ require_once('./php/crear_insumo.php');
                                             </div>
                                     <?php }
                                     } ?>
-                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Insumo</button>
+                                        <button id="btn-signup" type="submit" class="btn btn-md btn-primary"><i class="icon-hand-right"></i>Registrar Insumo</button>
+                                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                     </div>
                                 </div>
 
@@ -139,12 +141,9 @@ require_once('./php/crear_insumo.php');
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
+                        
                 </div>
             </div>
         </footer>

@@ -3,12 +3,6 @@
 
 require('./php/Proveedor.php');
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idproveedor'])) {
-
-    $usuario = new Proveedor();
-
-    $usuario->eliminarProveedor($_POST['idproveedor']);
-}
 
 ?>
 
@@ -27,13 +21,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idproveedor'])) {
 
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="sb-nav-fixed">
     <?php
 
     require('./templates/barraNavegacionTablero.php');
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idproveedor'])) {
 
+        $usuario = new Proveedor();
+    
+        $usuario->eliminarProveedor($_POST['idproveedor']);
+    }
     ?>
 
     <div id="layoutSidenav_content">
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idproveedor'])) {
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     <div>
 
                     </div>

@@ -43,11 +43,11 @@ $id = $_GET["IDInsumo"] ?? null;
             <script src="./lib/strength.min.js"></script>
             <div class="container-fluid">
                 <h1 class="mt-4">Agregar Compra</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Datos de la Compra</li>
+                <ol class="breadcrumb mb-4" style="background-color: aqua">
+                    <li class="breadcrumb-item active" >Datos de la Compra</li>
                 </ol>
 
-                <div class="panel panel-info">
+                <div class="panel panel-info" style="background-color: #A8DDFC">
                     <div class="panel-heading">
 
 
@@ -109,7 +109,8 @@ $id = $_GET["IDInsumo"] ?? null;
                                 </div> -->
 
                                 <div class="col-md-100 input-group">
-                                    <label for="buscar" class="col-lg-6">Descripcion del Insumo:</label>
+                                    <label for="buscar" class="col-lg-6">Descripción del Insumo:</label>
+                                    
                                     <input class="form-control" id="insumoBusqueda" name="insumoBusqueda" type="text" placeholder="Buscar insumo" aria-label="Search" aria-describedby="basic-addon2" />
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
@@ -166,7 +167,8 @@ $id = $_GET["IDInsumo"] ?? null;
                                             </div>
                                     <?php }
                                     } ?>
-                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Compra</button>
+                                            <button id="btn-signup" type="submit" class="btn btn-md btn-primary"><i class="icon-hand-right"></i>Registrar Compra</button>
+                                            <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                         </div>
                                     </div>
                             </form>
@@ -213,7 +215,7 @@ $id = $_GET["IDInsumo"] ?? null;
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     <div>
                         <a href="#">Privacy Policy</a>
                         &middot;

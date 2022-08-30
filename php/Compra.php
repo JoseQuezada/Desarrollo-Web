@@ -90,7 +90,7 @@ class Compra
 
                                             if ($stmt = mysqli_prepare($cn, "INSERT INTO Detalle_Compra VALUES(NULL, ?, ?, ?, ?, ?);")) {
 
-                                                mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $idCompra, $idInsumo);
+                                                mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $idInsumo, $idCompra);
 
                                                 mysqli_stmt_execute($stmt);
 
@@ -241,12 +241,30 @@ class Compra
         $cn->query("DELETE FROM Compra WHERE IDCompra = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Compra Eliminada');</script>";
+                ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.fire({
+                icon: 'success',
+                title: 'Compra Eliminada',
+                text: 'Compra Eliminada Correctamente',
+                })
+                </script>
+            <?php
         } else {
 
             echo mysqli_error($cn);
-
-            // echo "<script>alert('Hubo un error');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.mixin({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un error al eliminar la fórmula',
+                })
+                </script>
+            <?php
+            
         }
     }
 
@@ -328,7 +346,7 @@ class Compra
             }
 
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE detalle_compra SET Descripción = ? where IDCompra = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE detalle_compra SET Descripcion = ? where IDCompra = ? ")) {
 
                 mysqli_stmt_bind_param($stmt, 'si', $descripcion, $id);
 

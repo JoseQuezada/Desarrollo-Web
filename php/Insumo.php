@@ -16,10 +16,44 @@ class Insumo
         $this->cn = new Conexion();
     }
 
+    function relacionadoCompra($id)
+    {
+        $cn = $this->cn->conexion;
+
+        $proveedores = $cn->query("SELECT * from Detalle_Compra where IDInsumo = {$id}"); //por clases
+        $html = "";
+
+        if (mysqli_num_rows($proveedores) > 0) {  //cuenta cuantas filas regreso por procedimiento
+            return true; //mira si hay proveedores con insumos relacionados
+        } else {
+            return false;
+        }
+    }
+
     function generarTabla($insumo)
     {
         $html = '';
+        
+        $borrable = $this->relacionadoCompra($insumo['IDInsumo']);
 
+        //no borrable
+        if ($borrable) {
+            $html .= "<tr>
+            <td>{$insumo['IDInsumo']}</td>
+            <td>{$insumo['Codigo']}</td>
+            <td>{$insumo['Descripcion']}</td>
+            <td>{$insumo['Disponibilidad']}</td>
+            <td>{$insumo['CostoLibra']}</td>
+            <td>{$insumo['IDProveedor']}: {$insumo['Nombre']} {$insumo['Apellidos']}</td>
+            <td>
+            <span class='d-inline-block' data-placement='left' tabindex='0' data-toggle='tooltip' title='Este insumo esta relacionado a una compra, por lo tanto no es posible eliminarlo a menos que se elimine la compra relacionada'>
+                <button class='btn btn-danger disabled' style='pointer-events: none;' type='button' disabled>Eliminar</button>
+            </span>
+            
+        <a href='./ActualizarInsumo.php?IDinsumo={$insumo['IDInsumo']}' class='btn btn-warning' > Actualizar </a>
+            </td>
+            </tr>";
+        } else {
         $html .= "<tr>
         <td>{$insumo['IDInsumo']}</td>
         <td>{$insumo['Codigo']}</td>
@@ -41,7 +75,7 @@ class Insumo
                        </button>
                    </div>
                    <div class='modal-body'>
-                       <p> ¿Estas seguro que deseas eliminar al insumo: '{$insumo['Codigo']}'? esto será de forma permanente? </p>
+                       <p> ¿Estas seguro que deseas eliminar al insumo: '{$insumo['Codigo']}'? Esto será de forma permanente </p>
                    </div>
                    <div class='modal-footer'>
                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
@@ -56,7 +90,7 @@ class Insumo
     </div>
         </td>
         </tr>";
-
+        }
         return $html;
     }
 

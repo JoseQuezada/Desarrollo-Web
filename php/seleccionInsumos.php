@@ -12,3 +12,4 @@ if (isset($_POST['insumoBusqueda'])) {
 
   echo "<tr><td colspan='7'>Insumo No encontrado</td></tr>";
 }
+  

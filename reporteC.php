@@ -85,7 +85,7 @@ if ($resultados != null) {
             $pdf->Cell(40, 10, utf8_decode($row['Nombre'] . ' ' . $row['Apellidos']), 1, 0, 'C', 0);
             $pdf->Cell(30, 10, utf8_decode($row['Libras']), 1, 0, 'C', 0);
             $pdf->Cell(30, 10, utf8_decode($row['CostoLibra']), 1, 0, 'C', 0);
-            $pdf->Cell(30, 10, utf8_decode($row['Sub_Total']) . '.00', 1, 1, 'C', 0);
+            $pdf->Cell(30, 10, utf8_decode($row['Sub_Total']) , 1, 1, 'C', 0);
         }
 
         $resultados = $compra->reporteCompra($id);
@@ -96,7 +96,7 @@ if ($resultados != null) {
         $pdf->Cell(40, 10, '', 0, 0, 'C', 0);
         $pdf->Cell(30, 10, '', 0, 0, 'C', 0);
         $pdf->Cell(30, 10, 'Total', 1, 0, 'C', 0);
-        $pdf->Cell(30, 10, utf8_decode($row["Total"]) . '.00', 1, 1, 'C', 0);
+        $pdf->Cell(30, 10, utf8_decode($row["Total"]) , 1, 1, 'C', 0);
     } else {
 
         $pdf->Ln(10);
@@ -109,7 +109,7 @@ if ($resultados != null) {
             $pdf->Cell(30, 10, utf8_decode($row['IDCompra']), 1, 0, 'C', 0);
             $pdf->Cell(90, 10, utf8_decode($row['Fecha']), 1, 0, 'C', 0);
             // Aqui se puede agregar el .00
-            $pdf->Cell(70, 10, utf8_decode($row['Total']) . '.00', 1, 1, 'C', 0);
+            $pdf->Cell(70, 10, utf8_decode($row['Total']) , 1, 1, 'C', 0);
         }
     }
 } else {

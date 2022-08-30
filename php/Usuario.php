@@ -19,12 +19,26 @@ class Usuario
     {
         $cn = $this->cn->conexion;
 
+        $userId = $_SESSION['ID'] ?? null;
 
         $usuarios = $cn->query("SELECT * from usuarios U inner join perfil P on U.ID_TIPO = P.ID_TIPO");
         $html = "";
 
+        $usuario1 = $cn->query("SELECT * FROM usuarios WHERE ID LIKE 1");
+        
         if (mysqli_num_rows($usuarios) > 0) {
-            foreach ($usuarios as $usuario)
+            $xd = mysqli_fetch_all($usuarios, MYSQLI_ASSOC) ;
+
+            foreach ($xd as $usuario){
+
+            $userId = $_SESSION['ID'] ?? null;
+
+            $modificable = '';
+
+
+
+            if ($userId == $usuario['ID']) { $modificable = 'disabled';}
+
                 $html .= "<tr>
              <td>{$usuario['ID']}</td>
              <td>{$usuario['Usuario']}</td>
@@ -33,8 +47,8 @@ class Usuario
              <td>{$usuario['Email']}</td>
              <td>{$usuario['Tipo']}</td>
              <td>
-             <a href='#' data-toggle='modal' data-target='#exampleModal{$usuario['ID']}' class='btn btn-danger' > Eliminar </a>
-             <a href='./ActualizarUsuario2.php?IDUsuario={$usuario['ID']}' class='btn btn-warning' > Actualizar </a>
+             <a href='#' data-toggle='modal' data-target='#exampleModal{$usuario['ID']}' class='btn btn-danger $modificable' > Eliminar </a>
+             <a href='./ActualizarUsuario2.php?IDUsuario={$usuario['ID']}' class='btn btn-warning  ' > Actualizar </a>
              
              <div class='modal fade' id='exampleModal{$usuario['ID']}' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
                 <div class='modal-dialog' role='document'>
@@ -61,11 +75,11 @@ class Usuario
          </div>
              </td>
              </tr>";
-
-            echo $html;
-        } else {
-            echo "<tr><td colspan='7'>Usuario No encontrado</td></tr>";
-        }
+            }
+             echo $html;
+            } else {
+                echo "<tr><td colspan='7'>Usuario No encontrado</td></tr>";
+            }
     }
 
     public function buscarUsuarioID($id)
@@ -203,7 +217,7 @@ class Usuario
 
                             unset($_SESSION['Password']); 
 
-                            $_SESSION['tipoUsuario'] = $row['ID_Tipo'];
+                            $_SESSION['Tipo'] = $row['ID_Tipo'];
 
                             header("Location: ./tablero.php");
                         } else {
@@ -229,9 +243,27 @@ class Usuario
         $cn->query("DELETE FROM usuarios WHERE ID = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Usuario Eliminado');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.fire({
+                icon: 'success',
+                title: 'Usuario Eliminado',
+                text: 'Usuario Eliminado Correctamente',
+                })
+                </script>
+            <?php
         } else {
-            echo "<script>alert('Hubo un error');</script>";
+            ?>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            Swal.mixin({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al eliminar el usuario',
+            })
+            </script>
+        <?php
         }
     }
 

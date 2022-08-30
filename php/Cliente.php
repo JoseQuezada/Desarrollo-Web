@@ -108,7 +108,7 @@ class Cliente
             <td>{$cliente['Direccion']}</td>
             <td>{$cliente['Municipio']}</td>
             <td>{$cliente['Departamento']}</td>
-            <td>{$cliente['Teléfono']}</td>
+            <td>{$cliente['Telefono']}</td>
             <td>{$cliente['Telefono2']}</td>
             <td>{$cliente['NIT']}</td>
             <td>{$cliente['Marca_Concentrado']}</td>
@@ -173,7 +173,16 @@ class Cliente
         if (mysqli_num_rows($clientes) > 0) {
             return mysqli_fetch_array($clientes);
         } else {
-            echo "<script>alert('Hubo un error');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.mixin({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un error al buscar el cliente',
+                })
+                </script>
+            <?php
         }
     }
 
@@ -187,7 +196,16 @@ class Cliente
             foreach ($clientes as $cliente)
                 echo $this->generarCombo($cliente);
         } else {
-            echo "<script>alert('No hay clientes almacenados');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.mixin({
+                icon: 'warning',
+                title: 'Advertencia',
+                text: 'No hay clientes registrados',
+                })
+                </script>
+            <?php
         }
     }
 
@@ -208,7 +226,7 @@ class Cliente
     function generarCombo($cliente)
     {
         $html = '';
-        $html = "<option value='{$cliente['IDCliente']}'>ID: {$cliente['IDCliente']} Nombre: {$cliente['Nombre']} </option>";
+        $html = "<option value='{$cliente['IDCliente']}'>ID: {$cliente['IDCliente']} Nombre: {$cliente['Nombre']} {$cliente['Apellidos']}</option>";
 
         return $html;
     }
@@ -233,9 +251,27 @@ class Cliente
         $cn->query("DELETE FROM cliente WHERE IDCliente = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Cliente eliminado');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.fire({
+                icon: 'success',
+                title: 'Cliente Eliminado',
+                text: 'Cliente Eliminado Correctamente',
+                })
+                </script>
+            <?php
         } else {
-            echo "<script>alert('Hubo un error');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.mixin({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un error al eliminar el cliente',
+                })
+                </script>
+            <?php
         }
     }
 
@@ -264,7 +300,7 @@ class Cliente
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE cliente SET Nombre = ?, Apellidos = ?,  DPI = ?, direccion = ?, municipio = ?, departamento = ?, Teléfono = ?, Telefono2 = ?, NIT = ?, marca_concentrado = ? where IDCliente = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE cliente SET Nombre = ?, Apellidos = ?,  DPI = ?, direccion = ?, municipio = ?, departamento = ?, Telefono = ?, Telefono2 = ?, NIT = ?, marca_concentrado = ? where IDCliente = ? ")) {
 
                 mysqli_stmt_bind_param($stmt, 'ssssssssssi', $nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac, $id);
 

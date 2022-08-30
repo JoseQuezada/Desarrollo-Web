@@ -38,8 +38,8 @@ require_once './php/crear_usuario.php';
             <link rel="stylesheet" href="./lib/strength.css">
             <script src="./lib/strength.min.js"></script>
             <div class="container-fluid">
-                <h1 class="mt-4">Registro Usuario</h1>
-                <ol class="breadcrumb mb-4">
+                <h1 class="mt-4">Registro de Usuario</h1>
+                <ol class="breadcrumb mb-4" style="background-color: #F9F5A3">
                     <li class="breadcrumb-item active">Datos del Usuario</li>
                 </ol>
 
@@ -98,7 +98,7 @@ require_once './php/crear_usuario.php';
                                 <div class="form-group">
                                     <label for="idTipo" class="col-md-3 control-label">Tipo:</label>
                                     <div class="col-md-9">
-                                        <select name="idTipo">
+                                        <select name="idTipo" class="form-control">
                                             <?php
 
                                             $usuario = new Usuario();
@@ -137,7 +137,8 @@ require_once './php/crear_usuario.php';
                                             </div>
                                     <?php }
                                     } ?>
-                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar</button>
+                                        <button id="btn-signup" type="submit" class="btn btn-md btn-primary"><i class="icon-hand-right"></i>Registrar</button>
+                                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                     </div>
                                 </div>
                             </form>
@@ -198,7 +199,7 @@ require_once './php/crear_usuario.php';
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     <div>
 
                     </div>

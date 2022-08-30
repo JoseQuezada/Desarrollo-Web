@@ -5,7 +5,7 @@ $userId = $_SESSION['ID'] ?? null;
 
 if ($userId == null || $userId == '') {
     echo "<script>
-        alert('NO TIENE AUTORIZACION');
+        alert('NO TIENE AUTORIZACIÓN');
         window.location.href='./index.php';
         </script>";
 }

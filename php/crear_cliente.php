@@ -14,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {//Chequea si se accedió por medio de
     $municipio = $_POST["municipio"];
     $departamento = $_POST["departamento"];
     $telefono = $_POST["telefono"];
-    $telefono2 = $_POST["telefono"];
+    $telefono2 = $_POST["telefono2"];
     $nit = $_POST["nit"];
     $marcac = $_POST["marcac"];
 
     $cliente = new Cliente();
 
-    $error = $cliente -> crearCliente($nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $mercac);
+    $error = $cliente -> crearCliente($nombre, $apellidos, $dpi, $direccion, $municipio, $departamento, $telefono, $telefono2, $nit, $marcac);
 
     if(!$error){
         

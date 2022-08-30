@@ -113,7 +113,7 @@
                                     <?php }
                                     } ?>
                         <button id="btn-signup" type="submit" class="btn btn-sm btn-primary"><i class="icon-hand-right"></i>Actualizar Compra</button>
-                        <button id="btn-signup" type="submit" class="btn btn-sm btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
+                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                         </div>
                     </div>
                 </form>

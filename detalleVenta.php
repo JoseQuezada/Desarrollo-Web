@@ -4,7 +4,7 @@ require_once('./php/Venta.php');
 
 $IDVenta = $_GET['IDVenta'] ?? null;
 
-
+echo $IDVenta;
 
 if ($IDVenta != null) {
 
@@ -13,13 +13,14 @@ if ($IDVenta != null) {
     $datosVenta = $compra->buscarVentaId($IDVenta);
 
     $fecha = $datosVenta['Fecha'];
+    $total = $datosVenta['Total'];
     $IDCliente = $datosVenta['IDCliente'];
     $tipo = $datosVenta['Tipo'];
 
 
     $primerosDatos = $compra->primerosDatos($IDVenta);
 
-    $primerInsumo = $primerosDatos['IDInsumo'];
+    $primerInsumo = $primerosDatos['IDFormula'];
     $primerLibra = $primerosDatos['Cantidad'];
     $primerDetalle = $primerosDatos['IDDetalleCompra'];
     $descripcion = $primerosDatos['Descripcion'];
@@ -30,7 +31,7 @@ if ($IDVenta != null) {
         $fecha = $_POST["fecha"];
         $descripcion = $_POST["desripcion"];
         $tipo  = $_POST["tipo"];
-        $IDCliente = $_POST["IDClitene"];
+        $IDCliente = $_POST["IDCliente"];
 
         $compra = new venta();
         $error = $compra->actualizarVenta($IDVenta, $fecha, $IDCliente, $tipo, $descripcion);
@@ -59,6 +60,7 @@ if ($IDVenta != null) {
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -83,9 +85,9 @@ if ($IDVenta != null) {
             <link rel="stylesheet" href="./lib/strength.css">
             <script src="./lib/strength.min.js"></script>
             <div class="container-fluid">
-                <h1 class="mt-4">Actualizar/visualizar Compra</h1>
+                <h1 class="mt-4">Actualizar/visualizar Venta</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Datos de la Compra</li>
+                    <li class="breadcrumb-item active">Datos de la Venta</li>
                 </ol>
 
                 <div class="panel panel-info">
@@ -110,7 +112,7 @@ if ($IDVenta != null) {
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Fecha:</label>
                                     <div class="col-md-9">
-                                        <input type="date" class="form-control" name="fecha" placeholder="Código" value="<?php if (isset($fecha)) echo $fecha; ?>" required>
+                                        <input type="date" class="form-control" name="fecha" placeholder="Fecha" value="<?php if (isset($fecha)) echo $fecha; ?>" required>
                                     </div>
                                 </div>
 
@@ -134,7 +136,11 @@ if ($IDVenta != null) {
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Tipo de Venta:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="tipo" placeholder="Tipo de Venta" value="<?php if (isset($tipo)) echo $tipo; ?>" required>
+                                    <select name="tipo" id="tipo" class="form-control">
+                                        <option type="text" value="Contado" required>Contado</option>
+                                        <option type="text" value="Crédito" required>Crédito</option>
+                                    </select>
+                                        <!--<input type="text" class="form-control" name="tipo" placeholder="Tipo de Venta" value="<?php if (isset($tipo)) echo $tipo; ?>" required>-->
                                     </div>
                                 </div>
 
@@ -146,22 +152,22 @@ if ($IDVenta != null) {
                                 </div>
 
                                 <div class="form-group">
-                                    <strong class="col-md-3 control-p">Insumos:</strong>
+                                    <strong class="col-md-3 control-p">Fórmulas:</strong>
                                     <div class="col-md-9">
                                         <div class="field_wrapper">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <p>ID Insumo</p>
+                                                    <p>ID Fórmula</p>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <p>Libras</p>
+                                                    <p>Quintales</p>
                                                 </div>
                                             </div>
 
                                             <div>
 
-                                                <input readonly type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php if (isset($primerInsumo)) echo $primerInsumo; ?>" />
-                                                <input readonly type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php if (isset($primerLibra)) echo $primerLibra; ?>" />
+                                                <input readonly type="text" placeholder="ID de la Fórmula" name="idInsumos[]" value="<?php if (isset($primerInsumo)) echo $primerInsumo; ?>" />
+                                                <input readonly type="number" step="0.01" min="0" placeholder="Quintales vendidos" name="librasCompradas[]" value="<?php if (isset($primerLibra)) echo $primerLibra; ?>" />
                                                 <input readonly type="hidden" name="idDetalle[]" value="<?php echo $primerDetalle; ?>" />
 
                                                 <?php
@@ -181,14 +187,14 @@ if ($IDVenta != null) {
 
                                                             <input readonly type="hidden" name="idDetalle[]" value="<?php echo $dato['IDDetalleCompra']; ?>" />
 
-                                                            <input readonly type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php echo $dato['IDInsumo']; ?>" />
+                                                            <input readonly type="text" placeholder="ID de la Fórmula" name="idInsumos[]" value="<?php echo $dato['IDInsumo']; ?>" />
 
-                                                            <input readonly type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php echo $dato['Cantidad']; ?>" />
+                                                            <input readonly type="number" step="0.01" min="0" placeholder="Quintales vendidos" name="librasCompradas[]" value="<?php echo $dato['Cantidad']; ?>" />
                                                         </div>
 
                                                 <?php }
                                                 } else {
-                                                    echo "<hr><h5> No se encontraron mas Insumos </h5><hr>";
+                                                    echo "<hr><h5> No se encontraron más Fórmulas </h5><hr>";
                                                 } ?>
 
                                             </div>
@@ -213,6 +219,7 @@ if ($IDVenta != null) {
                                     <?php }
                                     } ?>
                                         <button id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Venta</button>
+                                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                     </div>
                                 </div>
                             </form>
@@ -228,7 +235,7 @@ if ($IDVenta != null) {
                                 var parametros = "insumoBusqueda=" + $(this).val()
                                 $.ajax({
                                     data: parametros,
-                                    url: './php/seleccionInsumos.php',
+                                    url: './php/seleccionFormulas.php',
                                     type: 'post',
                                     beforeSend: function() {},
                                     success: function(response) {

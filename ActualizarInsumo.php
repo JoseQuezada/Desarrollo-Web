@@ -155,6 +155,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                     <?php }
                                     } ?>
                                         <button name="btnActualizar" id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Insumo</button>
+                                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                     </div>
                                 </div>
                             </form>

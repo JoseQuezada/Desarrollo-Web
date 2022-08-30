@@ -104,10 +104,10 @@ class Proveedor
             <td>{$proveedor['Empresa']}</td>
             <td>{$proveedor['Nombre']}</td>
             <td>{$proveedor['Apellidos']}</td>
-            <td>{$proveedor['Dirección']}</td>
-            <td>{$proveedor['Teléfono']}</td>
+            <td>{$proveedor['Direccion']}</td>
+            <td>{$proveedor['Telefono']}</td>
             <td>{$proveedor['Email']}</td>
-            <td>
+            <td> 
             <span class='d-inline-block' data-placement='left' tabindex='0' data-toggle='tooltip' title='Este proveedor esta relacionado a un insumo, por lo tanto no es posible eliminarlo a menos que se elimine el insumo relacionado'>
                 <button class='btn btn-danger disabled' style='pointer-events: none;' type='button' disabled>Eliminar</button>
             </span>
@@ -122,8 +122,8 @@ class Proveedor
         <td>{$proveedor['Empresa']}</td>
         <td>{$proveedor['Nombre']}</td>
         <td>{$proveedor['Apellidos']}</td>
-        <td>{$proveedor['Dirección']}</td>
-        <td>{$proveedor['Teléfono']}</td>
+        <td>{$proveedor['Direccion']}</td>
+        <td>{$proveedor['Telefono']}</td>
         <td>{$proveedor['Email']}</td>
         <td>
         <a href='#' data-toggle='modal' data-target='#eliminarModal{$proveedor['IDProveedor']}' class='btn btn-danger' > Eliminar </a>
@@ -155,7 +155,6 @@ class Proveedor
         </td>
         </tr>";
         }
-
         return $html;
     }
 
@@ -245,9 +244,27 @@ class Proveedor
         $cn->query("DELETE FROM proveedor WHERE IDProveedor = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Proveedor eliminado');</script>";
+            ?>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            Swal.fire({
+            icon: 'success',
+            title: 'Proveedor Eliminado',
+            text: 'Proveedor Eliminado Correctamente',
+            })
+            </script>
+        <?php
         } else {
-            echo "<script>alert('Hubo un error');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                Swal.mixin({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un error al eliminar el proveedor',
+                })
+                </script>
+            <?php
         }
     }
 
@@ -270,7 +287,7 @@ class Proveedor
 
             $cn = $this->cn->conexion;
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE proveedor SET empresa = ?, nombre = ?, apellidos = ?, Dirección = ?, Teléfono = ?, email = ? where IDProveedor = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE proveedor SET empresa = ?, nombre = ?, apellidos = ?, Direccion = ?, Telefono = ?, email = ? where IDProveedor = ? ")) {
 
                 mysqli_stmt_bind_param($stmt, 'ssssssi', $empresa, $nombre, $apellidos, $direccion, $telefono, $email, $id);
 

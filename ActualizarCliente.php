@@ -18,10 +18,10 @@ if ($IDCliente != null) {
     $direccion = $datosCliente["Direccion"];
     $municipio = $datosCliente["Municipio"];
     $departamento = $datosCliente["Departamento"];
-    $telefono = $datosCliente["Teléfono"];
+    $telefono = $datosCliente["Telefono"];
     $telefono2 = $datosCliente["Telefono2"];
     $nit = $datosCliente["NIT"];
-    $marcac = $datosCliente["Marca_concentrado"];
+    $marcac = $datosCliente["Marca_Concentrado"];
 } else {
     exit();
 }
@@ -36,7 +36,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
     $municipio = $_POST["municipio"];
     $departamento = $_POST["departamento"];
     $telefono = $_POST["telefono"];
-    $telefono2 = $_POST["telefono"];
+    $telefono2 = $_POST["telefono2"];
     $nit = $_POST["nit"];
     $marcac = $_POST["marcac"];
 
@@ -119,7 +119,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                 <div class="form-group">
                                     <label for="usuario" class="col-md-3 control-label">DPI:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="dpi" placeholder="DPI" value="<?php if (isset($dpi)) echo $dpi; ?>" required>
+                                        <input type="text" class="form-control" maxlength="15" name="dpi" placeholder="DPI" value="<?php if (isset($dpi)) echo $dpi; ?>" required>
                                     </div>
                                 </div>
 
@@ -151,28 +151,28 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">Teléfono:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
+                                        <input type="text" class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">Teléfono 2 (Opcional):</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="telefono2" placeholder="Teléfono" value="<?php if (isset($telefono2)) echo $telefono2; ?>">
+                                        <input type="text" class="form-control" maxlength="8" name="telefono2" placeholder="Teléfono" value="<?php if (isset($telefono2)) echo $telefono2; ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">NIT:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="nit" placeholder="NIT" value="<?php if (isset($nit)) echo $nit; ?>" required>
+                                        <input type="text" class="form-control" maxlength="15" name="nit" placeholder="NIT" value="<?php if (isset($nit)) echo $nit; ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">Marca de Conentrado Utilizada (Opcional):</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="marcac" placeholder="Concentrado" value="<?php if (isset($concentrado)) echo $cocentrado; ?>">
+                                        <input type="text" class="form-control" name="marcac" placeholder="Concentrado" value="<?php if (isset($marcac)) echo $marcac; ?>" required>
                                     </div>
                                 </div>
 
@@ -191,6 +191,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                     <?php }
                                     } ?>
                                         <button name="btnActualizar" id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar</button>
+                                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                     </div>
                                 </div>
                             </form>

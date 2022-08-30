@@ -16,14 +16,14 @@ class Venta
         $this->cn = new Conexion();
     }
 
-    function crearVenta($fecha, $IDCliente, $tipo, $descripcion, array $datosInsumos)
+    function crearVenta($fecha, $IDCliente, $tipo, $descripcion, array $datosFormulas)
     {
 
         $error = true;
         if ($fecha == '' || $fecha == null) {
-            $error = "*Debe llenar el campo de nombre* ";
+            $error = "*Debe llenar el campo de fecha* ";
         } elseif ($descripcion == '' || $descripcion == null) {
-            $error = "*Debe llenar el campo de apellidos* ";
+            $error = "*Debe llenar el campo de descripción* ";
         } else {
 
             $cn = $this->cn->conexion;
@@ -32,19 +32,19 @@ class Venta
             $idVenta = null;
             $error2 = true;
 
-            foreach ($datosInsumos as $dato) {
-                foreach ($dato as $idInsumo => $libras) {
-                    if ($rs = mysqli_query($cn, "SELECT * FROM Insumo WHERE IDInsumo = {$idInsumo}")) {
+            foreach ($datosFormulas as $dato) {
+                foreach ($dato as $idFormula => $libras) {
+                    if ($rs = mysqli_query($cn, "SELECT * FROM DetalleFormula WHERE IDDetalleFormula = {$idFormula};")) {
 
                         if (mysqli_num_rows($rs) > 0) {
 
-                            $datosInsumo = mysqli_fetch_array($rs);
-                            $costoLibra = $datosInsumo['CostoLibra'];
+                            $datosFormula = mysqli_fetch_array($rs);
+                            $costoLibra = $datosFormula['Costo'];
                             $subtotal = $costoLibra * $libras;
                             $total += $subtotal;
 
                             $error2 = false;
-                        } else {
+                        } else { 
                             $error2 = true;
                             $error = "Id de producto no encontrada";
                         }
@@ -58,7 +58,7 @@ class Venta
 
                 if ($stmt = mysqli_prepare($cn, "INSERT INTO Venta VALUES(NULL, ?, ?, ?, ?);")) {
 
-                    mysqli_stmt_bind_param($stmt, 'sdis', $fecha, $total, $IDCliente, $tipo);
+                    mysqli_stmt_bind_param($stmt, 'sdsi', $fecha, $total, $tipo, $IDCliente);
 
                     mysqli_stmt_execute($stmt);
 
@@ -68,25 +68,32 @@ class Venta
                         if ($row = mysqli_fetch_row($rs)) {
                             $idVenta = trim($row[0]);
 
+
+
                             // antes
-                            foreach ($datosInsumos as $dato) {
-                                foreach ($dato as $idInsumo => $libras) {
-
-                                    if ($rs = mysqli_query($cn, "SELECT * FROM Insumo WHERE IDInsumo = {$idInsumo}")) {
-
+                            foreach ($datosFormulas as $dato) {
+                                foreach ($dato as $idFormula => $libras) {
+                                   
+                                    if ($rs = mysqli_query($cn, "SELECT detalleformula.IDDetalleFormula, detalleformula.Costo, formula.IDFormula, insumo.IDInsumo, insumo.Disponibilidad FROM detalleformula INNER JOIN formula ON detalleformula.IDDetalleFormula = formula.IDDetalleFormula INNER JOIN insumo ON formula.IDInsumo = insumo.IDInsumo WHERE detalleformula.IDDetalleFormula = {$idFormula};")) {
+                                       
                                         if (mysqli_num_rows($rs) > 0) {
 
-                                            $datosInsumo = mysqli_fetch_array($rs);
-                                            $costoLibra = $datosInsumo['CostoLibra'];
+                                            $datosFormula = mysqli_fetch_array($rs);
+                                            $costoLibra = $datosFormula['Costo'];
                                             $subtotal = $costoLibra * $libras;
+                                            
 
-                                            $disponibilidadActual = $datosInsumo['Disponibilidad'];
+                                            $disponibilidadActual = $datosFormula['Disponibilidad'];
+                                            
+                                            $rs = mysqli_query($cn, "SELECT MAX(IDFormula) AS ID FROM Formula");
+                                            if($row = mysqli_fetch_array($rs)){
+                                                $IDFormula = trim($row[0]);
 
                                             if ($disponibilidadActual >= $libras) {
-
+                                             
                                                 if ($stmt = mysqli_prepare($cn, "INSERT INTO detalleventa VALUES(NULL, ?, ?, ?, ?, ?);")) {
 
-                                                    mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $idInsumo, $idVenta);
+                                                    mysqli_stmt_bind_param($stmt, 'sddii', $descripcion, $libras, $subtotal, $IDFormula, $idVenta);
 
                                                     mysqli_stmt_execute($stmt);
 
@@ -95,7 +102,7 @@ class Venta
 
                                                         $disponibilidad = $disponibilidadActual - $libras;
 
-                                                        if ($stmt = mysqli_prepare($cn, "UPDATE Insumo set Disponibilidad = ? WHERE IDInsumo = {$idInsumo}")) {
+                                                        if ($stmt = mysqli_prepare($cn, "UPDATE insumo INNER JOIN Formula on insumo.IDInsumo = Formula.IDInsumo INNER JOIN Detalleformula ON Formula.IDDetalleFormula = Detalleformula.IDDetalleFormula SET insumo.Disponibilidad = ? WHERE Detalleformula.IDDetalleFormula = {$idFormula}")) {
 
                                                             mysqli_stmt_bind_param($stmt, 'd', $disponibilidad);
 
@@ -114,12 +121,19 @@ class Venta
                                             } else {
                                                 $error = "No hay disponibilidad para la venta";
                                             }
-                                        } else {
-                                            $error = "Id de producto no encontrada";
+
+                                        }else{
+
                                         }
+                                        
+                                        } else {
+                                            $error = "Id de Fórmula no encontrada";
+                                        }
+                                        
                                     } else {
                                         $error = mysqli_error($cn);
                                     }
+                                   
                                 }
                             }
                         }
@@ -189,7 +203,7 @@ class Venta
                        </button>
                    </div>
                    <div class='modal-body'>
-                       <p> ¿Estas seguro que deseas eliminar la Venta con ID: '{$proveedor['IDVenta']}'? esto será de forma permanente? </p>
+                       <p> ¿Esta seguro que deseas eliminar la Venta con ID: '{$proveedor['IDVenta']}'? esto será de forma permanente? </p>
                    </div>
                    <div class='modal-footer'>
                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cerrar</button>
@@ -213,7 +227,7 @@ class Venta
     {
         $cn = $this->cn->conexion;
 
-        $proveedores = $cn->query("SELECT * from detalleVenta where IDVenta = {$id} order by IDDetallVenta asc limit 0, 1");
+        $proveedores = $cn->query("SELECT * from detalleVenta where IDVenta = {$id} order by IDDetalleVenta asc limit 0, 1");
 
         if (mysqli_num_rows($proveedores) > 0) {
             return mysqli_fetch_array($proveedores);
@@ -229,7 +243,7 @@ class Venta
         $sql = "SELECT * from detalleVenta where IDVenta = {$id}";
         $result = mysqli_query($cn, $sql);
         $numero = mysqli_num_rows($result);
-        $proveedores = $cn->query("SELECT * from detalleVenta where IDVenta = {$id} order by IDDetallVenta asc limit 1, {$numero}");
+        $proveedores = $cn->query("SELECT * from detalleVenta where IDVenta = {$id} order by IDDetalleVenta asc limit 1, {$numero}");
 
 
 
@@ -244,7 +258,16 @@ class Venta
         $cn->query("DELETE FROM Venta WHERE IDVenta = {$id} ");
 
         if (mysqli_affected_rows($cn) > 0) {
-            echo "<script>alert('Venta eliminada');</script>";
+            ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        <script>
+                            Swal.fire({
+                            icon: 'success',
+                            title: 'Venta Eliminada',
+                            text: 'Venta Eliminada Correctamente',
+                            })
+                        </script>
+               <?php
         } else {
 
             echo mysqli_error($cn);
@@ -268,7 +291,7 @@ class Venta
             $cn = $this->cn->conexion;
 
 
-            if ($stmt = mysqli_prepare($cn, "UPDATE Venta SET fecha = ?, IDCliente = ?, Tipo = ? where IDVenta = ? ")) {
+            if ($stmt = mysqli_prepare($cn, "UPDATE Venta SET Fecha = ?, IDCliente = ?, Tipo = ? where IDVenta = ? ")) {
 
                 $error = $fecha;
 
@@ -328,7 +351,7 @@ class Venta
 
 
         if ($id != null) {
-            $result = mysqli_query($cn, "SELECT * FROM Venta V inner join detalleventa D on V.IDVenta=D.IDVenta inner join Insumo I on D.IDInsumo = I.IDInsumo inner join Cliente C on  V.IDCliente = C.IDCliente where V.IDVenta like '%{$id}%' ");
+            $result = mysqli_query($cn, "SELECT * FROM Venta V inner join detalleventa D on V.IDVenta=D.IDVenta inner join Formula I on D.IDFormula = I.IDFormula inner join Cliente C on  V.IDCliente = C.IDCliente where V.IDVenta like '%{$id}%' ");
         } else {
             $result = mysqli_query($cn, "SELECT * FROM Venta where IDVenta like '%{$id}%' ");
         }

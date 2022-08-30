@@ -28,7 +28,7 @@
 
                     <div class="form-group">
                         <label for="nombre" class="col-md-3 control-label">Empresa (opcional)</label>
-                        <div class="col-md-9">
+                        <div class="col-md-9"> 
                             <input type="text" class="form-control" name="empresa" placeholder="Empresa" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                         </div>
                     </div>

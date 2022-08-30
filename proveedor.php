@@ -1,7 +1,6 @@
 <!-- Hay que cambiar este archivo a php -->
 
 <?php
-
     require ('./php/crear_proveedor.php');
 
 ?>
@@ -46,8 +45,31 @@
                 <script src="./lib/strength.min.js"></script>
                 <div class="container-fluid">
                     <h1 class="mt-4">Registro Proveedores</h1>
-                    <ol class="breadcrumb mb-4">
+                    <ol class="breadcrumb mb-4" style="background-color: #CEFC3E">
                         <li class="breadcrumb-item active">Datos del Proveedor</li>
+                        <p>  <i class="fas fa-calendar-week"></i>   <span id="time" style=" "> </span> <i class="far fa-clock"></i></p> 
+                    <script>
+                        var datetime = new Date();
+                        console.log(datetime);
+                        document.getElementById("time").textContent = datetime;
+
+                        `use strict`;
+                        function refreshTime() {
+                        const timeDisplay = document.getElementById("time");
+                        const dateString = new Date().toLocaleString([],{
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit',
+
+                        });
+                        const formattedString = dateString.replace(" , ", " - ");
+                        timeDisplay.textContent = formattedString;
+                                               }
+                        setInterval(refreshTime, 1000);
+
+                    </script>
                     </ol>
 
                     <div class="panel panel-info">
@@ -72,7 +94,7 @@
                                     
 
                                     <div class="form-group">
-                                        <label for="nombre" class="col-md-3 control-label">Empresa</label>
+                                        <label for="nombre" class="col-md-3 control-label">Empresa (opcional):</label>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" maxlength="100" name="empresa" placeholder="Empresa" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
                                         </div>
@@ -104,7 +126,15 @@
                                     <div class="form-group">
                                         <label for="email" class="col-md-3 control-label">Teléfono:</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>"  required>
+                                            <script>
+                                        function validaNumericos(event) {
+                                        if(event.charCode >= 48 && event.charCode <= 57){
+                                        return true;
+                                                                                        }
+                                        return false;        
+                                        }
+                                        </script>
+                                            <input type="cel" onkeypress='return validaNumericos(event)' class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>"  required>
                                         </div>
                                     </div>
 
@@ -128,8 +158,9 @@
                                                 
                                             </div>
                                     <?php }
-                                    } ?>
-                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar</button>
+                                    } ?>    
+                                            <button id="btn-signup" type="submit" class="btn btn-md btn-primary"><i class="icon-hand-right"></i>Registrar</button>
+                                            <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -173,7 +204,7 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                        <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     
                     </div>
                 </div>

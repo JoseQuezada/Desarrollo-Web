@@ -9,7 +9,7 @@ function iniciarSesion($username, $password, $cn)
 
 
     if ($username == '' || $username == null) {
-        $error = "*Debe escribir algo en el campo de usuario*";
+        $error = "*Debe escribir un nombre de usuario en el campo de usuario*";
     } elseif ($password == '' || $password == null) {
         $error = "*Debe escribir algo en el campo de contraseña*";
     } else {

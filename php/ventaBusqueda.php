@@ -7,5 +7,5 @@ if(isset($_POST['usuarioBusqueda'])){
   // $usuario -> buscarVenta($_POST['usuarioBusqueda']);
 
 }else{
-    echo "<tr><td colspan='7'>Usuario No encontrado</td></tr>";
+    echo "<tr><td colspan='7'>Venta No encontrada</td></tr>";
 }

@@ -1,44 +1,42 @@
 <?php
-
-require_once('./php/Compra.php');
-
-$IDCompra = $_GET['IDCompra'] ?? null;
-
-echo $IDCompra;
-
-if ($IDCompra != null) {
-
-    $compra = new Compra();
-
-    $datosCompra = $compra->buscarCompraId($IDCompra);
-
-    $fecha = $datosCompra['Fecha'];
-    $total = $datosCompra['Total'];
+require('./php/Formula.php');
+$IDDetalleFormula = $_GET['IDDetalleFormula'] ?? null;
 
 
-    $primerosDatos = $compra->primerosDatos($IDCompra);
-
-    $primerInsumo = $primerosDatos['IDInsumo'];
-    $primerLibra = $primerosDatos['Libras'];
-    $primerDetalle = $primerosDatos['IDDetalleCompra'];
-    $descripcion = $primerosDatos['Descripcion'];
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') { //Chequea si se accedió por medio de POST
+if ($IDDetalleFormula != null) {
 
 
-        $fecha = $_POST["fecha"];
-        $descripcion = $_POST["desripcion"];
+    $formula = new Formula();
 
-        $compra = new Compra();
-        $error = $compra->actualizarCompra($IDCompra, $fecha, $descripcion);
+    $datosFormula = $formula->buscarFormulaId($IDDetalleFormula);
+    $codigo = $datosFormula["Código"];
+    $descripcion = $datosFormula["Descripción"];
+    $costo = $datosFormula["Costo"];
 
+    $primerosdatos =  $formula->primerosDatos($IDDetalleFormula);
 
-        if (!$error) {
-            
-        }
-    }
+    $primerInsumo = $primerosdatos['IDInsumo'];
+    $primerFormula = $primerosdatos['IDFormula'];
+    $primerLibra =  $primerosdatos[''];
+
 } else {
     exit();
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' ) { //Chequea si se accedió por medio de POST
+
+    $codigo = $_POST["codigo"];
+    $descripcion = $_POST["descripcion"];
+    $costo = $_POST["costo"];
+
+    $formula = new Formula();
+
+    $error = $formula->actualizarFormula($IDDetalleFormula, $codigo, $descripcion, $costo);
+
+    if (!$error) {
+        
+    }
 }
 
 ?>
@@ -80,16 +78,16 @@ if ($IDCompra != null) {
             <link rel="stylesheet" href="./lib/strength.css">
             <script src="./lib/strength.min.js"></script>
             <div class="container-fluid">
-                <h1 class="mt-4">Actualizar/visualizar Compra</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Datos de la Compra</li>
+                <h1 class="mt-4">Actualizar Fórmula</h1>
+                <ol class="breadcrumb mb-4" style="background-color: #EBF770">
+                    <li class="breadcrumb-item active">Datos de la Fórmula</li>
                 </ol>
 
                 <div class="panel panel-info">
                     <div class="panel-heading">
 
 
-                        <div class="panel-body">
+                        <div class="panel-body" style="background-color: #EFE736">
 
                             <form id="signupform" class="form-horizontal" role="form" method="POST" autocomplete="off">
 
@@ -105,96 +103,92 @@ if ($IDCompra != null) {
                                 } ?>
 
                                 <div class="form-group">
-                                    <label for="nombre" class="col-md-3 control-label">Fecha:</label>
+                                    <label for="nombre" class="col-md-3 control-label">Código:</label>
                                     <div class="col-md-9">
-                                        <input type="date" class="form-control" name="fecha" placeholder="Fecha" value="<?php if (isset($fecha)) echo $fecha; ?>" required>
+                                        <input type="text" class="form-control" name="codigo" placeholder="Ingrese el Código de la Fórmula" value="<?php if (isset($codigo)) echo $codigo; ?>" required>
                                     </div>
-                                </div>
+                                </div> 
 
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Descripción:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="desripcion" placeholder="Descripción" value="<?php if (isset($descripcion)) echo $descripcion; ?>" required>
+                                        <input type="text" class="form-control" name="descripcion" placeholder="Ingrese Descripción" value="<?php if (isset($descripcion)) echo $descripcion; ?>" required>
+                                    </div>
+                                </div> 
+
+                               
+                                <div class="form-group">
+                                    <label for="usuario" class="col-md-3 control-label">Costo por Quintal:</label>
+                                    <div class="col-md-9">
+                                        <input type="number" step="0.01" min="0" class="form-control" name="costo" placeholder="Ingrese el Costo por Quintal" value="<?php if (isset($costo)) echo $costo; ?>" required>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <strong class="col-md-3 control-p">Insumos:</strong>
+                                
+                                <div class="col-md-100 input-group">
+                                    <label for="buscar" class="col-lg-6">Descripción del Insumo:</label>
                                     <div class="col-md-9">
-                                        <div class="field_wrapper">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <p>ID Insumo</p>
+                                    <input class="form-control" id="insumoBusqueda" name="insumoBusqueda" type="text" placeholder="Buscar Insumo" aria-label="Search" aria-describedby="basic-addon2">
+                                    </div>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
+                                                    <th>Costo Libra</th>
+                                                    <th>Proveedor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="resultados-insumo">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p class="col-md-3 control-p">Ingredientes Requeridos:</p>
+                                        <div class="col-md-9">
+                                            <div class="field_wrapper">
+                                                <div>
+                                                    <input type="number" min="1" placeholder="ID del Insumo" name="idInsumos[]" value=""  />
+                                                    <input type="number" step="0.01" min="0" placeholder="Libras Rqueridas" name="librasCompradas[]" value=""  />
+
+                                                    <a href="javascript:void(0);" class="add_button" title="Add field"><i class="far fa-plus-square"></i></a>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <p>Libras</p>
-                                                </div>
-                                            </div>
-
-                                            <div>
-
-                                                <input readonly type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php if (isset($primerInsumo)) echo $primerInsumo; ?>" />
-                                                <input readonly type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php if (isset($primerLibra)) echo $primerLibra; ?>" />
-                                                <input readonly type="hidden" name="idDetalle[]" value="<?php echo $primerDetalle; ?>" />
-
-                                                <?php
-
-                                                $compra = new Compra();
-
-                                                $restoDatosInsumos = $compra->restoDatos($IDCompra);
-
-                                                // echo var_dump($restoDatosInsumos);
-
-                                                if (mysqli_num_rows($restoDatosInsumos) > 0) {
-
-                                                    foreach ($restoDatosInsumos as $dato) {
-
-                                                ?>
-
-                                                        <div>
-
-                                                            <input readonly type="hidden" name="idDetalle[]" value="<?php echo $dato['IDDetalleCompra']; ?>" />
-
-                                                            <input readonly type="text" placeholder="ID del insumo" name="idInsumos[]" value="<?php echo $dato['IDCompra']; ?>" />
-
-                                                            <input readonly type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="<?php echo $dato['Libras']; ?>" />
-                                                        </div>
-
-                                                <?php }
-                                                } else {
-                                                    echo "<hr><h5> No se encontraron más Insumos </h5><hr>";
-                                                } ?>
-
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-5 col-md-9">
-                                    <?php if (isset($error)) {
+                                    <div class="form-group">
+                                        <div class="col-md-offset-5 col-md-9">
+                                        <?php if (isset($error)) {
                                         # code...
                                         if ($error == false) { ?>
 
                                         <div class="alert alert-success" role="alert">
-                                            Actualizado correctamente <a href="#" class="alert-link"></a>
+                                            Fórmula Actualizada <a href="#" class="alert-link"></a>
                                         </div>
                                     
                                                 
                                             </div>
                                     <?php }
                                     } ?>
-                                        <button id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Compra</button>
-                                        <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
+                                            <button name="ActualizarDatos" id="btn-signup" type="submit" class="btn btn-warning"><i class="icon-hand-right"></i>Actualizar Fórmula</button>
+                                            <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
+                                        </div>
                                     </div>
-                                </div>
                             </form>
                         </div>
                     </div>
-
-
 
                     <script>
                         $(document).ready(function($) {
@@ -217,7 +211,7 @@ if ($IDCompra != null) {
 
                             var addButton = $('.add_button'); //Add button selector
                             var wrapper = $('.field_wrapper'); //Input field wrapper
-                            var fieldHTML = '<div><input type="text" placeholder="ID del insumo" name="idInsumos[]" value="" /> <input type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="" /><a href="javascript:void(0);" class="remove_button" title="Remove field"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-x-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146a.5.5 0 1 0-.708.708L7.293 8 6.146 9.146a.5.5 0 1 0 .708.708L8 8.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 8l1.147-1.146a.5.5 0 0 0-.708-.708L8 7.293 6.854 6.146z"/></svg></a></div>'; //New input field html 
+                            var fieldHTML = '<div><input type="text" placeholder="ID del insumo" name="idInsumos[]" value="" /> <input type="number" step="0.01" min="0" placeholder="Libras Requeridas" name="librasCompradas[]" value="" /><a href="javascript:void(0);" class="remove_button" title="Remove field"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-x-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146a.5.5 0 1 0-.708.708L7.293 8 6.146 9.146a.5.5 0 1 0 .708.708L8 8.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 8l1.147-1.146a.5.5 0 0 0-.708-.708L8 7.293 6.854 6.146z"/></svg></a></div>'; //New input field html 
                             $(addButton).click(function() { //Once add button is clicked
                                 $(wrapper).append(fieldHTML); // Add field html
                             });

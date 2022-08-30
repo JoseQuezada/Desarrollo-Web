@@ -1,15 +1,14 @@
 <?php
 
 require('./php/validacionUsuario.php');
-
-// echo var_dump($_SESSION);
+//echo var_dump($_SESSION);
 
 ?>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="tablero.php">
-    
-        <!--<img src="logotamano.svg" width="30p" height="30" class="d-inline-block align-top">    
+    <img src="img/logotamano.png" width="60" height="40" class="d-inline-block align-top" alt="">
+        <!--<img src="logotamano.svg" width="30p" height="30" class="d-inline-block align-top ">  #e3f2fd  
 -->SWPCIGC</a>
 
     <!--Hola estoy bien-->
@@ -27,23 +26,24 @@ require('./php/validacionUsuario.php');
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="./cerrarSesion.php">Cerrar Sesión</a>
             </div>
+           
         </li>
     </ul>
 </nav>
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav" style="background-color: aquamarine;">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: #007bff !important;">
+    <div id="layoutSidenav_nav" style="background-color: #484852;">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: #007bff;">
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <img src="logotamano.png" alt="">
-                    <a class="nav-link" href="tablero.php">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <a class="nav-link text-white" href="tablero.php">
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-tachometer-alt"></i></div>
                         Panel de Control
                     </a>
-                    <div class="sb-sidenav-menu-heading">Gastos</div>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProvedores" aria-expanded="false" aria-controls="collapseProvedores">
+                    <div class="sb-sidenav-menu-heading text-white" style="width: 8rem;">Gastos</div>
+                    <a class="nav-link collapsed  text-white" href="#" data-toggle="collapse" data-target="#collapseProvedores" aria-expanded="false" aria-controls="collapseProvedores">
 
-                        <div class="sb-nav-link-icon"><i class="fas fa-people-carry"></i></i></div>
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-people-carry"></i></i></div>
                         Proveedores
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -56,8 +56,8 @@ require('./php/validacionUsuario.php');
 
 
 
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInsumos" aria-expanded="false" aria-controls="collapseInsumos">
-                        <div class="sb-nav-link-icon"><i class="fas fa-stroopwafel"></i></div>
+                    <a class="nav-link collapsed text-white" href="#" data-toggle="collapse" data-target="#collapseInsumos" aria-expanded="false" aria-controls="collapseInsumos">
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-stroopwafel"></i></div>
                         Insumos
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -67,9 +67,9 @@ require('./php/validacionUsuario.php');
                             <a class="nav-link" href="ListarInsumo.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
                         </nav>
                     </div>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
+                    <a class="nav-link collapsed text-white" href="#" data-toggle="collapse" data-target="#collapseCompras" aria-expanded="false" aria-controls="collapseCompras">
 
-                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-users"></i></div>
                         Compras
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -79,11 +79,11 @@ require('./php/validacionUsuario.php');
                             <a class="nav-link" href="ListarCompra.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
                         </nav>
                     </div>
-                    <div class="sb-sidenav-menu-heading">Ingresos</div>
+                    <div class="sb-sidenav-menu-heading text-white">Ingresos</div>
 
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="false" aria-controls="collapseClientes">
+                    <a class="nav-link collapsed text-white" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="false" aria-controls="collapseClientes">
 
-                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-users"></i></div>
                         Clientes
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -94,9 +94,22 @@ require('./php/validacionUsuario.php');
                         </nav>
                     </div>
 
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
+                    <a class="nav-link collapsed text-white" href="#" data-toggle="collapse" data-target="#collapseFórmulas" aria-expanded="false" aria-controls="collapseFórmulas">
 
-                        <div class="sb-nav-link-icon"><i class="fas fa-universal-access"></i></div>
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-flask"></i></div>
+                        Fórmulas
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseFórmulas" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="AgregarFormula.php"><i class="far fa-plus-square"></i>&nbsp;Agregar</a>
+                            <a class="nav-link" href="ListarFormula.php"><i class="fas fa-th-list"></i>&nbsp;Listado</a>
+                        </nav>
+                    </div>
+
+                    <a class="nav-link collapsed text-white" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
+
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-universal-access"></i></div>
                         Ventas
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -108,9 +121,9 @@ require('./php/validacionUsuario.php');
                     </div>
 
                     </a>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
+                    <a class="nav-link collapsed text-white" href="#" data-toggle="collapse" data-target="#collapseReportes" aria-expanded="false" aria-controls="collapseReportes">
 
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        <div class="sb-nav-link-icon text-white"><i class="fas fa-columns"></i></div>
                         Reportes
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
@@ -122,8 +135,8 @@ require('./php/validacionUsuario.php');
                         </nav>
                     </div>
                     <?php if ($_SESSION['ID_Tipo'] == 1) : ?>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                        <a class="nav-link collapsed text-white" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="false" aria-controls="collapseUsuarios">
+                            <div class="sb-nav-link-icon text-white"><i class="fas fa-user"></i></div>
                             Usuarios
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>

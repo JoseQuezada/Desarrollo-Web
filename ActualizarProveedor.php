@@ -16,8 +16,8 @@ if ($IDProveedor != null) {
     $empresa = $datosProveedor['Empresa'];
     $nombre = $datosProveedor['Nombre'];
     $apellidos = $datosProveedor['Apellidos'];
-    $direccion = $datosProveedor['Dirección'];
-    $telefono = $datosProveedor['Teléfono'];
+    $direccion = $datosProveedor['Direccion'];
+    $telefono = $datosProveedor['Telefono'];
     $email = $datosProveedor['Email'];
 
 
@@ -130,14 +130,14 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">Teléfono:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
+                                        <input type="text" class="form-control" maxlength="8" name="telefono" placeholder="Teléfono" value="<?php if (isset($telefono)) echo $telefono; ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="password" class="col-md-3 control-label">E-Mail (Opcional)</label>
                                     <div class="col-md-9">
-                                        <input id="EMail" type="text" class="form-control" name="email" placeholder="E-Mail" value="<?php if (isset($email)) echo $email; ?>" required><br>
+                                        <input id="EMail" type="text" class="form-control" maxlength="100" name="email" placeholder="E-Mail" value="<?php if (isset($email)) echo $email; ?>" required><br>
                                     </div>
                                 </div>
 
@@ -155,8 +155,8 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
                                             </div>
                                     <?php }
                                     } ?>
-                                        <button id="btn-signup" name="btnActualizar" type="submit" class="btn btn-sm btn-warning"><i class="icon-hand-right"></i>Actualizar Proveedor</button>
-                                        <a href="./ListarProveedor.php" class="btn btn-sm btn-secondary"><i class="icon-hand-right"></i>Cancelar</a>
+                                        <button id="btn-signup" name="btnActualizar" type="submit" class="btn btn-md btn-warning"><i class="icon-hand-right"></i>Actualizar Proveedor</button>
+                                        <a href="./ListarProveedor.php" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</a>
                                     </div>
                                 </div>
                             </form>
@@ -201,7 +201,7 @@ if (isset($_POST["btnActualizar"])) { //Chequea si se accedió por medio de POST
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     <div>
 
                     </div>

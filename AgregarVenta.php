@@ -43,7 +43,7 @@ require_once('./php/crear_venta.php');
             <script src="./lib/strength.min.js"></script>
             <div class="container-fluid">
                 <h1 class="mt-4">Agregar Venta</h1>
-                <ol class="breadcrumb mb-4">
+                <ol class="breadcrumb mb-4" style="background-color: #43D1FE">
                     <li class="breadcrumb-item active">Datos de la Venta</li>
                 </ol>
 
@@ -51,7 +51,7 @@ require_once('./php/crear_venta.php');
                     <div class="panel-heading">
 
 
-                        <div class="panel-body">
+                        <div class="panel-body" style="background-color: #A3E4F9">
 
                             <form id="signupform" class="form-horizontal" role="form" method="POST" autocomplete="off">
 
@@ -69,7 +69,7 @@ require_once('./php/crear_venta.php');
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Fecha:</label>
                                     <div class="col-md-9">
-                                        <input type="date" class="form-control" name="fecha" placeholder="Código" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                        <input type="date" class="form-control" name="fecha" placeholder="Código" value="<?php if (isset($codigo)) echo $codigo; ?>" required>
                                     </div>
                                 </div>
 
@@ -92,23 +92,30 @@ require_once('./php/crear_venta.php');
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Tipo de Venta:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="tipo" placeholder="Tipo de Venta" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                    <select name="tipo" id="tipo" class="form-control">
+                                        <option type="text" value="Contado" required>Contado</option>
+                                        <option type="text" value="Crédito" required>Crédito</option>
+                                    </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nombre" class="col-md-3 control-label">Descripción:</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="desripcion" placeholder="Descripción" value="<?php if (isset($nombre)) echo $nombre; ?>" required>
+                                        <input type="text" class="form-control" name="desripcion" placeholder="Descripción" value="<?php if (isset($descripcion)) echo $descripcion; ?>" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-100 input-group">
-                                    <label for="buscar" class="col-lg-6">Descripcion del Insumo:</label>
-                                    <input class="form-control" id="insumoBusqueda" name="insumoBusqueda" type="text" placeholder="Buscar insumo" aria-label="Search" aria-describedby="basic-addon2" />
+                                    <label for="buscar" class="col-lg-6">Descripción de la Fórmula:</label>
+                                    <div class="col-md-9">
+                                    <input class="form-control" id="insumoBusqueda" name="insumoBusqueda" type="text" placeholder="Buscar Fórmula" aria-label="Search" aria-describedby="basic-addon2" />
+                                    </div>
                                     <div class="input-group-append">
                                         <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                                        
                                     </div>
+                                    
                                 </div>
 
 
@@ -120,9 +127,8 @@ require_once('./php/crear_venta.php');
                                                     <th>ID</th>
                                                     <th>Código</th>
                                                     <th>Descripción</th>
-                                                    <th>Disponibilidad</th>
-                                                    <th>Costo Libra</th>
-                                                    <th>Proveedor</th>
+                                                    <th>Costo Quintal</th>
+                                                    <th>Insumos</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="resultados-insumo">
@@ -132,12 +138,12 @@ require_once('./php/crear_venta.php');
                                     </div>
 
                                     <div class="form-group">
-                                        <p class="col-md-3 control-p">Insumos:</p>
+                                        <p class="col-md-3 control-p">Fórmulas:</p>
                                         <div class="col-md-9">
                                             <div class="field_wrapper">
                                                 <div>
-                                                    <input type="text" placeholder="ID del insumo" name="idInsumos[]" value="" />
-                                                    <input type="number" step="0.01" min="0" placeholder="Libras vendidas" name="librasCompradas[]" value="" />
+                                                    <input type="text" placeholder="ID de la fórmula" name="idInsumos[]" value="" />
+                                                    <input type="number" step="0.01" min="0" placeholder="Quintales vendidos" name="librasCompradas[]" value="" />
 
                                                     <a href="javascript:void(0);" class="add_button" title="Add field"><i class="far fa-plus-square"></i></a>
                                                 </div>
@@ -159,7 +165,8 @@ require_once('./php/crear_venta.php');
                                             </div>
                                     <?php }
                                     } ?>
-                                            <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar Venta</button>
+                                            <button id="btn-signup" type="submit" class="btn btn-md btn-primary"><i class="icon-hand-right"></i>Registrar Venta</button>
+                                            <button type="button" onclick="history.back()" class="btn btn-md btn-danger"><i class="icon-hand-right"></i>Cancelar</button>
                                         </div>
                                     </div>
                             </form>
@@ -173,7 +180,7 @@ require_once('./php/crear_venta.php');
                                 var parametros = "insumoBusqueda=" + $(this).val()
                                 $.ajax({
                                     data: parametros,
-                                    url: './php/seleccionInsumos.php',
+                                    url: './php/seleccionFormulas.php',
                                     type: 'post',
                                     beforeSend: function() {},
                                     success: function(response) {
@@ -187,7 +194,7 @@ require_once('./php/crear_venta.php');
 
                             var addButton = $('.add_button'); //Add button selector
                             var wrapper = $('.field_wrapper'); //Input field wrapper
-                            var fieldHTML = '<div><input type="text" placeholder="ID del insumo" name="idInsumos[]" value="" /> <input type="number" step="0.01" min="0" placeholder="Libras compradas" name="librasCompradas[]" value="" /><a href="javascript:void(0);" class="remove_button" title="Remove field"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-x-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146a.5.5 0 1 0-.708.708L7.293 8 6.146 9.146a.5.5 0 1 0 .708.708L8 8.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 8l1.147-1.146a.5.5 0 0 0-.708-.708L8 7.293 6.854 6.146z"/></svg></a></div>'; //New input field html 
+                            var fieldHTML = '<div><input type="text" placeholder="ID de la Fórmula" name="idInsumos[]" value="" /> <input type="number" step="0.01" min="0" placeholder="Quientales vendidos" name="librasCompradas[]" value="" /><a href="javascript:void(0);" class="remove_button" title="Remove field"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-x-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146a.5.5 0 1 0-.708.708L7.293 8 6.146 9.146a.5.5 0 1 0 .708.708L8 8.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 8l1.147-1.146a.5.5 0 0 0-.708-.708L8 7.293 6.854 6.146z"/></svg></a></div>'; //New input field html 
                             $(addButton).click(function() { //Once add button is clicked
                                 $(wrapper).append(fieldHTML); // Add field html
                             });
@@ -204,11 +211,9 @@ require_once('./php/crear_venta.php');
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                    <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                     <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
+                       
                     </div>
                 </div>
             </div>

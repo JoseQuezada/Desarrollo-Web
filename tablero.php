@@ -17,7 +17,7 @@
     <?php
 
     require('./templates/barraNavegacionTablero.php');
-
+    
     ?>
     <div id="layoutSidenav_content">
 
@@ -27,7 +27,29 @@
             <div class="container-fluid"  style="background-color:  #e3f2fd;;">
                 <h1 class="mt-4">Panel de Control</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Panel</li>
+                    <li class="breadcrumb-item active"></li>
+                    <p><i class="fas fa-calendar-week"></i>  <span id="time"> </span> <i class="far fa-clock"></i></p> 
+                    <script>
+                        var datetime = new Date();
+                        console.log(datetime);
+                        document.getElementById("time").textContent = datetime;
+
+                        `use strict`;
+                        function refreshTime() {
+                        const timeDisplay = document.getElementById("time");
+                        const dateString = new Date().toLocaleString([],{
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                        });
+                        const formattedString = dateString.replace(" , ", " - ");
+                        timeDisplay.textContent = formattedString;
+                                               }
+                        setInterval(refreshTime, 1000);
+
+                    </script>
                 </ol>
                 <div class="row">
                     <div class="col-xl-3 col-md-6">
@@ -52,7 +74,7 @@
                     </div>
                     <div class="col-xl-3 col-md-6"> 
                         <div class="card bg-success text-white mb-4">
-                            <div class="card-body" style="background-image: url(img/Venta.jpg); height: 66px; width: 200x;">Ventas</div>
+                            <div class="card-body" style="background-image: url(img/Venta.jpg); height: 66px; width: 100x;">Ventas</div>
                             <div class="card-footer d-flex align-items-center justify-content-between">
                                 <a class="small text-white stretched-link" href="ListarVenta.php">Ver Detalles</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>

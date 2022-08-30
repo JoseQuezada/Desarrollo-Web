@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
 <!------------------------------------------- Inicia Formulario --------------------------->
                 <br>
                 <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                    <div class="col-md-100 input-group">
+                    <div class="col-md-100 input-group" >
                         <label for="buscar" class="col-lg-5">Usuario:</label>
                         <input class="form-control" id="usuarioBusqueda" name="usuarioBusqueda" type="text" placeholder="Buscar usuario" aria-label="Search" aria-describedby="basic-addon2" />
                         <div class="input-group-append">
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
                         </div>
                     </div>
                 </form>
-                <div class="card-header">
+                <div class="card-header" style="background-color: #F9F5A3">
                     <i class="fas fa-table mr-1"></i>
                     Usuarios Registrados
                 </div>
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idUsuario'])) {
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SUPASA 2020</div>
+                        <div class="text-muted">Copyright &copy; SUPASA 2022</div>
                         <div>
 
                         </div>
